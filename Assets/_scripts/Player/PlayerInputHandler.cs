@@ -9,6 +9,9 @@ public class PlayerInputHandler : MonoBehaviour
 	[SerializeField]
 	private PlayerControl playerControl;
 
+	[SerializeField]
+	private PlayerManager playerManager;
+
 	public void OnPowerFront(InputValue inputValue)
 	{
 		Debug.Log($"Power front");
@@ -28,5 +31,11 @@ public class PlayerInputHandler : MonoBehaviour
 		Debug.Log($"Jump");
 
 		playerControl.Jump();
+	}
+
+	public void OnReset()
+	{
+		Debug.Log($"Reset");
+		playerManager.ResetPlayerToStart();
 	}
 }
