@@ -27,6 +27,9 @@ public class PlayerControl : MonoBehaviour
 	[SerializeField]
 	private Transform spriteTransform;
 
+	[SerializeField]
+	private Transform raycastOrigin;
+
 	public static Action PlayerJumped;
 
 	protected bool currentlyFlying;
@@ -84,14 +87,19 @@ public class PlayerControl : MonoBehaviour
 		CurrentlyFlying = true;
 		PlayerJumped?.Invoke();
 
-		mainRigidbody.AddForce(Vector2.up * jumpingForce, ForceMode2D.Impulse);
+		mainRigidbody.AddForce(transform.up * jumpingForce, ForceMode2D.Impulse);
 	}
 
+	RaycastHit2D hit;
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (((1 << collision.gameObject.layer) & layerMask) != 0)
 		{
-			CurrentlyFlying = false;
+			hit = Physics2D.Raycast(raycastOrigin.position, -transform.up, 10, layerMask);
+			if (hit.transform == collision.transform)
+			{
+				CurrentlyFlying = false;
+			}
 		}
 	}
 
@@ -99,7 +107,11 @@ public class PlayerControl : MonoBehaviour
 	{
 		if (((1 << collision.gameObject.layer) & layerMask) != 0)
 		{
-			CurrentlyFlying = true;
+			hit = Physics2D.Raycast(raycastOrigin.position, -transform.up, 10, layerMask);
+			if (hit.transform == collision.transform)
+			{
+				CurrentlyFlying = true;
+			}
 		}
 	}
 
