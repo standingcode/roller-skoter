@@ -95,6 +95,14 @@ public class PlayerControl : MonoBehaviour
 		}
 	}
 
+	private void OnCollisionExit2D(Collision2D collision)
+	{
+		if (((1 << collision.gameObject.layer) & layerMask) != 0)
+		{
+			CurrentlyFlying = true;
+		}
+	}
+
 	public void ZeroAllForcesAndSpeed()
 	{
 		constantForce2D.force = new Vector2(0, 0);
