@@ -6,7 +6,16 @@
             "id": "81044d7a-a2aa-4ce3-8171-83c38351cd4e",
             "actions": [
                 {
-                    "name": "PowerFront",
+                    "name": "PowerLeft",
+                    "type": "Button",
+                    "id": "3077e930-47af-4e8b-a086-0591dc82dc38",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PowerRight",
                     "type": "Button",
                     "id": "bbf91243-e059-4260-9ebb-a00f3da5b205",
                     "expectedControlType": "Button",
@@ -15,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UnPowerFront",
+                    "name": "UnPower",
                     "type": "Button",
                     "id": "9a36fa01-bfb0-4470-861b-6aa89a838557",
                     "expectedControlType": "Button",
@@ -50,7 +59,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "PowerFront",
+                    "action": "PowerRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -61,7 +70,18 @@
                     "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "",
-                    "action": "UnPowerFront",
+                    "action": "UnPower",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c3c5c8fa-a242-44ac-87fb-6d0ec539c083",
+                    "path": "<Keyboard>/a",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnPower",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -84,6 +104,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "61f153cb-d93f-4ca8-95ec-8f6541dde288",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PowerLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

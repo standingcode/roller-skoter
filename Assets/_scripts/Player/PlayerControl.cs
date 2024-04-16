@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Hierarchy;
@@ -12,52 +13,86 @@ public class PlayerControl : MonoBehaviour
 	private float skatingForce;
 
 	[SerializeField]
-	private float motorSpeed;
-
-	[SerializeField]
 	private Rigidbody2D mainRigidbody;
 
 	[SerializeField]
 	private ConstantForce2D constantForce2D;
 
 	[SerializeField]
-	private HingeJoint2D frontHingeJoint;
+	private Transform centerOfMass;
+
+	[SerializeField]
+	private LayerMask layerMask;
+
+	[SerializeField]
+	private Transform spriteTransform;
+
+	public static Action PlayerJumped;
+
+	protected bool currentlyFlying;
+	public bool CurrentlyFlying { get => currentlyFlying; set => currentlyFlying = value; }
+
+	protected CharacterFacingDirection characterCurrentFacingDirection = CharacterFacingDirection.Right;
+	public CharacterFacingDirection CharacterCurrentFacingDirection { get => characterCurrentFacingDirection; private set => characterCurrentFacingDirection = value; }
 
 	private void Start()
 	{
+		mainRigidbody.centerOfMass = centerOfMass.localPosition;
 	}
 
-	public void PowerFrontWheel()
+	public void PowerLeft()
 	{
-		Debug.Log("Power the front wheel");
+		//Debug.Log("Power left");
 
-		var currentMotor = frontHingeJoint.motor;
-		currentMotor.motorSpeed = motorSpeed;
-		frontHingeJoint.motor = currentMotor;
+		TurnCharacter(CharacterFacingDirection.Left);
+		constantForce2D.force = new Vector2(-skatingForce, 0);
+	}
 
-		//mainRigidbody.velocity = new Vector2(skatingForce, mainRigidbody.velocity.y);
+	public void PowerRight()
+	{
+		//Debug.Log("Power right");
 
+		TurnCharacter(CharacterFacingDirection.Right);
 		constantForce2D.force = new Vector2(skatingForce, 0);
-
 	}
 
-	public void UnPowerFrontWheel()
+	public void TurnCharacter(CharacterFacingDirection characterFacingDirection)
 	{
-		Debug.Log("Unpower the front wheel");
+		if (CharacterCurrentFacingDirection == characterFacingDirection)
+		{
+			return;
+		}
 
-		var currentMotor = frontHingeJoint.motor;
-		currentMotor.motorSpeed = 0;
-		frontHingeJoint.motor = currentMotor;
+		CharacterCurrentFacingDirection = characterFacingDirection;
+		spriteTransform.Rotate(0f, 180f, 0f);
+	}
+
+	public void UnPower()
+	{
+		//Debug.Log("Unpower");
 
 		constantForce2D.force = new Vector2(0, 0);
-
-
 	}
 
 	public void Jump()
 	{
-		Debug.Log("Jump");
+		//Debug.Log("Jump");
+
+		if (CurrentlyFlying)
+			return;
+
+		CurrentlyFlying = true;
+		PlayerJumped?.Invoke();
+
 		mainRigidbody.AddForce(Vector2.up * jumpingForce, ForceMode2D.Impulse);
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (((1 << collision.gameObject.layer) & layerMask) != 0)
+		{
+			CurrentlyFlying = false;
+		}
 	}
 
 	public void ZeroAllForcesAndSpeed()
@@ -65,4 +100,10 @@ public class PlayerControl : MonoBehaviour
 		constantForce2D.force = new Vector2(0, 0);
 		mainRigidbody.velocity = new Vector2(0, 0);
 	}
+}
+
+public enum CharacterFacingDirection
+{
+	Left,
+	Right
 }

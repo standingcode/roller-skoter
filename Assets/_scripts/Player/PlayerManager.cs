@@ -24,7 +24,7 @@ public class PlayerManager : MonoBehaviour
 	public void ResetPlayerToStart()
 	{
 		playerControl.ZeroAllForcesAndSpeed();
-		mainRigidbody.transform.position = transform.position;
-		mainRigidbody.transform.rotation = transform.rotation;
+		mainRigidbody.transform.position = startPosition;
+		mainRigidbody.transform.rotation = startRotation;
 	}
 }

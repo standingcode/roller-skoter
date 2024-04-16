@@ -12,30 +12,35 @@ public class PlayerInputHandler : MonoBehaviour
 	[SerializeField]
 	private PlayerManager playerManager;
 
-	public void OnPowerFront(InputValue inputValue)
+	public void OnPowerLeft(InputValue inputValue)
 	{
-		Debug.Log($"Power front");
-
-		playerControl.PowerFrontWheel();
+		//Debug.Log($"Power left");
+		playerControl.PowerLeft();
 	}
 
-	public void OnUnPowerFront(InputValue inputValue)
+	public void OnPowerRight(InputValue inputValue)
 	{
-		Debug.Log($"UnPower front");
+		//Debug.Log($"Power right");
+		playerControl.PowerRight();
+	}
 
-		playerControl.UnPowerFrontWheel();
+	public void OnUnPower(InputValue inputValue)
+	{
+		//Debug.Log($"UnPower");
+
+		playerControl.UnPower();
 	}
 
 	public void OnJump(InputValue inputValue)
 	{
-		Debug.Log($"Jump");
+		//Debug.Log($"Jump");
 
 		playerControl.Jump();
 	}
 
 	public void OnReset()
 	{
-		Debug.Log($"Reset");
+		//Debug.Log($"Reset");
 		playerManager.ResetPlayerToStart();
 	}
 }
