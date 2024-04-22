@@ -12,16 +12,21 @@ public class PlayerInputHandler : MonoBehaviour
 	[SerializeField]
 	private PlayerManager playerManager;
 
+	[SerializeField]
+	private PlayerAnimationControl playerAnimationControl;
+
 	public void OnPowerLeft(InputValue inputValue)
 	{
 		//Debug.Log($"Power left");
 		playerControl.PowerLeft();
+		playerAnimationControl.PlaySkateAnimation();
 	}
 
 	public void OnPowerRight(InputValue inputValue)
 	{
 		//Debug.Log($"Power right");
 		playerControl.PowerRight();
+		playerAnimationControl.PlaySkateAnimation();
 	}
 
 	public void OnUnPower(InputValue inputValue)
@@ -29,6 +34,7 @@ public class PlayerInputHandler : MonoBehaviour
 		//Debug.Log($"UnPower");
 
 		playerControl.UnPower();
+		playerAnimationControl.PlayIdleAnimation();
 	}
 
 	public void OnJump(InputValue inputValue)
@@ -36,6 +42,7 @@ public class PlayerInputHandler : MonoBehaviour
 		//Debug.Log($"Jump");
 
 		playerControl.Jump();
+		//playerAnimationControl.PlayJumpAnimation();
 	}
 
 	public void OnReset()
