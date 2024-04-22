@@ -14,7 +14,10 @@ public class PlayerAnimationControl : MonoBehaviour
 	private LayerMask layerMask;
 
 	[SerializeField]
-	private Transform raycastOrigin;
+	private float heightOfFullJumpAnimation = 2f;
+
+	[SerializeField]
+	private float lowThresholdForJumpAnimation = 0.024f;
 
 	// Update is called once per frame
 	public void PlaySkateAnimation()
@@ -29,6 +32,22 @@ public class PlayerAnimationControl : MonoBehaviour
 
 	public void PlayJumpAnimation(float position)
 	{
-
+		Debug.Log($"Jumping animation position: {position}");
 	}
+
+
+	//// Auto jump animation
+
+	//float jumpAnimationRatio = 0f;
+	//private void DetermineJumpAnimation()
+	//{
+	//	//Debug.Log($"Raycast distance is: {hit.distance}");
+
+	//	if (hit.distance < lowThresholdForJumpAnimation)
+	//		return;
+
+	//	jumpAnimationRatio = Mathf.Clamp01(hit.distance / heightOfFullJumpAnimation);
+	//	playerAnimationControl.PlayJumpAnimation(jumpAnimationRatio);
+	//}
+
 }

@@ -5,62 +5,37 @@ using UnityEngine;
 public class PlayerAutoRotator : MonoBehaviour
 {
 	[SerializeField]
-	private float fixRotationSpeed = 1f;
-
-	[SerializeField]
-	private Transform raycastOrigin;
+	private float fixRotationSpeed = 150f;
 
 	[SerializeField]
 	private LayerMask layerMask;
 
+	[SerializeField]
+	PlayerAnimationControl playerAnimationControl;
+
 	private Vector3 newEulerAngles = Vector3.zero;
-	private RaycastHit2D hit;
+
 	private float rotatingZTarget = 0;
 	private IEnumerator CheckDirectionAndCallRotateCoroutine = null;
 	private float degreesOfRotationDifference;
 
-	private void Start()
+	private void Update()
 	{
-		StartCoroutine(KeepCheckingZRotation());
+		DetermineRotation();
 	}
-
 	private void OnDisable()
 	{
 		StopAllCoroutines();
 	}
 
-	private IEnumerator KeepCheckingZRotation()
+	public void DetermineRotation()
 	{
-		while (true)
-		{
-			//Debug.Log("Checking z rotation");
-			CheckPlayerZRotation();
-			yield return null;
-		}
-	}
+		rotatingZTarget = ConstantRayCaster.ColliderWasNull ? 0 : ConstantRayCaster.Hit.transform.eulerAngles.z;
 
-	public void CheckPlayerZRotation()
-	{
-		hit = Physics2D.Raycast(raycastOrigin.position, Vector2.down, 10, layerMask);
-		if (hit.collider != null)
+		if (CheckDirectionAndCallRotateCoroutine == null)
 		{
-			rotatingZTarget = hit.transform.eulerAngles.z;
-
-			if (CheckDirectionAndCallRotateCoroutine == null)
-			{
-				CheckDirectionAndCallRotateCoroutine = CheckDirectionAndCallRotate();
-				StartCoroutine(CheckDirectionAndCallRotateCoroutine);
-			}
-		}
-		else
-		{
-			rotatingZTarget = 0;
-
-			if (CheckDirectionAndCallRotateCoroutine == null)
-			{
-				CheckDirectionAndCallRotateCoroutine = CheckDirectionAndCallRotate();
-				StartCoroutine(CheckDirectionAndCallRotateCoroutine);
-			}
+			CheckDirectionAndCallRotateCoroutine = CheckDirectionAndCallRotate();
+			StartCoroutine(CheckDirectionAndCallRotateCoroutine);
 		}
 	}
 

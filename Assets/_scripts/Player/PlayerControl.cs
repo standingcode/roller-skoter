@@ -31,6 +31,7 @@ public class PlayerControl : MonoBehaviour
 	private Transform raycastOrigin;
 
 	public static Action PlayerJumped;
+	public static Action PlayerLanded;
 
 	protected bool currentlyFlying;
 	public bool CurrentlyFlying { get => currentlyFlying; set => currentlyFlying = value; }
@@ -99,6 +100,7 @@ public class PlayerControl : MonoBehaviour
 			if (hit.transform == collision.transform)
 			{
 				CurrentlyFlying = false;
+				PlayerLanded?.Invoke();
 			}
 		}
 	}
