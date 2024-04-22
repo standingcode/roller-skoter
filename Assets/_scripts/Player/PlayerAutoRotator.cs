@@ -52,6 +52,16 @@ public class PlayerAutoRotator : MonoBehaviour
 				StartCoroutine(CheckDirectionAndCallRotateCoroutine);
 			}
 		}
+		else
+		{
+			rotatingZTarget = 0;
+
+			if (CheckDirectionAndCallRotateCoroutine == null)
+			{
+				CheckDirectionAndCallRotateCoroutine = CheckDirectionAndCallRotate();
+				StartCoroutine(CheckDirectionAndCallRotateCoroutine);
+			}
+		}
 	}
 
 	public IEnumerator CheckDirectionAndCallRotate()
