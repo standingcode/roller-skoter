@@ -13,9 +13,6 @@ public class ConstantRayCaster : MonoBehaviour
 	private static RaycastHit2D hit;
 	public static RaycastHit2D Hit { get => hit; }
 
-	private static bool colliderWasNull = true;
-	public static bool ColliderWasNull { get => colliderWasNull; }
-
 	private void Start()
 	{
 		StartCoroutine(ConstantRayCastingRoutine());
@@ -38,6 +35,5 @@ public class ConstantRayCaster : MonoBehaviour
 	public void ConstantRayCasting()
 	{
 		hit = Physics2D.Raycast(rayCastOrigin.position, Vector2.down, 10, layerMask);
-		colliderWasNull = hit.collider == null;
 	}
 }

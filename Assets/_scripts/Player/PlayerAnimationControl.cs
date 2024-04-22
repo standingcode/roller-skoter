@@ -19,7 +19,31 @@ public class PlayerAnimationControl : MonoBehaviour
 	[SerializeField]
 	private float lowThresholdForJumpAnimation = 0.024f;
 
-	// Update is called once per frame
+	private bool isJumping = false;
+
+	private void Start()
+	{
+		PlayerControl.PlayerJumped += PlayerJumped;
+		PlayerControl.PlayerLanded += PlayerLanded;
+	}
+
+	private void OnDestroy()
+	{
+		PlayerControl.PlayerJumped -= PlayerJumped;
+		PlayerControl.PlayerLanded -= PlayerLanded;
+	}
+
+	public void PlayerJumped()
+	{
+		isJumping = true;
+		animator.SetBool("IsJumping", true);
+		StartCoroutine(DetermineJumpAnimation());
+	}
+	public void PlayerLanded()
+	{
+		isJumping = false;
+		animator.SetBool("IsJumping", false);
+	}
 	public void PlaySkateAnimation()
 	{
 		animator.SetBool("IsSkating", true);
@@ -32,22 +56,32 @@ public class PlayerAnimationControl : MonoBehaviour
 
 	public void PlayJumpAnimation(float position)
 	{
-		Debug.Log($"Jumping animation position: {position}");
+		//Debug.Log($"Jumping animation position: {position}");
+		animator.SetFloat("JumpPosition", position);
+		animator.Play("jump");
 	}
 
 
-	//// Auto jump animation
+	// Auto jump animation
 
-	//float jumpAnimationRatio = 0f;
-	//private void DetermineJumpAnimation()
-	//{
-	//	//Debug.Log($"Raycast distance is: {hit.distance}");
+	float jumpAnimationRatio = 0f;
+	private IEnumerator DetermineJumpAnimation()
+	{
+		while (isJumping)
+		{
+			//Debug.Log($"Raycast distance is: {hit.distance}");		
 
-	//	if (hit.distance < lowThresholdForJumpAnimation)
-	//		return;
+			if (ConstantRayCaster.Hit.distance < lowThresholdForJumpAnimation)
+				yield return null;
 
-	//	jumpAnimationRatio = Mathf.Clamp01(hit.distance / heightOfFullJumpAnimation);
-	//	playerAnimationControl.PlayJumpAnimation(jumpAnimationRatio);
-	//}
+			if (ConstantRayCaster.Hit.collider != null)
+				jumpAnimationRatio = Mathf.Clamp01(ConstantRayCaster.Hit.distance / heightOfFullJumpAnimation);
 
+			PlayJumpAnimation(jumpAnimationRatio);
+
+			yield return null;
+		}
+
+		yield break;
+	}
 }

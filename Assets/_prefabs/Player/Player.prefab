@@ -310,7 +310,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
-  heightOfFullJumpAnimation: 2
+  heightOfFullJumpAnimation: 1.5
   lowThresholdForJumpAnimation: 0.024
 --- !u!114 &3270696375037757162
 MonoBehaviour:
