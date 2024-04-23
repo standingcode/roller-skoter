@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -43,61 +44,33 @@ public class PlayerInputHandler : MonoBehaviour
 
 	// GAMEPAD INPUT
 
-	LastXStickInput lastXStickInput = LastXStickInput.UnPower;
-
 	float leftStickX;
-	float lastValue = 0;
-	bool valueChangedFrom0OrOppositeThingy = false;
-
+	bool valueIsOnOppositeSideOfZero = false;
+	List<float> lastValues = new List<float>();
+	int maxLastValues = 5;
 	public void OnLeftStickMoved(InputValue inputValue)
 	{
 		leftStickX = inputValue.Get<float>();
 
-		valueChangedFrom0OrOppositeThingy = (leftStickX > 0 && lastValue < 0) || (leftStickX < 0 && lastValue > 0);
+		lastValues.Add(leftStickX);
 
-		lastValue = leftStickX;
+		if (lastValues.Count > maxLastValues)
+			lastValues.RemoveAt(0);
 
-		if (valueChangedFrom0OrOppositeThingy || lastValue == 0)
-		{
-			return;
-		}
-
+		leftStickX = lastValues.Average();
 
 		if (Mathf.Abs(leftStickX) < leftStickXDeadZone)
 		{
-			lastXStickInput = LastXStickInput.UnPower;
 			UnPower();
 		}
 		else if (leftStickX > 0)
 		{
-			lastXStickInput = LastXStickInput.Right;
 			PowerRight();
 		}
 		else if (leftStickX < 0)
 		{
-			Debug.Log($"Left stick x: {leftStickX}");
 			PowerLeft();
 		}
-	}
-
-	private enum LastXStickInput
-	{
-		Left, Right, UnPower
-	}
-
-	private float waitSeconds = 0.02f;
-
-	private Coroutine waitCoroutine = null;
-	public IEnumerator Wait()
-	{
-		float timeToWait = waitSeconds;
-		while (timeToWait > 0)
-		{
-			timeToWait -= Time.deltaTime;
-			yield return null;
-		}
-
-		waitCoroutine = null;
 	}
 
 	public void OnJumpButtonPressed(InputValue inputValue)
@@ -116,10 +89,10 @@ public class PlayerInputHandler : MonoBehaviour
 		playerManager.ResetPlayerToStart();
 	}
 
-
 	public void PowerLeft()
 	{
 		//Debug.Log($"Power left");
+
 		playerControl.PowerLeft();
 		playerAnimationControl.PlaySkateAnimation();
 	}
@@ -128,10 +101,10 @@ public class PlayerInputHandler : MonoBehaviour
 	public void PowerRight()
 	{
 		//Debug.Log($"Power right");
+
 		playerControl.PowerRight();
 		playerAnimationControl.PlaySkateAnimation();
 	}
-
 
 	public void UnPower()
 	{
