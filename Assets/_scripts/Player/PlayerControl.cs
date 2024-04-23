@@ -30,6 +30,9 @@ public class PlayerControl : MonoBehaviour
 	[SerializeField]
 	private Transform raycastOrigin;
 
+	[SerializeField]
+	private float waitForUnJumpTime = 0.2f;
+
 	public static Action PlayerJumped;
 	public static Action PlayerLanded;
 
@@ -89,6 +92,26 @@ public class PlayerControl : MonoBehaviour
 		PlayerJumped?.Invoke();
 
 		mainRigidbody.AddForce(transform.up * jumpingForce, ForceMode2D.Impulse);
+	}
+
+	public void UnJump()
+	{
+		if (!CurrentlyFlying)
+			return;
+
+		if (unJumpCoroutine == null && mainRigidbody.velocityY > 0)
+		{
+			unJumpCoroutine = StartCoroutine(UnJumpCoroutine());
+		}
+	}
+
+	private Coroutine unJumpCoroutine = null;
+	public IEnumerator UnJumpCoroutine()
+	{
+		yield return new WaitForSeconds(waitForUnJumpTime);
+
+		mainRigidbody.velocityY = 0;
+		unJumpCoroutine = null;
 	}
 
 	RaycastHit2D hit;

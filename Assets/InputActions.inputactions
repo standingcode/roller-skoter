@@ -2,7 +2,95 @@
     "name": "InputActions",
     "maps": [
         {
-            "name": "PlayerControl",
+            "name": "PlayerControlController",
+            "id": "4ab3cf1d-a352-48a6-8b17-d53de47d1c38",
+            "actions": [
+                {
+                    "name": "LeftStickMoved",
+                    "type": "Value",
+                    "id": "89a83dd9-87de-4af0-b998-b0e83647ddd2",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Reset",
+                    "type": "Button",
+                    "id": "a403879d-1dc8-4d75-abf7-d6d3bfb056a2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "JumpButtonPressed",
+                    "type": "Button",
+                    "id": "2e4fea2e-942d-4471-952f-54a8daeaa6f5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "JumpButtonReleased",
+                    "type": "Button",
+                    "id": "4bee8788-c96c-4c90-b719-5576670de16b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5e1985ab-fa91-468d-895b-acdf49be1f57",
+                    "path": "<Gamepad>/leftStick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftStickMoved",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "58472efd-e548-40fa-9c29-54885ebfc14c",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b3fdf327-10cd-441f-871a-d8eebfc7c29f",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JumpButtonPressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "846a104e-50c0-4fba-9f9c-0d1feff43ce7",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JumpButtonReleased",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PlayerControlKeyboard",
             "id": "81044d7a-a2aa-4ce3-8171-83c38351cd4e",
             "actions": [
                 {
