@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,27 +14,13 @@ public class ConstantRayCaster : MonoBehaviour
 	private static RaycastHit2D hit;
 	public static RaycastHit2D Hit { get => hit; }
 
-	private void Start()
+	private void Update()
 	{
-		StartCoroutine(ConstantRayCastingRoutine());
-	}
-
-	private void OnDisable()
-	{
-		StopAllCoroutines();
-	}
-
-	private IEnumerator ConstantRayCastingRoutine()
-	{
-		while (true)
-		{
-			ConstantRayCasting();
-			yield return null;
-		}
+		ConstantRayCasting();
 	}
 
 	public void ConstantRayCasting()
 	{
-		hit = Physics2D.Raycast(rayCastOrigin.position, Vector2.down, 10, layerMask);
+		hit = Physics2D.Raycast(rayCastOrigin.position, -transform.up, 30, layerMask);
 	}
 }

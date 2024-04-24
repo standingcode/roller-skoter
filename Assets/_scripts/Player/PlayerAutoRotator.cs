@@ -23,6 +23,7 @@ public class PlayerAutoRotator : MonoBehaviour
 	{
 		DetermineRotation();
 	}
+
 	private void OnDisable()
 	{
 		StopAllCoroutines();

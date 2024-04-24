@@ -45,6 +45,8 @@ public class PlayerControl : MonoBehaviour
 	private void Start()
 	{
 		mainRigidbody.centerOfMass = centerOfMass.localPosition;
+
+
 	}
 
 	public void PowerLeft()
@@ -89,7 +91,6 @@ public class PlayerControl : MonoBehaviour
 			return;
 
 		CurrentlyFlying = true;
-		PlayerJumped?.Invoke();
 
 		mainRigidbody.AddForce(transform.up * jumpingForce, ForceMode2D.Impulse);
 	}
@@ -119,12 +120,12 @@ public class PlayerControl : MonoBehaviour
 	{
 		if (((1 << collision.gameObject.layer) & layerMask) != 0)
 		{
-			hit = Physics2D.Raycast(raycastOrigin.position, -transform.up, 10, layerMask);
-			if (hit.transform == collision.transform)
-			{
-				CurrentlyFlying = false;
-				PlayerLanded?.Invoke();
-			}
+			//hit = Physics2D.Raycast(raycastOrigin.position, -transform.up, 10, layerMask);
+			//if (hit.transform == collision.transform)
+			//{
+			CurrentlyFlying = false;
+			PlayerLanded?.Invoke();
+			//}
 		}
 	}
 
@@ -132,11 +133,12 @@ public class PlayerControl : MonoBehaviour
 	{
 		if (((1 << collision.gameObject.layer) & layerMask) != 0)
 		{
-			hit = Physics2D.Raycast(raycastOrigin.position, -transform.up, 10, layerMask);
-			if (hit.transform == collision.transform)
-			{
-				CurrentlyFlying = true;
-			}
+			//hit = Physics2D.Raycast(raycastOrigin.position, -transform.up, 10, layerMask);
+			//if (hit.transform == collision.transform)
+			//{
+			CurrentlyFlying = true;
+			PlayerJumped?.Invoke();
+			//}
 		}
 	}
 

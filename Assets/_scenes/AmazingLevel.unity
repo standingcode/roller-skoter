@@ -422,6 +422,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &742548669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2601470763375270719, guid: e7c9b2ae4812472429ea6cc88f5df606, type: 3}
+  m_PrefabInstance: {fileID: 1920783633}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &931624079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -561,6 +566,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2967436561350168374, guid: e7c9b2ae4812472429ea6cc88f5df606, type: 3}
   m_PrefabInstance: {fileID: 1920783633}
   m_PrefabAsset: {fileID: 0}
+--- !u!68 &1649708801
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742548669}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -5.0163074, y: 0.4959794}
+  - {x: 4.801915, y: 0.49697846}
+  - {x: 5.570168, y: 0.6792257}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1001 &1812096940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -637,7 +686,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2967436561350168374, guid: e7c9b2ae4812472429ea6cc88f5df606, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.08
+      value: 15.763
       objectReference: {fileID: 0}
     - target: {fileID: 2967436561350168374, guid: e7c9b2ae4812472429ea6cc88f5df606, type: 3}
       propertyPath: m_LocalPosition.y
@@ -675,10 +724,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 19.66
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7069524451161163159, guid: e7c9b2ae4812472429ea6cc88f5df606, type: 3}
+      propertyPath: m_Size.x
+      value: 9.977842
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1192380626522448836, guid: e7c9b2ae4812472429ea6cc88f5df606, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2601470763375270719, guid: e7c9b2ae4812472429ea6cc88f5df606, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1649708801}
   m_SourcePrefab: {fileID: 100100000, guid: e7c9b2ae4812472429ea6cc88f5df606, type: 3}
 --- !u!1001 &1971915080
 PrefabInstance:
