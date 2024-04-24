@@ -19,6 +19,9 @@ public class PlayerInputHandler : MonoBehaviour
 	[SerializeField]
 	private float leftStickXDeadZone;
 
+	[SerializeField]
+	private int amountOfValuesToUseForAveraging = 5;
+
 	// KEYBOARD INPUT
 
 	public void OnPowerLeft(InputValue inputValue)
@@ -44,30 +47,26 @@ public class PlayerInputHandler : MonoBehaviour
 
 	// GAMEPAD INPUT
 
-	float leftStickX;
-	bool valueIsOnOppositeSideOfZero = false;
-	List<float> lastValues = new List<float>();
-	int maxLastValues = 5;
+	float averagedValueToUseForLeftStickXAxis;
+	List<float> lastXAxisValuesFromLeftStick = new List<float>();
 	public void OnLeftStickMoved(InputValue inputValue)
 	{
-		leftStickX = inputValue.Get<float>();
+		lastXAxisValuesFromLeftStick.Add(inputValue.Get<float>());
 
-		lastValues.Add(leftStickX);
+		if (lastXAxisValuesFromLeftStick.Count > amountOfValuesToUseForAveraging)
+			lastXAxisValuesFromLeftStick.RemoveAt(0);
 
-		if (lastValues.Count > maxLastValues)
-			lastValues.RemoveAt(0);
+		averagedValueToUseForLeftStickXAxis = lastXAxisValuesFromLeftStick.Average();
 
-		leftStickX = lastValues.Average();
-
-		if (Mathf.Abs(leftStickX) < leftStickXDeadZone)
+		if (Mathf.Abs(averagedValueToUseForLeftStickXAxis) < leftStickXDeadZone)
 		{
 			UnPower();
 		}
-		else if (leftStickX > 0)
+		else if (averagedValueToUseForLeftStickXAxis > 0)
 		{
 			PowerRight();
 		}
-		else if (leftStickX < 0)
+		else if (averagedValueToUseForLeftStickXAxis < 0)
 		{
 			PowerLeft();
 		}
@@ -97,7 +96,6 @@ public class PlayerInputHandler : MonoBehaviour
 		playerAnimationControl.PlaySkateAnimation();
 	}
 
-	private Coroutine powerRightCoroutine = null;
 	public void PowerRight()
 	{
 		//Debug.Log($"Power right");
