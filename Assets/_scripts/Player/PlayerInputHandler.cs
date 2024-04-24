@@ -47,22 +47,28 @@ public class PlayerInputHandler : MonoBehaviour
 
 	// GAMEPAD INPUT
 
+	float currentLeftStickXAxisValue;
 	float averagedValueToUseForLeftStickXAxis;
 	List<float> lastXAxisValuesFromLeftStick = new List<float>();
 	public void OnLeftStickMoved(InputValue inputValue)
 	{
-		lastXAxisValuesFromLeftStick.Add(inputValue.Get<float>());
+		currentLeftStickXAxisValue = inputValue.Get<float>();
+
+		lastXAxisValuesFromLeftStick.Add(currentLeftStickXAxisValue);
 
 		if (lastXAxisValuesFromLeftStick.Count > amountOfValuesToUseForAveraging)
 			lastXAxisValuesFromLeftStick.RemoveAt(0);
 
-		averagedValueToUseForLeftStickXAxis = lastXAxisValuesFromLeftStick.Average();
 
-		if (Mathf.Abs(averagedValueToUseForLeftStickXAxis) < leftStickXDeadZone)
+		if (Mathf.Abs(currentLeftStickXAxisValue) < leftStickXDeadZone)
 		{
 			UnPower();
+			return;
 		}
-		else if (averagedValueToUseForLeftStickXAxis > 0)
+
+		averagedValueToUseForLeftStickXAxis = lastXAxisValuesFromLeftStick.Average();
+
+		if (averagedValueToUseForLeftStickXAxis > 0)
 		{
 			PowerRight();
 		}
