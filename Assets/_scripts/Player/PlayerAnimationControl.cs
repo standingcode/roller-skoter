@@ -31,6 +31,7 @@ public class PlayerAnimationControl : MonoBehaviour
 	{
 		PlayerControl.PlayerJumped -= PlayerJumped;
 		PlayerControl.PlayerLanded -= PlayerLanded;
+		StopAllCoroutines();
 	}
 
 	public void PlayerJumped()
