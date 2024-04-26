@@ -36,6 +36,9 @@ public class PlayerAnimationControl : MonoBehaviour
 
 	public void PlayerJumped()
 	{
+		if (!this.gameObject.activeSelf)
+			return;
+
 		isJumping = true;
 		animator.SetBool("IsJumping", true);
 		StartCoroutine(DetermineJumpAnimation());

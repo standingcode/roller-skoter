@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 590366162}
   - component: {fileID: 590366163}
   m_Layer: 0
-  m_Name: BadWindow_0
+  m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -440,7 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 590366162}
-  multiplier: 1
+  multiplier: 0.1
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +536,7 @@ GameObject:
   - component: {fileID: 631622310}
   - component: {fileID: 631622311}
   m_Layer: 0
-  m_Name: Cold Sunset__Cam_2_Left+X
+  m_Name: Sky
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
