@@ -889,7 +889,7 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -4.664534, y: 0.3887862}
+  - {x: -4.5737395, y: 0.37766844}
   - {x: -3.9306788, y: 0.49243134}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
@@ -907,17 +907,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2389081355896582193, guid: 3ff5b045edfebea4da0884d66c0d305f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.0254
-      objectReference: {fileID: 0}
     - target: {fileID: 7736618352479220888, guid: 3ff5b045edfebea4da0884d66c0d305f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.24
       objectReference: {fileID: 0}
     - target: {fileID: 7736618352479220888, guid: 3ff5b045edfebea4da0884d66c0d305f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.85
+      value: -2.99
       objectReference: {fileID: 0}
     - target: {fileID: 7736618352479220888, guid: 3ff5b045edfebea4da0884d66c0d305f, type: 3}
       propertyPath: m_LocalPosition.z
