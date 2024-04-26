@@ -79,7 +79,7 @@ public class PlayerAnimationControl : MonoBehaviour
 				yield return null;
 
 			if (PlayerControl.Hit.collider != null)
-				jumpAnimationRatio = Mathf.Clamp01(PlayerControl.Hit.distance / heightOfFullJumpAnimation);
+				jumpAnimationRatio = PlayerControl.Hit.distance / heightOfFullJumpAnimation;
 
 			PlayJumpAnimation(jumpAnimationRatio);
 

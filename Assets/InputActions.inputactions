@@ -2,7 +2,7 @@
     "name": "InputActions",
     "maps": [
         {
-            "name": "PlayerControlController",
+            "name": "PlayerControl",
             "id": "4ab3cf1d-a352-48a6-8b17-d53de47d1c38",
             "actions": [
                 {
@@ -40,6 +40,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PowerLeftKeyboard",
+                    "type": "Button",
+                    "id": "3ea2b28f-06b9-4c61-b901-02a3e7e363ca",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PowerRightKeyboard",
+                    "type": "Button",
+                    "id": "4a194958-1716-41db-a881-119b1760037e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UnPowerKeyboard",
+                    "type": "Button",
+                    "id": "d6c3d339-100c-4213-a9ff-e60e10aa718b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -67,6 +94,17 @@
                 },
                 {
                     "name": "",
+                    "id": "63de47aa-0295-4dd9-8ff0-9721a6949de3",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JumpButtonPressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b3fdf327-10cd-441f-871a-d8eebfc7c29f",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "Press",
@@ -86,123 +124,59 @@
                     "action": "JumpButtonReleased",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "PlayerControlKeyboard",
-            "id": "81044d7a-a2aa-4ce3-8171-83c38351cd4e",
-            "actions": [
-                {
-                    "name": "PowerLeft",
-                    "type": "Button",
-                    "id": "3077e930-47af-4e8b-a086-0591dc82dc38",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 },
-                {
-                    "name": "PowerRight",
-                    "type": "Button",
-                    "id": "bbf91243-e059-4260-9ebb-a00f3da5b205",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "UnPower",
-                    "type": "Button",
-                    "id": "9a36fa01-bfb0-4470-861b-6aa89a838557",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "6509e007-8efb-4efd-a728-31cddcfedaae",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Reset",
-                    "type": "Button",
-                    "id": "4b2743ba-fc7c-4b24-b3b2-404920f0b8a7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
                 {
                     "name": "",
-                    "id": "ddcfb3ae-3d4a-4177-83b1-e2b48c529e1d",
+                    "id": "77389d7a-0e2c-4508-9514-ff66bd6ab37d",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JumpButtonReleased",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e75d3b45-a4fd-4907-97b5-ed6c5069950e",
+                    "path": "<Keyboard>/a",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PowerLeftKeyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad271b60-3a3a-47e4-8c84-47bf495bb9ab",
                     "path": "<Keyboard>/d",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "PowerRight",
+                    "action": "PowerRightKeyboard",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "bd86c021-acc9-4321-b66e-77f42790a611",
+                    "id": "bb39aa42-699d-4865-8cba-eca7f9b46fd5",
                     "path": "<Keyboard>/d",
                     "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "",
-                    "action": "UnPower",
+                    "action": "UnPowerKeyboard",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "c3c5c8fa-a242-44ac-87fb-6d0ec539c083",
+                    "id": "324da60b-3551-46b3-91ff-07956864c747",
                     "path": "<Keyboard>/a",
                     "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "",
-                    "action": "UnPower",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e95df400-77d0-4073-8111-a3dbaa03ddf7",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ade815c5-1e0a-4751-a5a9-c7e3ac8cb28b",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Reset",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "61f153cb-d93f-4ca8-95ec-8f6541dde288",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PowerLeft",
+                    "action": "UnPowerKeyboard",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

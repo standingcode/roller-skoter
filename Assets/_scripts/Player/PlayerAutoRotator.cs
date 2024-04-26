@@ -1,5 +1,8 @@
+using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class PlayerAutoRotator : MonoBehaviour
@@ -13,10 +16,13 @@ public class PlayerAutoRotator : MonoBehaviour
 	[SerializeField]
 	PlayerAnimationControl playerAnimationControl;
 
+	public Transform RaycastOrigin;
+
 	private Vector3 newEulerAngles = Vector3.zero;
 
+	[SerializeField]
 	private float rotatingZTarget = 0;
-	private IEnumerator CheckDirectionAndCallRotateCoroutine = null;
+
 	private float degreesOfRotationDifference;
 
 	private void Update()
@@ -29,20 +35,39 @@ public class PlayerAutoRotator : MonoBehaviour
 		StopAllCoroutines();
 	}
 
-	public void DetermineRotation()
+	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		rotatingZTarget = PlayerControl.Hit.collider == null ? 0 : PlayerControl.Hit.transform.eulerAngles.z;
 
-		if (CheckDirectionAndCallRotateCoroutine == null)
-		{
-			CheckDirectionAndCallRotateCoroutine = CheckDirectionAndCallRotate();
-			StartCoroutine(CheckDirectionAndCallRotateCoroutine);
-		}
 	}
 
-	public IEnumerator CheckDirectionAndCallRotate()
+	private void OnCollisionExit2D(Collision2D collision)
 	{
-		while (rotatingZTarget != this.transform.eulerAngles.z)
+
+	}
+	public void DetermineRotation()
+	{
+		if (PlayerControl.Hit.collider == null)
+		{
+			rotatingZTarget = 0;
+		}
+		else
+		{
+			if (PlayerControl.Hit.collider.tag.Equals("UseColliderMainRotation"))
+			{
+				rotatingZTarget = PlayerControl.Hit.transform.eulerAngles.z;
+			}
+			else
+			{
+				rotatingZTarget = Quaternion.FromToRotation(Vector3.up, PlayerControl.Hit.normal).eulerAngles.z;
+			}
+		}
+
+		CheckDirectionAndCallRotate();
+	}
+
+	public void CheckDirectionAndCallRotate()
+	{
+		if (this.transform.eulerAngles.z != rotatingZTarget)
 		{
 			degreesOfRotationDifference = this.transform.eulerAngles.z - rotatingZTarget;
 
@@ -57,21 +82,18 @@ public class PlayerAutoRotator : MonoBehaviour
 					// Rotate right							
 					if (RotatePlayerZTowardsTarget(amountToRotateThisFrame))
 					{
-						CheckDirectionAndCallRotateCoroutine = null;
-						yield break;
+						return;
 					}
 
-					yield return null;
 				}
 
 				// Rotate left							
 				if (RotatePlayerZTowardsTarget(-amountToRotateThisFrame))
 				{
-					CheckDirectionAndCallRotateCoroutine = null;
-					yield break;
+					return;
 				}
 
-				yield return null;
+
 			}
 			else
 			{
@@ -84,26 +106,17 @@ public class PlayerAutoRotator : MonoBehaviour
 					// Rotate left							
 					if (RotatePlayerZTowardsTarget(-amountToRotateThisFrame))
 					{
-						CheckDirectionAndCallRotateCoroutine = null;
-						yield break;
+						return;
 					}
-
-					yield return null;
 				}
 
 				// Rotate right							
 				if (RotatePlayerZTowardsTarget(amountToRotateThisFrame))
 				{
-					CheckDirectionAndCallRotateCoroutine = null;
-					yield break;
+					return;
 				}
-
-				yield return null;
 			}
 		}
-
-		CheckDirectionAndCallRotateCoroutine = null;
-		yield return null;
 	}
 
 	public bool RotatePlayerZTowardsTarget(float amountToRotate)
@@ -129,4 +142,10 @@ public class PlayerAutoRotator : MonoBehaviour
 
 		return false;
 	}
+
+	//private void OnDrawGizmos()
+	//{
+	//	Gizmos.color = Color.red;
+	//	Gizmos.DrawRay(RaycastOrigin.position, Vector2.down * 30);
+	//}
 }

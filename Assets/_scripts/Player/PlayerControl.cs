@@ -31,7 +31,7 @@ public class PlayerControl : MonoBehaviour
 	private Transform raycastOrigin;
 
 	[SerializeField]
-	private float heightToConsiderBeingOffTheGround = 0.05f;
+	private float heightToConsiderBeingOffTheGround = 0.04f;
 
 	[SerializeField]
 	private float waitForUnJumpTime = 0.15f;
@@ -59,6 +59,7 @@ public class PlayerControl : MonoBehaviour
 	private void Start()
 	{
 		mainRigidbody.centerOfMass = centerOfMass.localPosition;
+		heightToConsiderBeingOffTheGround = raycastOrigin.localPosition.y - centerOfMass.localPosition.y + 0.1f;
 	}
 
 	private void Update()
@@ -68,7 +69,7 @@ public class PlayerControl : MonoBehaviour
 
 	public void ConstantRayCasting()
 	{
-		hit = Physics2D.Raycast(raycastOrigin.position, -transform.up, 30, floorLayerMask);
+		hit = Physics2D.Raycast(raycastOrigin.position, Vector2.down, 30, floorLayerMask);
 		CheckForJumpOrFall();
 	}
 
@@ -76,7 +77,7 @@ public class PlayerControl : MonoBehaviour
 	{
 		// If the ray hits nothing, and CurrentlyFlying is false, then we need to take action
 		// If the ray distance is over the threshold and CurrentlyFlying is false, then we need to take action
-		if ((hit.collider == null || hit.distance >= heightToConsiderBeingOffTheGround) && CurrentlyFlying == false)
+		if ((hit.collider == null | hit.distance >= heightToConsiderBeingOffTheGround) && CurrentlyFlying == false)
 		{
 			CurrentlyFlying = true;
 			PlayerJumped?.Invoke();

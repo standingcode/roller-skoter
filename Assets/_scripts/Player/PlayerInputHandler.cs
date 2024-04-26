@@ -24,24 +24,19 @@ public class PlayerInputHandler : MonoBehaviour
 
 	// KEYBOARD INPUT
 
-	public void OnPowerLeft(InputValue inputValue)
+	public void OnPowerLeftKeyboard(InputValue inputValue)
 	{
 		PowerLeft();
 	}
 
-	public void OnPowerRight(InputValue inputValue)
+	public void OnPowerRightKeyboard(InputValue inputValue)
 	{
 		PowerRight();
 	}
 
-	public void OnUnPower(InputValue inputValue)
+	public void OnUnPowerKeyboard(InputValue inputValue)
 	{
 		UnPower();
-	}
-
-	public void OnJump(InputValue inputValue)
-	{
-		Jump();
 	}
 
 
