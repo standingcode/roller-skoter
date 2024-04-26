@@ -75,11 +75,11 @@ public class PlayerAnimationControl : MonoBehaviour
 		{
 			//Debug.Log($"Raycast distance is: {hit.distance}");		
 
-			if (ConstantRayCaster.Hit.distance < lowThresholdForJumpAnimation)
+			if (PlayerControl.Hit.distance < lowThresholdForJumpAnimation)
 				yield return null;
 
-			if (ConstantRayCaster.Hit.collider != null)
-				jumpAnimationRatio = Mathf.Clamp01(ConstantRayCaster.Hit.distance / heightOfFullJumpAnimation);
+			if (PlayerControl.Hit.collider != null)
+				jumpAnimationRatio = Mathf.Clamp01(PlayerControl.Hit.distance / heightOfFullJumpAnimation);
 
 			PlayJumpAnimation(jumpAnimationRatio);
 

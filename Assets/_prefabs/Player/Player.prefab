@@ -297,11 +297,12 @@ MonoBehaviour:
   mainRigidbody: {fileID: 977706262271196140}
   constantForce2D: {fileID: 8029703225111056748}
   centerOfMass: {fileID: 101736010949801306}
-  layerMask:
+  floorLayerMask:
     serializedVersion: 2
     m_Bits: 256
   spriteTransform: {fileID: 1031510070432351616}
   raycastOrigin: {fileID: 2389081355896582193}
+  heightToConsiderBeingOffTheGround: 0.05
   waitForUnJumpTime: 0.15
 --- !u!114 &431623067733495648
 MonoBehaviour:
@@ -528,7 +529,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2389081355896582193}
-  - component: {fileID: 5040332444722291701}
   m_Layer: 8
   m_Name: RaycastOrigin
   m_TagString: Untagged
@@ -551,22 +551,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7736618352479220888}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5040332444722291701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2083155004029083037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f47a424a526a8c8429710d6ce271a29a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  rayCastOrigin: {fileID: 2389081355896582193}
 --- !u!1 &2092368810179179263
 GameObject:
   m_ObjectHideFlags: 0

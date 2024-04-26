@@ -31,7 +31,7 @@ public class PlayerAutoRotator : MonoBehaviour
 
 	public void DetermineRotation()
 	{
-		rotatingZTarget = ConstantRayCaster.Hit.collider == null ? 0 : ConstantRayCaster.Hit.transform.eulerAngles.z;
+		rotatingZTarget = PlayerControl.Hit.collider == null ? 0 : PlayerControl.Hit.transform.eulerAngles.z;
 
 		if (CheckDirectionAndCallRotateCoroutine == null)
 		{

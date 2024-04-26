@@ -22,7 +22,7 @@ public class PlayerControl : MonoBehaviour
 	private Transform centerOfMass;
 
 	[SerializeField]
-	private LayerMask layerMask;
+	private LayerMask floorLayerMask;
 
 	[SerializeField]
 	private Transform spriteTransform;
@@ -31,22 +31,65 @@ public class PlayerControl : MonoBehaviour
 	private Transform raycastOrigin;
 
 	[SerializeField]
-	private float waitForUnJumpTime = 0.2f;
+	private float heightToConsiderBeingOffTheGround = 0.05f;
+
+	[SerializeField]
+	private float waitForUnJumpTime = 0.15f;
 
 	public static Action PlayerJumped;
 	public static Action PlayerLanded;
 
+	private static RaycastHit2D hit;
+	public static RaycastHit2D Hit { get => hit; }
+
 	protected bool currentlyFlying;
-	public bool CurrentlyFlying { get => currentlyFlying; set => currentlyFlying = value; }
+	public bool CurrentlyFlying
+	{
+		get => currentlyFlying;
+		set => currentlyFlying = value;
+	}
 
 	protected CharacterFacingDirection characterCurrentFacingDirection = CharacterFacingDirection.Right;
-	public CharacterFacingDirection CharacterCurrentFacingDirection { get => characterCurrentFacingDirection; private set => characterCurrentFacingDirection = value; }
+	public CharacterFacingDirection CharacterCurrentFacingDirection
+	{
+		get => characterCurrentFacingDirection;
+		private set => characterCurrentFacingDirection = value;
+	}
 
 	private void Start()
 	{
 		mainRigidbody.centerOfMass = centerOfMass.localPosition;
+	}
 
+	private void Update()
+	{
+		ConstantRayCasting();
+	}
 
+	public void ConstantRayCasting()
+	{
+		hit = Physics2D.Raycast(raycastOrigin.position, -transform.up, 30, floorLayerMask);
+		CheckForJumpOrFall();
+	}
+
+	public void CheckForJumpOrFall()
+	{
+		// If the ray hits nothing, and CurrentlyFlying is false, then we need to take action
+		// If the ray distance is over the threshold and CurrentlyFlying is false, then we need to take action
+		if ((hit.collider == null || hit.distance >= heightToConsiderBeingOffTheGround) && CurrentlyFlying == false)
+		{
+			CurrentlyFlying = true;
+			PlayerJumped?.Invoke();
+
+			return;
+		}
+
+		// If the ray distance is lower than threshold, and CurrentlyFlying is true, then we need to take action
+		if (hit.collider != null && hit.distance < heightToConsiderBeingOffTheGround)
+		{
+			CurrentlyFlying = false;
+			PlayerLanded?.Invoke();
+		}
 	}
 
 	public void PowerLeft()
@@ -113,33 +156,6 @@ public class PlayerControl : MonoBehaviour
 
 		mainRigidbody.velocityY = 0;
 		unJumpCoroutine = null;
-	}
-
-	RaycastHit2D hit;
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-		if (((1 << collision.gameObject.layer) & layerMask) != 0)
-		{
-			//hit = Physics2D.Raycast(raycastOrigin.position, -transform.up, 10, layerMask);
-			//if (hit.transform == collision.transform)
-			//{
-			CurrentlyFlying = false;
-			PlayerLanded?.Invoke();
-			//}
-		}
-	}
-
-	private void OnCollisionExit2D(Collision2D collision)
-	{
-		if (((1 << collision.gameObject.layer) & layerMask) != 0)
-		{
-			//hit = Physics2D.Raycast(raycastOrigin.position, -transform.up, 10, layerMask);
-			//if (hit.transform == collision.transform)
-			//{
-			CurrentlyFlying = true;
-			PlayerJumped?.Invoke();
-			//}
-		}
 	}
 
 	public void ZeroAllForcesAndSpeed()

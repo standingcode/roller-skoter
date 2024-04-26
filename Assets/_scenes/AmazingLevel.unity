@@ -440,7 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 590366162}
-  multiplier: 0.1
+  multiplier: 0.01
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
