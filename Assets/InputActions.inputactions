@@ -94,6 +94,17 @@
                 },
                 {
                     "name": "",
+                    "id": "29afb846-cd88-4e81-b4c6-8a888381e445",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "63de47aa-0295-4dd9-8ff0-9721a6949de3",
                     "path": "<Keyboard>/space",
                     "interactions": "",

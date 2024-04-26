@@ -80,8 +80,8 @@ public class PlayerAnimationControl : MonoBehaviour
 
 			if (PlayerControl.Hit.collider != null)
 				jumpAnimationRatio = PlayerControl.Hit.distance / heightOfFullJumpAnimation;
-			else
-				jumpAnimationRatio = 1;
+			//else
+			//	jumpAnimationRatio = 1;
 
 			PlayJumpAnimation(jumpAnimationRatio);
 
