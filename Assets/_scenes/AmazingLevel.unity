@@ -643,7 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 590366162}
-  multiplier: 0.01
+  multiplier: 0.003
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,6 +1196,10 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 10.1
       objectReference: {fileID: 0}
+    - target: {fileID: 1412869770775834867, guid: e7c9b2ae4812472429ea6cc88f5df606, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.080245495
+      objectReference: {fileID: 0}
     - target: {fileID: 2601470763375270719, guid: e7c9b2ae4812472429ea6cc88f5df606, type: 3}
       propertyPath: m_Name
       value: Flooring (3)
@@ -1272,6 +1276,10 @@ PrefabInstance:
     - target: {fileID: 1412869770775834867, guid: e7c9b2ae4812472429ea6cc88f5df606, type: 3}
       propertyPath: m_Size.y
       value: 1.1073896
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412869770775834867, guid: e7c9b2ae4812472429ea6cc88f5df606, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.019052327
       objectReference: {fileID: 0}
     - target: {fileID: 1412869770775834867, guid: e7c9b2ae4812472429ea6cc88f5df606, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
