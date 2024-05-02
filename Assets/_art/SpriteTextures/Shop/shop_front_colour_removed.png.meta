@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1458a2d0584d29848a6082cf1e288e73
+guid: 5b9708dc2d3633a41b8c4bf63160a190
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3211860290685397499
-    second: JustTheConcreteFrame_0
+      213: 5213657055776854735
+    second: shop_front_colour_removed_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: JustTheConcreteFrame_0
+      name: shop_front_colour_removed_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2023
-        height: 2083
+        width: 1024
+        height: 758
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5069381351e2d63d0800000000000000
-      internalID: -3211860290685397499
+      spriteID: fc2d9461871aa5840800000000000000
+      internalID: 5213657055776854735
       vertices: []
       indices: 
       edges: []
@@ -149,14 +149,15 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      shop_front_colour_removed_0: 5213657055776854735
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
