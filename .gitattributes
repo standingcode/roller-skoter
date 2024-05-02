@@ -10,6 +10,7 @@
 *.jpeg lfs
 *.pict lfs
 *.png lfs
+*.png~ lfs
 *.psd lfs
 *.tga lfs
 *.tif lfs
@@ -54,9 +55,13 @@
 # Picture editing files
 *.xcf lfs
 *.kra lfs
+*.kra~ lfs
 
 # Some random scene lighting thingy
 .scenetemplate
+
+#PDFs
+*.pdf lfs
 
 # Scene, prefab and ScriptableObject files
 *.unity merge=unityyamlmerge
