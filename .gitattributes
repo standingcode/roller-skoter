@@ -55,6 +55,9 @@
 *.xcf lfs
 *.kra lfs
 
+# Some random scene lighting thingy
+.scenetemplate
+
 # Scene, prefab and ScriptableObject files
 *.unity merge=unityyamlmerge
 *.prefab merge=unityyamlmerge
