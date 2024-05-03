@@ -261,13 +261,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1aa9f3247123247920918a2a27e57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fixRotationSpeed: 75
+  fixRotationSpeed: 130
   layerMask:
     serializedVersion: 2
     m_Bits: 256
   playerAnimationControl: {fileID: 431623067733495648}
   RaycastOrigin: {fileID: 2389081355896582193}
   rotatingZTarget: 0
+  playerCurrentZRotation: 0
 --- !u!114 &4735998495464464823
 MonoBehaviour:
   m_ObjectHideFlags: 0

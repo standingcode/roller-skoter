@@ -23,10 +23,13 @@ public class PlayerAutoRotator : MonoBehaviour
 	[SerializeField]
 	private float rotatingZTarget = 0;
 
+	//public float playerCurrentZRotation;
+
 	private float degreesOfRotationDifference;
 
 	private void Update()
 	{
+		//playerCurrentZRotation = this.transform.eulerAngles.z;
 		DetermineRotation();
 	}
 
@@ -69,55 +72,88 @@ public class PlayerAutoRotator : MonoBehaviour
 	{
 		if (this.transform.eulerAngles.z != rotatingZTarget)
 		{
-			degreesOfRotationDifference = this.transform.eulerAngles.z - rotatingZTarget;
+			degreesOfRotationDifference = rotatingZTarget - this.transform.eulerAngles.z;
 
 			var amountToRotateThisFrame = Time.deltaTime * fixRotationSpeed;
 
-			if (degreesOfRotationDifference > 0)
+			// Rotate left
+			if ((degreesOfRotationDifference > 0 && degreesOfRotationDifference >= 180)
+			|| (degreesOfRotationDifference < 0 && Mathf.Abs(degreesOfRotationDifference) <= 180))
 			{
+				degreesOfRotationDifference = Mathf.Abs(degreesOfRotationDifference);
+
+				// Use this if over 180 degrees
 				if (degreesOfRotationDifference > 180)
-				{
 					degreesOfRotationDifference = 360 - degreesOfRotationDifference;
 
-					// Rotate right							
-					if (RotatePlayerZTowardsTarget(amountToRotateThisFrame))
-					{
-						return;
-					}
-
-				}
-
 				// Rotate left							
-				if (RotatePlayerZTowardsTarget(-amountToRotateThisFrame))
-				{
-					return;
-				}
-
-
+				RotatePlayerZTowardsTarget(-amountToRotateThisFrame);
 			}
+			//Rotate right
 			else
 			{
 				degreesOfRotationDifference = Mathf.Abs(degreesOfRotationDifference);
 
+				// Use this if over 180 degrees
 				if (degreesOfRotationDifference > 180)
-				{
 					degreesOfRotationDifference = 360 - degreesOfRotationDifference;
 
-					// Rotate left							
-					if (RotatePlayerZTowardsTarget(-amountToRotateThisFrame))
-					{
-						return;
-					}
-				}
-
 				// Rotate right							
-				if (RotatePlayerZTowardsTarget(amountToRotateThisFrame))
-				{
-					return;
-				}
+				RotatePlayerZTowardsTarget(amountToRotateThisFrame);
 			}
 		}
 	}
+
+	//public void CheckDirectionAndCallRotate()
+	//{
+	//	if (this.transform.eulerAngles.z != rotatingZTarget)
+	//	{
+	//		degreesOfRotationDifference = this.transform.eulerAngles.z - rotatingZTarget;
+
+	//		var amountToRotateThisFrame = Time.deltaTime * fixRotationSpeed;
+
+	//		if (degreesOfRotationDifference > 0)
+	//		{
+	//			if (degreesOfRotationDifference > 180)
+	//			{
+	//				degreesOfRotationDifference = 360 - degreesOfRotationDifference;
+
+	//				// Rotate right							
+	//				if (RotatePlayerZTowardsTarget(amountToRotateThisFrame))
+	//				{
+	//					return;
+	//				}
+	//			}
+
+	//			// Rotate left							
+	//			if (RotatePlayerZTowardsTarget(-amountToRotateThisFrame))
+	//			{
+	//				return;
+	//			}
+	//		}
+	//		else
+	//		{
+	//			degreesOfRotationDifference = Mathf.Abs(degreesOfRotationDifference);
+
+	//			if (degreesOfRotationDifference > 180)
+	//			{
+	//				degreesOfRotationDifference = 360 - degreesOfRotationDifference;
+
+	//				// Rotate left							
+	//				if (RotatePlayerZTowardsTarget(-amountToRotateThisFrame))
+	//				{
+	//					return;
+	//				}
+	//			}
+
+	//			// Rotate right							
+	//			if (RotatePlayerZTowardsTarget(amountToRotateThisFrame))
+	//			{
+	//				return;
+	//			}
+	//		}
+	//	}
+	//}
 
 	public bool RotatePlayerZTowardsTarget(float amountToRotate)
 	{
