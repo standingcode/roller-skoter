@@ -48,6 +48,12 @@ TagManager:
   - name: Foreground2
     uniqueID: 790931787
     locked: 0
+  - name: Player
+    uniqueID: 3918321323
+    locked: 0
+  - name: InFrontOfPlayer
+    uniqueID: 3745598201
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
