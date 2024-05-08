@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1aa9f3247123247920918a2a27e57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fixRotationSpeed: 130
+  fixRotationSpeed: 100
   layerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -294,8 +294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74461e146c5d604db61d6546c0dbe03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpingForce: 350
-  skatingForce: 500
+  jumpingForce: 700
+  skatingForce: 1000
   mainRigidbody: {fileID: 977706262271196140}
   constantForce2D: {fileID: 8029703225111056748}
   centerOfMass: {fileID: 101736010949801306}
@@ -387,7 +387,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 60
+  m_Mass: 120
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
