@@ -157,7 +157,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ModularShopFront_0: 159670042202212819
+      ModularShopFront_1: 8947639107220563717
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
