@@ -79,6 +79,7 @@ public class PlayerInputHandler : MonoBehaviour
 	}
 	public void OnJumpButtonReleased(InputValue inputValue)
 	{
+		//return;
 		UnJump();
 	}
 

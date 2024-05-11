@@ -1,14 +1,18 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+
+// Min rotation speed for on the floor
+// Max rotation speed
+// The height at which max rotation should be applied (probably max jump height?)
 
 public class PlayerAutoRotator : MonoBehaviour
 {
 	[SerializeField]
-	private float fixRotationSpeed = 150f;
+	private float maxFixRotationSpeed = 1000f, minRotationSpeed = 100f;
+
+	[SerializeField]
+	private AnimationCurve rotationSpeedCurve;
 
 	[SerializeField]
 	private LayerMask layerMask;
@@ -38,34 +42,41 @@ public class PlayerAutoRotator : MonoBehaviour
 		StopAllCoroutines();
 	}
 
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-
-	}
-
-	private void OnCollisionExit2D(Collision2D collision)
-	{
-
-	}
 	public void DetermineRotation()
 	{
-		if (PlayerControl.Hit.collider == null)
+		if (ConstantRayCasting.Hit.collider == null)
 		{
 			rotatingZTarget = 0;
 		}
 		else
 		{
-			if (PlayerControl.Hit.collider.tag.Equals("UseColliderMainRotation"))
+			if (ConstantRayCasting.Hit.collider.tag.Equals("UseColliderMainRotation"))
 			{
-				rotatingZTarget = PlayerControl.Hit.transform.eulerAngles.z;
+				rotatingZTarget = ConstantRayCasting.Hit.transform.eulerAngles.z;
 			}
 			else
 			{
-				rotatingZTarget = Quaternion.FromToRotation(Vector3.up, PlayerControl.Hit.normal).eulerAngles.z;
+				rotatingZTarget = Quaternion.FromToRotation(Vector3.up, ConstantRayCasting.Hit.normal).eulerAngles.z;
 			}
 		}
 
 		CheckDirectionAndCallRotate();
+	}
+
+	float ratioBetweenFloorAndMaxHeight;
+	float curveRatio;
+	public float GetRotationSpeed()
+	{
+		// Ratio between height above floor and max height clamped to 0 and 1.
+		ratioBetweenFloorAndMaxHeight = Mathf.Clamp01(ConstantRayCasting.Hit.distance / PlayerControl.MaxJumpHeight);
+
+		// Then use the curve to give a non-linear ratio.
+		curveRatio = rotationSpeedCurve.Evaluate(ratioBetweenFloorAndMaxHeight);
+
+		// Apply this ratio where 0 would be max rotation speed and 1 would be min rotation speed.
+		// max - ((max - min) * ratio)
+
+		return maxFixRotationSpeed - ((maxFixRotationSpeed - minRotationSpeed) * curveRatio);
 	}
 
 	public void CheckDirectionAndCallRotate()
@@ -74,7 +85,7 @@ public class PlayerAutoRotator : MonoBehaviour
 		{
 			degreesOfRotationDifference = rotatingZTarget - this.transform.eulerAngles.z;
 
-			var amountToRotateThisFrame = Time.deltaTime * fixRotationSpeed;
+			var amountToRotateThisFrame = Time.deltaTime * GetRotationSpeed();
 
 			// Rotate left
 			if ((degreesOfRotationDifference > 0 && degreesOfRotationDifference >= 180)
@@ -103,57 +114,6 @@ public class PlayerAutoRotator : MonoBehaviour
 			}
 		}
 	}
-
-	//public void CheckDirectionAndCallRotate()
-	//{
-	//	if (this.transform.eulerAngles.z != rotatingZTarget)
-	//	{
-	//		degreesOfRotationDifference = this.transform.eulerAngles.z - rotatingZTarget;
-
-	//		var amountToRotateThisFrame = Time.deltaTime * fixRotationSpeed;
-
-	//		if (degreesOfRotationDifference > 0)
-	//		{
-	//			if (degreesOfRotationDifference > 180)
-	//			{
-	//				degreesOfRotationDifference = 360 - degreesOfRotationDifference;
-
-	//				// Rotate right							
-	//				if (RotatePlayerZTowardsTarget(amountToRotateThisFrame))
-	//				{
-	//					return;
-	//				}
-	//			}
-
-	//			// Rotate left							
-	//			if (RotatePlayerZTowardsTarget(-amountToRotateThisFrame))
-	//			{
-	//				return;
-	//			}
-	//		}
-	//		else
-	//		{
-	//			degreesOfRotationDifference = Mathf.Abs(degreesOfRotationDifference);
-
-	//			if (degreesOfRotationDifference > 180)
-	//			{
-	//				degreesOfRotationDifference = 360 - degreesOfRotationDifference;
-
-	//				// Rotate left							
-	//				if (RotatePlayerZTowardsTarget(-amountToRotateThisFrame))
-	//				{
-	//					return;
-	//				}
-	//			}
-
-	//			// Rotate right							
-	//			if (RotatePlayerZTowardsTarget(amountToRotateThisFrame))
-	//			{
-	//				return;
-	//			}
-	//		}
-	//	}
-	//}
 
 	public bool RotatePlayerZTowardsTarget(float amountToRotate)
 	{

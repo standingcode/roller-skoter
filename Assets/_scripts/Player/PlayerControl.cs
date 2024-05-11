@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Hierarchy;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
@@ -13,6 +12,9 @@ public class PlayerControl : MonoBehaviour
 	private float skatingForce;
 
 	[SerializeField]
+	private float maxSpeed = 2f;
+
+	[SerializeField]
 	private Rigidbody2D mainRigidbody;
 
 	[SerializeField]
@@ -22,13 +24,7 @@ public class PlayerControl : MonoBehaviour
 	private Transform centerOfMass;
 
 	[SerializeField]
-	private LayerMask floorLayerMask;
-
-	[SerializeField]
 	private Transform spriteTransform;
-
-	[SerializeField]
-	private Transform raycastOrigin;
 
 	[SerializeField]
 	private float heightToConsiderBeingOffTheGround = 0.04f;
@@ -36,11 +32,12 @@ public class PlayerControl : MonoBehaviour
 	[SerializeField]
 	private float waitForUnJumpTime = 0.15f;
 
+	[SerializeField]
+	private static float maxJumpHeight;
+	public static float MaxJumpHeight { get => maxJumpHeight; }
+
 	public static Action PlayerJumped;
 	public static Action PlayerLanded;
-
-	private static RaycastHit2D hit;
-	public static RaycastHit2D Hit { get => hit; }
 
 	protected bool currentlyFlying;
 	public bool CurrentlyFlying
@@ -59,25 +56,37 @@ public class PlayerControl : MonoBehaviour
 	private void Start()
 	{
 		mainRigidbody.centerOfMass = centerOfMass.localPosition;
-		heightToConsiderBeingOffTheGround = raycastOrigin.localPosition.y - centerOfMass.localPosition.y + 0.1f;
+
+		maxJumpHeight = CalculateJumpHeight();
 	}
 
 	private void Update()
 	{
-		ConstantRayCasting();
+		CheckForJumpOrFall();
+		CapMaxSpeed();
+		DebugCanvas.Instance.ShowSpeed(mainRigidbody.velocityX);
 	}
 
-	public void ConstantRayCasting()
+	public void CapMaxSpeed()
 	{
-		hit = Physics2D.Raycast(raycastOrigin.position, Vector2.down, 30, floorLayerMask);
-		CheckForJumpOrFall();
+		if (Mathf.Abs(mainRigidbody.velocityX) >= maxSpeed)
+		{
+			SetForce(0);
+		}
+		else
+		{
+			SetForce(forceSetByController);
+		}
 	}
 
 	public void CheckForJumpOrFall()
 	{
 		// If the ray hits nothing, and CurrentlyFlying is false, then we need to take action
 		// If the ray distance is over the threshold and CurrentlyFlying is false, then we need to take action
-		if ((hit.collider == null | hit.distance >= heightToConsiderBeingOffTheGround) && CurrentlyFlying == false)
+		if (
+		(ConstantRayCasting.Hit.collider == null || ConstantRayCasting.Hit.distance >= heightToConsiderBeingOffTheGround)
+		&& CurrentlyFlying == false
+		)
 		{
 			CurrentlyFlying = true;
 			PlayerJumped?.Invoke();
@@ -86,19 +95,22 @@ public class PlayerControl : MonoBehaviour
 		}
 
 		// If the ray distance is lower than threshold, and CurrentlyFlying is true, then we need to take action
-		if (hit.collider != null && hit.distance < heightToConsiderBeingOffTheGround)
+		if (ConstantRayCasting.Hit.collider != null && ConstantRayCasting.Hit.distance < heightToConsiderBeingOffTheGround)
 		{
 			CurrentlyFlying = false;
 			PlayerLanded?.Invoke();
 		}
 	}
 
+
+	private float forceSetByController;
 	public void PowerLeft()
 	{
 		//Debug.Log("Power left");
 
 		TurnCharacter(CharacterFacingDirection.Left);
-		constantForce2D.force = new Vector2(-skatingForce, 0);
+		forceSetByController = -skatingForce;
+		SetForce(skatingForce);
 	}
 
 	public void PowerRight()
@@ -106,7 +118,16 @@ public class PlayerControl : MonoBehaviour
 		//Debug.Log("Power right");
 
 		TurnCharacter(CharacterFacingDirection.Right);
-		constantForce2D.force = new Vector2(skatingForce, 0);
+		forceSetByController = skatingForce;
+		SetForce(skatingForce);
+	}
+
+	private Vector2 forceVector;
+	public void SetForce(float xForce, float yForce = 0)
+	{
+		forceVector.x = xForce;
+		forceVector.y = yForce;
+		constantForce2D.relativeForce = forceVector;
 	}
 
 	public void TurnCharacter(CharacterFacingDirection characterFacingDirection)
@@ -124,7 +145,9 @@ public class PlayerControl : MonoBehaviour
 	{
 		//Debug.Log("Unpower");
 
-		constantForce2D.force = new Vector2(0, 0);
+		forceSetByController = 0;
+
+		SetForce(forceSetByController);
 	}
 
 	public void Jump()
@@ -139,6 +162,14 @@ public class PlayerControl : MonoBehaviour
 		mainRigidbody.AddForce(transform.up * jumpingForce, ForceMode2D.Impulse);
 	}
 
+	Vector2 lineStart;
+	Vector2 lineEnd;
+	float CalculateJumpHeight()
+	{
+		float g = mainRigidbody.gravityScale * Physics2D.gravity.magnitude;
+		float v0 = jumpingForce / mainRigidbody.mass; // converts the jumpForce to an initial velocity
+		return (v0 * v0) / (2 * g);
+	}
 	public void UnJump()
 	{
 		if (!CurrentlyFlying)

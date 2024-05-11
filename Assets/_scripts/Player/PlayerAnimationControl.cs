@@ -13,12 +13,6 @@ public class PlayerAnimationControl : MonoBehaviour
 	[SerializeField]
 	private LayerMask layerMask;
 
-	[SerializeField]
-	private float heightOfFullJumpAnimation = 2f;
-
-	[SerializeField]
-	private float lowThresholdForJumpAnimation = 0.024f;
-
 	private bool isJumping = false;
 
 	private void Start()
@@ -65,7 +59,6 @@ public class PlayerAnimationControl : MonoBehaviour
 		animator.Play("jump");
 	}
 
-
 	// Auto jump animation
 
 	float jumpAnimationRatio = 0f;
@@ -73,15 +66,8 @@ public class PlayerAnimationControl : MonoBehaviour
 	{
 		while (isJumping)
 		{
-			//Debug.Log($"Raycast distance is: {hit.distance}");		
-
-			//if (PlayerControl.Hit.distance < lowThresholdForJumpAnimation)
-			//	yield return null;
-
-			if (PlayerControl.Hit.collider != null)
-				jumpAnimationRatio = PlayerControl.Hit.distance / heightOfFullJumpAnimation;
-			//else
-			//	jumpAnimationRatio = 1;
+			if (ConstantRayCasting.Hit.collider != null)
+				jumpAnimationRatio = ConstantRayCasting.Hit.distance / PlayerControl.MaxJumpHeight;
 
 			PlayJumpAnimation(jumpAnimationRatio);
 
