@@ -299,6 +299,7 @@ MonoBehaviour:
   spriteTransform: {fileID: 1031510070432351616}
   heightToConsiderBeingOffTheGround: 0.05
   waitForUnJumpTime: 0.75
+  inAirForceReduceMultiplier: 0.5
 --- !u!114 &3043037650742757982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,6 +726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   somethingField: {fileID: 8767688780902656824}
   speedField: {fileID: 6196416354269653187}
+  mainRigidbody: {fileID: 0}
 --- !u!114 &4196765466465900194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1471,7 +1473,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Generic
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

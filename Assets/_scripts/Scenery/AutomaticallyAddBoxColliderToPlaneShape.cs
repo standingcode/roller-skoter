@@ -10,8 +10,6 @@ public class AutomaticallyAddBoxColliderToPlaneShape : MonoBehaviour
 	Vector2 size;
 	void Update()
 	{
-		Debug.Log(spriteShapeMeshData.positions[10].x);
-
 		size.x = spriteShapeMeshData.positions[10].x * 2;
 		size.y = spriteShapeMeshData.positions[5].z * 2;
 

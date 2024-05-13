@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
@@ -36,6 +35,9 @@ public class PlayerControl : MonoBehaviour
 	private static float maxJumpHeight;
 	public static float MaxJumpHeight { get => maxJumpHeight; }
 
+	[SerializeField]
+	private float inAirForceReduceMultiplier = 0.5f;
+
 	public static Action PlayerJumped;
 	public static Action PlayerLanded;
 
@@ -56,7 +58,6 @@ public class PlayerControl : MonoBehaviour
 	private void Start()
 	{
 		mainRigidbody.centerOfMass = centerOfMass.localPosition;
-
 		maxJumpHeight = CalculateJumpHeight();
 	}
 
@@ -64,7 +65,6 @@ public class PlayerControl : MonoBehaviour
 	{
 		CheckForJumpOrFall();
 		CapMaxSpeed();
-		DebugCanvas.Instance.ShowSpeed(mainRigidbody.velocityX);
 	}
 
 	public void CapMaxSpeed()
@@ -109,8 +109,7 @@ public class PlayerControl : MonoBehaviour
 		//Debug.Log("Power left");
 
 		TurnCharacter(CharacterFacingDirection.Left);
-		forceSetByController = -skatingForce;
-		SetForce(skatingForce);
+		forceSetByController = -skatingForce * (CurrentlyFlying ? inAirForceReduceMultiplier : 1);
 	}
 
 	public void PowerRight()
@@ -118,13 +117,15 @@ public class PlayerControl : MonoBehaviour
 		//Debug.Log("Power right");
 
 		TurnCharacter(CharacterFacingDirection.Right);
-		forceSetByController = skatingForce;
-		SetForce(skatingForce);
+		forceSetByController = skatingForce * (CurrentlyFlying ? inAirForceReduceMultiplier : 1);
+
 	}
 
 	private Vector2 forceVector;
 	public void SetForce(float xForce, float yForce = 0)
 	{
+		Debug.Log($"SetForce: {xForce}");
+
 		forceVector.x = xForce;
 		forceVector.y = yForce;
 		constantForce2D.relativeForce = forceVector;
@@ -159,7 +160,7 @@ public class PlayerControl : MonoBehaviour
 
 		CurrentlyFlying = true;
 
-		mainRigidbody.AddForce(transform.up * jumpingForce, ForceMode2D.Impulse);
+		mainRigidbody.AddForce(Vector2.up * jumpingForce, ForceMode2D.Impulse);
 	}
 
 	Vector2 lineStart;
@@ -170,6 +171,7 @@ public class PlayerControl : MonoBehaviour
 		float v0 = jumpingForce / mainRigidbody.mass; // converts the jumpForce to an initial velocity
 		return (v0 * v0) / (2 * g);
 	}
+
 	public void UnJump()
 	{
 		if (!CurrentlyFlying)
@@ -182,6 +184,7 @@ public class PlayerControl : MonoBehaviour
 	}
 
 	private Coroutine unJumpCoroutine = null;
+
 	public IEnumerator UnJumpCoroutine()
 	{
 		yield return new WaitForSeconds(waitForUnJumpTime);
