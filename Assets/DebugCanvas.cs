@@ -32,6 +32,6 @@ public class DebugCanvas : MonoBehaviour
 
 	public void ShowSpeed(float speed)
 	{
-		speedField.text = "Speed: " + speed.ToString();
+		speedField.text = "Speed: " + speed.ToString("00.00");
 	}
 }
