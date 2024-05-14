@@ -298,8 +298,8 @@ MonoBehaviour:
   centerOfMass: {fileID: 101736010949801306}
   spriteTransform: {fileID: 1031510070432351616}
   heightToConsiderBeingOffTheGround: 0.05
-  waitForUnJumpTime: 0.75
-  inAirForceReduceMultiplier: 0.5
+  waitForUnJumpTime: 0.2
+  inAirForceReduceMultiplier: 0.6
 --- !u!114 &3043037650742757982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,7 +726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   somethingField: {fileID: 8767688780902656824}
   speedField: {fileID: 6196416354269653187}
-  mainRigidbody: {fileID: 0}
+  mainRigidbody: {fileID: 977706262271196140}
 --- !u!114 &4196765466465900194
 MonoBehaviour:
   m_ObjectHideFlags: 0

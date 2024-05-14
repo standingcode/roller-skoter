@@ -64,10 +64,10 @@ public class PlayerControl : MonoBehaviour
 	private void Update()
 	{
 		CheckForJumpOrFall();
-		CapMaxSpeed();
+		SetConstantForce();
 	}
 
-	public void CapMaxSpeed()
+	public void SetConstantForce()
 	{
 		if (Mathf.Abs(mainRigidbody.velocityX) >= maxSpeed)
 		{
@@ -75,8 +75,9 @@ public class PlayerControl : MonoBehaviour
 		}
 		else
 		{
-			SetForce(forceSetByController);
+			SetForce(forceSetByController * (CurrentlyFlying ? inAirForceReduceMultiplier : 1));
 		}
+
 	}
 
 	public void CheckForJumpOrFall()
@@ -109,7 +110,7 @@ public class PlayerControl : MonoBehaviour
 		//Debug.Log("Power left");
 
 		TurnCharacter(CharacterFacingDirection.Left);
-		forceSetByController = -skatingForce * (CurrentlyFlying ? inAirForceReduceMultiplier : 1);
+		forceSetByController = -skatingForce;
 	}
 
 	public void PowerRight()
@@ -117,14 +118,14 @@ public class PlayerControl : MonoBehaviour
 		//Debug.Log("Power right");
 
 		TurnCharacter(CharacterFacingDirection.Right);
-		forceSetByController = skatingForce * (CurrentlyFlying ? inAirForceReduceMultiplier : 1);
+		forceSetByController = skatingForce;
 
 	}
 
 	private Vector2 forceVector;
 	public void SetForce(float xForce, float yForce = 0)
 	{
-		Debug.Log($"SetForce: {xForce}");
+		//Debug.Log($"SetForce: {xForce}");
 
 		forceVector.x = xForce;
 		forceVector.y = yForce;
@@ -189,7 +190,8 @@ public class PlayerControl : MonoBehaviour
 	{
 		yield return new WaitForSeconds(waitForUnJumpTime);
 
-		mainRigidbody.velocityY = 0;
+		if (mainRigidbody.velocityY > 0)
+			mainRigidbody.velocityY = 0;
 		unJumpCoroutine = null;
 	}
 
