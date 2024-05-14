@@ -2,17 +2,18 @@ using UnityEngine;
 
 public class ConstantRayCasting : MonoBehaviour
 {
-	private static RaycastHit2D hit;
-	public static RaycastHit2D Hit { get => hit; }
+	private RaycastHit2D hit;
+	public RaycastHit2D Hit { get => hit; }
 
 	[SerializeField]
 	private Transform raycastOrigin;
+	public Transform RaycastOrigin => raycastOrigin;
 
 	[SerializeField]
 	private LayerMask floorLayerMask;
 
-	void Update()
+	private void Update()
 	{
-		hit = Physics2D.Raycast(raycastOrigin.position, Vector2.down, 30, floorLayerMask);
+		hit = Physics2D.Raycast(raycastOrigin.position, -transform.up, 30, floorLayerMask);
 	}
 }

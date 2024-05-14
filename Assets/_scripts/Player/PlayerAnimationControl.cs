@@ -66,8 +66,8 @@ public class PlayerAnimationControl : MonoBehaviour
 	{
 		while (isJumping)
 		{
-			if (ConstantRayCasting.Hit.collider != null)
-				jumpAnimationRatio = ConstantRayCasting.Hit.distance / PlayerControl.MaxJumpHeight;
+			if (PlayerReferences.Instance.ConstantRayCasting.Hit.collider != null)
+				jumpAnimationRatio = PlayerReferences.Instance.PlayerControl.PlayerHeight / PlayerControl.MaxJumpHeight;
 
 			PlayJumpAnimation(jumpAnimationRatio);
 

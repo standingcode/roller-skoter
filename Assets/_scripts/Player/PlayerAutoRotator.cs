@@ -37,19 +37,19 @@ public class PlayerAutoRotator : MonoBehaviour
 
 	public void DetermineRotation()
 	{
-		if (ConstantRayCasting.Hit.collider == null)
+		if (PlayerReferences.Instance.ConstantRayCasting.Hit.collider == null)
 		{
 			rotatingZTarget = 0;
 		}
 		else
 		{
-			if (ConstantRayCasting.Hit.collider.tag.Equals("UseColliderMainRotation"))
+			if (PlayerReferences.Instance.ConstantRayCasting.Hit.collider.tag.Equals("UseColliderMainRotation"))
 			{
-				rotatingZTarget = ConstantRayCasting.Hit.transform.eulerAngles.z;
+				rotatingZTarget = PlayerReferences.Instance.ConstantRayCasting.Hit.transform.eulerAngles.z;
 			}
 			else
 			{
-				rotatingZTarget = Quaternion.FromToRotation(Vector3.up, ConstantRayCasting.Hit.normal).eulerAngles.z;
+				rotatingZTarget = Quaternion.FromToRotation(Vector3.up, PlayerReferences.Instance.ConstantRayCasting.Hit.normal).eulerAngles.z;
 			}
 		}
 
@@ -61,7 +61,7 @@ public class PlayerAutoRotator : MonoBehaviour
 	public float GetRotationSpeed()
 	{
 		// Ratio between height above floor and max height clamped to 0 and 1.
-		ratioBetweenFloorAndMaxHeight = Mathf.Clamp01(ConstantRayCasting.Hit.distance / PlayerControl.MaxJumpHeight);
+		ratioBetweenFloorAndMaxHeight = Mathf.Clamp01(PlayerReferences.Instance.PlayerControl.PlayerHeight / PlayerControl.MaxJumpHeight);
 
 		// Then use the curve to give a non-linear ratio.
 		curveRatio = rotationSpeedCurve.Evaluate(ratioBetweenFloorAndMaxHeight);

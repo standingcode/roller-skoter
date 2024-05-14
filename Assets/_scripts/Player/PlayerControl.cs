@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+	[Header("Characteristics")]
 	[SerializeField]
 	private float jumpingForce;
 
@@ -12,18 +14,6 @@ public class PlayerControl : MonoBehaviour
 
 	[SerializeField]
 	private float maxSpeed = 2f;
-
-	[SerializeField]
-	private Rigidbody2D mainRigidbody;
-
-	[SerializeField]
-	private ConstantForce2D constantForce2D;
-
-	[SerializeField]
-	private Transform centerOfMass;
-
-	[SerializeField]
-	private Transform spriteTransform;
 
 	[SerializeField]
 	private float heightToConsiderBeingOffTheGround = 0.04f;
@@ -38,22 +28,37 @@ public class PlayerControl : MonoBehaviour
 	[SerializeField]
 	private float inAirForceReduceMultiplier = 0.5f;
 
+	[Header("References")]
+	[SerializeField]
+	private Rigidbody2D mainRigidbody;
+
+	[SerializeField]
+	private ConstantForce2D constantForce2D;
+
+	[SerializeField]
+	private Transform centerOfMass;
+
+	[SerializeField]
+	private Transform spriteTransform;
+
+	// Private
+
+	private float distanceBetweenRaycastAndBaseOfPlayer;
+
+	// Public
+
+	public float PlayerHeight => GetPlayerCurrentHeight();
+
 	public static Action PlayerJumped;
 	public static Action PlayerLanded;
 
 	protected bool currentlyFlying;
-	public bool CurrentlyFlying
-	{
-		get => currentlyFlying;
-		set => currentlyFlying = value;
-	}
+	public bool CurrentlyFlying { get => currentlyFlying; set => currentlyFlying = value; }
 
 	protected CharacterFacingDirection characterCurrentFacingDirection = CharacterFacingDirection.Right;
-	public CharacterFacingDirection CharacterCurrentFacingDirection
-	{
-		get => characterCurrentFacingDirection;
-		private set => characterCurrentFacingDirection = value;
-	}
+	public CharacterFacingDirection CharacterCurrentFacingDirection { get => characterCurrentFacingDirection; private set => characterCurrentFacingDirection = value; }
+
+	// Methods
 
 	private void Start()
 	{
@@ -65,6 +70,13 @@ public class PlayerControl : MonoBehaviour
 	{
 		CheckForJumpOrFall();
 		SetConstantForce();
+	}
+
+	public float GetPlayerCurrentHeight()
+	{
+		return
+			PlayerReferences.Instance.ConstantRayCasting.Hit.distance
+				- Vector2.Distance(PlayerReferences.Instance.ConstantRayCasting.RaycastOrigin.transform.position, centerOfMass.transform.position);
 	}
 
 	public void SetConstantForce()
@@ -85,7 +97,7 @@ public class PlayerControl : MonoBehaviour
 		// If the ray hits nothing, and CurrentlyFlying is false, then we need to take action
 		// If the ray distance is over the threshold and CurrentlyFlying is false, then we need to take action
 		if (
-		(ConstantRayCasting.Hit.collider == null || ConstantRayCasting.Hit.distance >= heightToConsiderBeingOffTheGround)
+		(PlayerReferences.Instance.ConstantRayCasting.Hit.collider == null || PlayerHeight >= heightToConsiderBeingOffTheGround)
 		&& CurrentlyFlying == false
 		)
 		{
@@ -96,7 +108,7 @@ public class PlayerControl : MonoBehaviour
 		}
 
 		// If the ray distance is lower than threshold, and CurrentlyFlying is true, then we need to take action
-		if (ConstantRayCasting.Hit.collider != null && ConstantRayCasting.Hit.distance < heightToConsiderBeingOffTheGround)
+		if (PlayerReferences.Instance.ConstantRayCasting.Hit.collider != null && PlayerHeight < heightToConsiderBeingOffTheGround)
 		{
 			CurrentlyFlying = false;
 			PlayerLanded?.Invoke();
@@ -161,7 +173,7 @@ public class PlayerControl : MonoBehaviour
 
 		CurrentlyFlying = true;
 
-		mainRigidbody.AddForce(Vector2.up * jumpingForce, ForceMode2D.Impulse);
+		mainRigidbody.AddForce(transform.up * jumpingForce, ForceMode2D.Impulse);
 	}
 
 	Vector2 lineStart;

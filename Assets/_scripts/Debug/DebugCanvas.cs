@@ -10,6 +10,9 @@ public class DebugCanvas : MonoBehaviour
 	private TextMeshProUGUI speedField;
 
 	[SerializeField]
+	private TextMeshProUGUI heightField;
+
+	[SerializeField]
 	private Rigidbody2D mainRigidbody;
 
 	protected static DebugCanvas instance;
@@ -38,9 +41,17 @@ public class DebugCanvas : MonoBehaviour
 		speedField.text = "Speed: " + speed.ToString("00.00");
 	}
 
+	public void ShowHeight(float height)
+	{
+		heightField.text = "Height: " + height.ToString("00.00");
+	}
+
 	private void Update()
 	{
 		if (mainRigidbody != null)
 			ShowSpeed(mainRigidbody.velocityX);
+
+		if (heightField != null)
+			ShowHeight(PlayerReferences.Instance.PlayerControl.PlayerHeight);
 	}
 }
