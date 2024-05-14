@@ -2,10 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Min rotation speed for on the floor
-// Max rotation speed
-// The height at which max rotation should be applied (probably max jump height?)
-
 public class PlayerAutoRotator : MonoBehaviour
 {
 	[SerializeField]
@@ -27,13 +23,10 @@ public class PlayerAutoRotator : MonoBehaviour
 	[SerializeField]
 	private float rotatingZTarget = 0;
 
-	//public float playerCurrentZRotation;
-
 	private float degreesOfRotationDifference;
 
 	private void Update()
 	{
-		//playerCurrentZRotation = this.transform.eulerAngles.z;
 		DetermineRotation();
 	}
 
@@ -75,7 +68,6 @@ public class PlayerAutoRotator : MonoBehaviour
 
 		// Apply this ratio where 0 would be max rotation speed and 1 would be min rotation speed.
 		// max - ((max - min) * ratio)
-
 		return maxFixRotationSpeed - ((maxFixRotationSpeed - minRotationSpeed) * curveRatio);
 	}
 
