@@ -64,6 +64,7 @@ public class PlayerControl : MonoBehaviour
 	{
 		mainRigidbody.centerOfMass = centerOfMass.localPosition;
 		maxJumpHeight = CalculateJumpHeight();
+		distanceBetweenRaycastAndBaseOfPlayer = Vector2.Distance(PlayerReferences.Instance.ConstantRayCasting.RaycastOrigin.transform.position, centerOfMass.transform.position);
 	}
 
 	private void Update()
@@ -75,8 +76,7 @@ public class PlayerControl : MonoBehaviour
 	public float GetPlayerCurrentHeight()
 	{
 		return
-			PlayerReferences.Instance.ConstantRayCasting.Hit.distance
-				- Vector2.Distance(PlayerReferences.Instance.ConstantRayCasting.RaycastOrigin.transform.position, centerOfMass.transform.position);
+			PlayerReferences.Instance.ConstantRayCasting.Hit.distance - distanceBetweenRaycastAndBaseOfPlayer;
 	}
 
 	public void SetConstantForce()

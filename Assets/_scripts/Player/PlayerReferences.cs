@@ -14,7 +14,7 @@ public class PlayerReferences : MonoBehaviour
 	protected static PlayerReferences instance;
 	public static PlayerReferences Instance { get => instance; }
 
-	void Start()
+	void Awake()
 	{
 		if (Instance == null)
 		{

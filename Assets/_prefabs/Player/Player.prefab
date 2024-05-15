@@ -308,14 +308,13 @@ MonoBehaviour:
   jumpingForce: 700
   skatingForce: 1000
   maxSpeed: 20
+  heightToConsiderBeingOffTheGround: 0.05
+  waitForUnJumpTime: 0.2
+  inAirForceReduceMultiplier: 0.6
   mainRigidbody: {fileID: 977706262271196140}
   constantForce2D: {fileID: 8029703225111056748}
   centerOfMass: {fileID: 101736010949801306}
   spriteTransform: {fileID: 1031510070432351616}
-  heightToConsiderBeingOffTheGround: 0.05
-  waitForUnJumpTime: 0.2
-  inAirForceReduceMultiplier: 0.6
-  constantRayCasting: {fileID: 0}
 --- !u!114 &3043037650742757982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +357,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   playerAnimationControl: {fileID: 431623067733495648}
-  RaycastOrigin: {fileID: 2389081355896582193}
   rotatingZTarget: 0
 --- !u!114 &431623067733495648
 MonoBehaviour:
@@ -393,6 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raycastOrigin: {fileID: 2389081355896582193}
+  raycastOrigin2: {fileID: 5349078192591665434}
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -505,7 +504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2389081355896582193}
   m_Layer: 8
-  m_Name: RaycastOrigin
+  m_Name: RaycastOrigin1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -520,7 +519,7 @@ Transform:
   m_GameObject: {fileID: 2083155004029083037}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.04800001, y: 0.671, z: 0}
+  m_LocalPosition: {x: -0.254, y: 0.671, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -619,6 +618,7 @@ Transform:
   m_Children:
   - {fileID: 101736010949801306}
   - {fileID: 2389081355896582193}
+  - {fileID: 5349078192591665434}
   - {fileID: 1031510070432351616}
   - {fileID: 5777709957855811066}
   m_Father: {fileID: 7736618352479220888}
@@ -1663,6 +1663,37 @@ Transform:
   m_Children:
   - {fileID: 1869440044020841369}
   m_Father: {fileID: 889818283014205156}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7980259939060297191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5349078192591665434}
+  m_Layer: 8
+  m_Name: RaycastOrigin2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5349078192591665434
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7980259939060297191}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.297, y: 0.671, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9172554932435092855}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8551118777852663208
 GameObject:

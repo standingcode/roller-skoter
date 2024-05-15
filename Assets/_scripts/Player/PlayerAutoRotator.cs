@@ -16,8 +16,6 @@ public class PlayerAutoRotator : MonoBehaviour
 	[SerializeField]
 	PlayerAnimationControl playerAnimationControl;
 
-	public Transform RaycastOrigin;
-
 	private Vector3 newEulerAngles = Vector3.zero;
 
 	[SerializeField]
@@ -35,6 +33,8 @@ public class PlayerAutoRotator : MonoBehaviour
 		StopAllCoroutines();
 	}
 
+	float averageRotation;
+	Vector2 averageNormal;
 	public void DetermineRotation()
 	{
 		if (PlayerReferences.Instance.ConstantRayCasting.Hit.collider == null)
@@ -45,11 +45,14 @@ public class PlayerAutoRotator : MonoBehaviour
 		{
 			if (PlayerReferences.Instance.ConstantRayCasting.Hit.collider.tag.Equals("UseColliderMainRotation"))
 			{
-				rotatingZTarget = PlayerReferences.Instance.ConstantRayCasting.Hit.transform.eulerAngles.z;
+				averageRotation = (PlayerReferences.Instance.ConstantRayCasting.Hit.transform.eulerAngles.z + PlayerReferences.Instance.ConstantRayCasting.Hit2.transform.eulerAngles.z) / 2;
+				rotatingZTarget = averageRotation;
 			}
 			else
 			{
-				rotatingZTarget = Quaternion.FromToRotation(Vector3.up, PlayerReferences.Instance.ConstantRayCasting.Hit.normal).eulerAngles.z;
+				// Get average here too 
+				averageNormal = (PlayerReferences.Instance.ConstantRayCasting.Hit.normal + PlayerReferences.Instance.ConstantRayCasting.Hit2.normal) / 2;
+				rotatingZTarget = Quaternion.FromToRotation(Vector3.up, averageNormal).eulerAngles.z;
 			}
 		}
 
