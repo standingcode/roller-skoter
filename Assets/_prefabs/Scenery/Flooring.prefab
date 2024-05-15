@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   edgeCollider2D: {fileID: 8229362179225170448}
+  lineRenderer: {fileID: 0}
   polyShape: {fileID: 8400846718141217012}
 --- !u!1 &2393757711933023412
 GameObject:
@@ -589,14 +590,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PolyFloorPrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 6843203270621772665, guid: 487d1d80b0f0f5d46b200c8750ab6e03, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6843203270621772665, guid: 487d1d80b0f0f5d46b200c8750ab6e03, type: 3}
-      propertyPath: m_VersionIndex
-      value: 2877
-      objectReference: {fileID: 0}
     - target: {fileID: 7858842583665608957, guid: 487d1d80b0f0f5d46b200c8750ab6e03, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.48
@@ -636,10 +629,6 @@ PrefabInstance:
     - target: {fileID: 7858842583665608957, guid: 487d1d80b0f0f5d46b200c8750ab6e03, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8684200070612179018, guid: 487d1d80b0f0f5d46b200c8750ab6e03, type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -699,9 +688,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5579916635681484041, guid: 39074bb5dfc74a04db30fa5045e5ea54, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5579916635681484041, guid: 39074bb5dfc74a04db30fa5045e5ea54, type: 3}
+      propertyPath: m_VersionIndex
+      value: 12272
+      objectReference: {fileID: 0}
     - target: {fileID: 5932138738695426256, guid: 39074bb5dfc74a04db30fa5045e5ea54, type: 3}
       propertyPath: m_Name
       value: PlaneFloor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8490544444609313129, guid: 39074bb5dfc74a04db30fa5045e5ea54, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
