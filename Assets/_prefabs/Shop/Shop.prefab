@@ -1251,25 +1251,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2901171247873259208, guid: dbeb17b2fe1c6fc458aaee1c8401c4be, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4534302910450682745, guid: dbeb17b2fe1c6fc458aaee1c8401c4be, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 7866581948276316370, guid: dbeb17b2fe1c6fc458aaee1c8401c4be, type: 3}
       propertyPath: m_Name
       value: Door (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7866581948276316370, guid: dbeb17b2fe1c6fc458aaee1c8401c4be, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7866581948276316370, guid: dbeb17b2fe1c6fc458aaee1c8401c4be, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1329,25 +1313,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2901171247873259208, guid: dbeb17b2fe1c6fc458aaee1c8401c4be, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4534302910450682745, guid: dbeb17b2fe1c6fc458aaee1c8401c4be, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 7866581948276316370, guid: dbeb17b2fe1c6fc458aaee1c8401c4be, type: 3}
       propertyPath: m_Name
       value: Door
-      objectReference: {fileID: 0}
-    - target: {fileID: 7866581948276316370, guid: dbeb17b2fe1c6fc458aaee1c8401c4be, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7866581948276316370, guid: dbeb17b2fe1c6fc458aaee1c8401c4be, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
