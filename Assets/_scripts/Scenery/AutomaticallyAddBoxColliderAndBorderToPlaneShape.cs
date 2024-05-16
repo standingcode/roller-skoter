@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.ProBuilder;
 
@@ -11,12 +12,15 @@ public class AutomaticallyAddBoxColliderAndBorderToPlaneShape : MonoBehaviour
 
 	void Update()
 	{
-		Vector2 size;
+		AddBorder();
+		AddCollider();
+	}
 
-		size.x = spriteShapeMeshData.positions[10].x * 2;
-		size.y = spriteShapeMeshData.positions[5].z * 2;
+	private void AddBorder()
+	{
+		if (spriteShapeMeshData == null || lineRenderer == null)
+			return;
 
-		boxCollider2D.size = size;
 
 		Vector3[] points = new Vector3[5];
 
@@ -28,6 +32,21 @@ public class AutomaticallyAddBoxColliderAndBorderToPlaneShape : MonoBehaviour
 
 		lineRenderer.positionCount = points.Length;
 		lineRenderer.SetPositions(points);
+
+	}
+
+	private void AddCollider()
+	{
+		if (boxCollider2D == null)
+			return;
+
+
+		Vector2 size;
+
+		size.x = spriteShapeMeshData.positions[10].x * 2;
+		size.y = spriteShapeMeshData.positions[5].z * 2;
+
+		boxCollider2D.size = size;
 	}
 
 	//void OnDrawGizmos()
