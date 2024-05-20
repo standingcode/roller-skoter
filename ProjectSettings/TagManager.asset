@@ -6,6 +6,7 @@ TagManager:
   tags:
   - UseColliderMainRotation
   - BackgroundInteractable
+  - AutoDeactivateBackgroundInteractable
   layers:
   - Default
   - TransparentFX

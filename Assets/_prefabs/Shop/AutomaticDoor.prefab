@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1881409707
-  m_SortingLayer: -9
+  m_SortingLayerID: 1223834065
+  m_SortingLayer: -7
   m_SortingOrder: -1
   m_Sprite: {fileID: -180528684163687028, guid: e50c3514c7b749d49a0891cc56fc0868, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -160,8 +160,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1881409707
-  m_SortingLayer: -9
+  m_SortingLayerID: 1223834065
+  m_SortingLayer: -7
   m_SortingOrder: -1
   m_Sprite: {fileID: -180528684163687028, guid: e50c3514c7b749d49a0891cc56fc0868, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 6087009349689425768}
   - component: {fileID: 4837945549051702698}
   m_Layer: 0
-  m_Name: Light 2D (1)
+  m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1.31
   m_LightVolumeEnabled: 1
-  m_ApplyToSortingLayers: 55f7db8fd139f248
+  m_ApplyToSortingLayers: 55f7db8f
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 6342161969842781117}
   - component: {fileID: 5717691007226145151}
   m_Layer: 0
-  m_Name: Light 2D (1)
+  m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1.31
   m_LightVolumeEnabled: 1
-  m_ApplyToSortingLayers: 55f7db8fd139f248
+  m_ApplyToSortingLayers: 55f7db8f
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -451,6 +451,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b95666b45b40b478933efa79009359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorToChangeCharacterToInBackgroundMode: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
+  transformsToActivateInBackgroundMode:
+  - {fileID: 0}
 --- !u!1 &3660125314357719014
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,11 +614,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1881409707
-  m_SortingLayer: -9
+  m_SortingLayerID: 1223834065
+  m_SortingLayer: -7
   m_SortingOrder: -1
   m_Sprite: {fileID: 6231101574743296154, guid: 372f259948041614db30c3ac94f9f45f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.48235294}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -688,8 +691,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1524928497791070104}
   - {fileID: 5549283786729571358}
+  - {fileID: 1524928497791070104}
   - {fileID: 6342161969842781117}
   m_Father: {fileID: 7343209684463465737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -826,7 +829,7 @@ SpriteRenderer:
   m_SortingLayer: -9
   m_SortingOrder: -4
   m_Sprite: {fileID: 21300000, guid: 29b6be5272a12344b99fc01a240c1326, type: 3}
-  m_Color: {r: 0.41568628, g: 0.41568628, b: 0.41568628, a: 1}
+  m_Color: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -878,7 +881,7 @@ GameObject:
   - component: {fileID: 1524928497791070104}
   - component: {fileID: 2723533721332171151}
   m_Layer: 0
-  m_Name: Glass (1)
+  m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -940,11 +943,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1881409707
-  m_SortingLayer: -9
+  m_SortingLayerID: 1223834065
+  m_SortingLayer: -7
   m_SortingOrder: -1
   m_Sprite: {fileID: 6231101574743296154, guid: 372f259948041614db30c3ac94f9f45f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.46666667}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1

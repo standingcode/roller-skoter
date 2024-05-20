@@ -381,7 +381,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSpriteRenderer: {fileID: 5491675883874297544}
-  backgroundColorForCharacter: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}
   sortingGroup: {fileID: 7442256441721311585}
 --- !u!114 &3043037650742757982
 MonoBehaviour:
@@ -528,7 +527,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 933a8c238a9aa4742aef7fe0a90643f0, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

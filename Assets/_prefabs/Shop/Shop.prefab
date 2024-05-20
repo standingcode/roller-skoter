@@ -1141,26 +1141,6 @@ PrefabInstance:
       value: AutomaticDoor
       objectReference: {fileID: 0}
     - target: {fileID: 4584339514545903961, guid: 6c7ad21bc98442d4ba9119310320f6fb, type: 3}
-      propertyPath: colorToChangeCharacterToInBackgroundMode.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4584339514545903961, guid: 6c7ad21bc98442d4ba9119310320f6fb, type: 3}
-      propertyPath: colorToChangeCharacterToInBackgroundMode.b
-      value: 0.26415092
-      objectReference: {fileID: 0}
-    - target: {fileID: 4584339514545903961, guid: 6c7ad21bc98442d4ba9119310320f6fb, type: 3}
-      propertyPath: colorToChangeCharacterToInBackgroundMode.g
-      value: 0.26415092
-      objectReference: {fileID: 0}
-    - target: {fileID: 4584339514545903961, guid: 6c7ad21bc98442d4ba9119310320f6fb, type: 3}
-      propertyPath: colorToChangeCharacterToInBackgroundMode.r
-      value: 0.26415092
-      objectReference: {fileID: 0}
-    - target: {fileID: 4584339514545903961, guid: 6c7ad21bc98442d4ba9119310320f6fb, type: 3}
-      propertyPath: transformsToActivateInBackgroundMode.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4584339514545903961, guid: 6c7ad21bc98442d4ba9119310320f6fb, type: 3}
       propertyPath: 'transformsToActivateInBackgroundMode.Array.data[0]'
       value: 
       objectReference: {fileID: 5986873849505889481}

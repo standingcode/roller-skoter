@@ -78,16 +78,6 @@ public class Escalator : MonoBehaviour
 			steps[i].position = Vector3.MoveTowards(steps[i].position, aimingPoint.position, escalatorSpeed * Time.fixedDeltaTime);
 		}
 	}
-
-	private void ActivateEscalator()
-	{
-		Debug.Log("Escalator activated");
-	}
-
-	private void DeactivateEscalator()
-	{
-		Debug.Log("Escalator DEactivated");
-	}
 }
 
 public enum EscalatorDirection
