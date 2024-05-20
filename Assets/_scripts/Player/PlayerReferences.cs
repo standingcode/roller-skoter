@@ -10,6 +10,10 @@ public class PlayerReferences : MonoBehaviour
 	private PlayerControl playerControl;
 	public PlayerControl PlayerControl => playerControl;
 
+	[SerializeField]
+	private PlayerManager playerManager;
+	public PlayerManager PlayerManager => playerManager;
+
 
 	protected static PlayerReferences instance;
 	public static PlayerReferences Instance { get => instance; }

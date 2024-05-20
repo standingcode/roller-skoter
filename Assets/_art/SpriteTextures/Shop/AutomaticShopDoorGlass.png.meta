@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 70ae89633fd4d4a4ba3add6854579e85
+guid: 372f259948041614db30c3ac94f9f45f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3948384639302917117
-    second: ModularDoorwayReal_0
+      213: 6231101574743296154
+    second: AutomaticShopDoorGlass_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,13 +46,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 399, y: 75, z: 451, w: 260}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ModularDoorwayReal_0
+      name: AutomaticShopDoorGlass_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 9
         y: 0
-        width: 249
-        height: 701
+        width: 301
+        height: 280
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 15, y: 0, z: 15, w: 15}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 304adb907158439c0800000000000000
-      internalID: -3948384639302917117
+      spriteID: a9883f15ed1597650800000000000000
+      internalID: 6231101574743296154
       vertices: []
       indices: 
       edges: []
@@ -125,15 +125,15 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: a95b565768dcd16479d0c157b6cb2264
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ModularDoorwayReal_0: -3948384639302917117
+      AutomaticShopDoorGlass_0: 6231101574743296154
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

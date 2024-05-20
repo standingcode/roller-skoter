@@ -284,15 +284,15 @@ GameObject:
   - component: {fileID: 7736618352479220888}
   - component: {fileID: 7282886013085420857}
   - component: {fileID: 4735998495464464823}
-  - component: {fileID: 3270696375037757162}
   - component: {fileID: 6020665726561071308}
+  - component: {fileID: 2748003316954644699}
   - component: {fileID: 3043037650742757982}
   - component: {fileID: 431623067733495648}
   - component: {fileID: 902406090031303065}
+  - component: {fileID: 3270696375037757162}
   - component: {fileID: 7458280094217756738}
   - component: {fileID: 977706262271196140}
   - component: {fileID: 8029703225111056748}
-  - component: {fileID: 2093774601764418253}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -331,6 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   constantRayCasting: {fileID: 902406090031303065}
   playerControl: {fileID: 6020665726561071308}
+  playerManager: {fileID: 4735998495464464823}
 --- !u!114 &4735998495464464823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,26 +346,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerControl: {fileID: 6020665726561071308}
   mainRigidbody: {fileID: 977706262271196140}
-  playerScalableRoot: {fileID: 9172554932435092855}
-  sortingGroup: {fileID: 2093774601764418253}
-  playerBackgroundScale: 0.4
---- !u!114 &3270696375037757162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1858348318750441727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3caa9fb17ecaa3d4e92156df83a91d43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerControl: {fileID: 6020665726561071308}
-  playerManager: {fileID: 4735998495464464823}
-  playerAnimationControl: {fileID: 431623067733495648}
-  leftStickXDeadZone: 0.2
-  amountOfValuesToUseForAveraging: 5
 --- !u!114 &6020665726561071308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,6 +368,21 @@ MonoBehaviour:
   constantForce2D: {fileID: 8029703225111056748}
   centerOfMass: {fileID: 101736010949801306}
   spriteTransform: {fileID: 1031510070432351616}
+--- !u!114 &2748003316954644699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858348318750441727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671850e19c44adb4199d4a6de4969b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterSpriteRenderer: {fileID: 5491675883874297544}
+  backgroundColorForCharacter: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}
+  sortingGroup: {fileID: 7442256441721311585}
 --- !u!114 &3043037650742757982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,6 +463,25 @@ MonoBehaviour:
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &3270696375037757162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858348318750441727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3caa9fb17ecaa3d4e92156df83a91d43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerControl: {fileID: 6020665726561071308}
+  playerManager: {fileID: 4735998495464464823}
+  playerAnimationControl: {fileID: 431623067733495648}
+  playerBackgroundForegroundController: {fileID: 2748003316954644699}
+  leftStickXDeadZone: 0.2
+  leftStickYDeadZone: 0.5
+  amountOfValuesToUseForAveraging: 5
 --- !u!114 &7458280094217756738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,18 +550,6 @@ ConstantForce2D:
   m_Force: {x: 0, y: 0}
   m_RelativeForce: {x: 0, y: 0}
   m_Torque: 0
---- !u!210 &2093774601764418253
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1858348318750441727}
-  m_Enabled: 1
-  m_SortingLayerID: -376645973
-  m_SortingLayer: -3
-  m_SortingOrder: 0
-  m_SortAtRoot: 0
 --- !u!1 &1868078238956093596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,8 +1521,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7278204428011876576}
   m_Enabled: 1
-  m_SortingLayerID: 1953453535
-  m_SortingLayer: -8
+  m_SortingLayerID: -376645973
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &7308775349287003433

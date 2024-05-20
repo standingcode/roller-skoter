@@ -17,7 +17,13 @@ public class PlayerInputHandler : MonoBehaviour
 	private PlayerAnimationControl playerAnimationControl;
 
 	[SerializeField]
+	private PlayerBackgroundForegroundController playerBackgroundForegroundController;
+
+	[SerializeField]
 	private float leftStickXDeadZone;
+
+	[SerializeField]
+	private float leftStickYDeadZone;
 
 	[SerializeField]
 	private int amountOfValuesToUseForAveraging = 5;
@@ -45,7 +51,7 @@ public class PlayerInputHandler : MonoBehaviour
 	float currentLeftStickXAxisValue;
 	float averagedValueToUseForLeftStickXAxis;
 	List<float> lastXAxisValuesFromLeftStick = new List<float>();
-	public void OnLeftStickMoved(InputValue inputValue)
+	public void OnLeftStickXMoved(InputValue inputValue)
 	{
 		currentLeftStickXAxisValue = inputValue.Get<float>();
 
@@ -77,10 +83,35 @@ public class PlayerInputHandler : MonoBehaviour
 	{
 		Jump();
 	}
+
 	public void OnJumpButtonReleased(InputValue inputValue)
 	{
 		//return;
 		UnJump();
+	}
+
+	public void OnLeftStickUp(InputValue inputValue)
+	{
+		if (inputValue.Get<float>() < leftStickYDeadZone)
+			return;
+
+		if (playerBackgroundForegroundController.CurrentBackgroundInteractable != null
+		&& !playerBackgroundForegroundController.CurrentBackgroundInteractable.BackgroundModeActive)
+		{
+			playerBackgroundForegroundController.ActivateBackgroundMode();
+		}
+	}
+
+	public void OnLeftStickDown(InputValue inputValue)
+	{
+		if (inputValue.Get<float>() < leftStickYDeadZone)
+			return;
+
+		if (playerBackgroundForegroundController.CurrentBackgroundInteractable != null
+		&& playerBackgroundForegroundController.CurrentBackgroundInteractable.BackgroundModeActive)
+		{
+			playerBackgroundForegroundController.ActivateForegroundMode();
+		}
 	}
 
 	// SHARED INPUT

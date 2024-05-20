@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 81bbacc81da84ff4e8242936d9354ea6
+guid: e50c3514c7b749d49a0891cc56fc0868
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 159670042202212819
-    second: ModularShopFront_0
-  - first:
-      213: 8947639107220563717
-    second: ModularShopFront_1
+      213: -180528684163687028
+    second: AutomaticShopDoorFrame_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -50,11 +47,11 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
-  spriteMeshType: 1
+  spriteExtrude: 0
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,45 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ModularShopFront_0
+      name: AutomaticShopDoorFrame_0
       rect:
         serializedVersion: 2
-        x: 47
+        x: 0
         y: 0
-        width: 546
-        height: 495
+        width: 319
+        height: 289
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 25, y: 0, z: 25, w: 25}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3d90cb2be03473200800000000000000
-      internalID: 159670042202212819
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ModularShopFront_1
-      rect:
-        serializedVersion: 2
-        x: 933
-        y: 0
-        width: 91
-        height: 497
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 50766448c566c2c70800000000000000
-      internalID: 8947639107220563717
+      spriteID: c8d97a44e12ae7df0800000000000000
+      internalID: -180528684163687028
       vertices: []
       indices: 
       edges: []
@@ -150,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8b31a5158c0a9984eb7400cbff7e6b45
     internalID: 0
     vertices: []
     indices: 
@@ -158,8 +133,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ModularShopFront_0: 159670042202212819
-      ModularShopFront_1: 8947639107220563717
+      AutomaticShopDoorFrame_0: -180528684163687028
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
