@@ -15,7 +15,7 @@ TagManager:
   - Player
   - Scenery
   - Floor
-  - EscalatorActivationLayer
+  - TriggerLayer
   - 
   - 
   - 
@@ -42,11 +42,23 @@ TagManager:
   - name: Background
     uniqueID: 2705976069
     locked: 0
-  - name: Foreground1
+  - name: Shops
     uniqueID: 2413557589
     locked: 0
-  - name: Foreground2
+  - name: PlayerBackgroundLayer
+    uniqueID: 1953453535
+    locked: 0
+  - name: Shops2
+    uniqueID: 1223834065
+    locked: 0
+  - name: PropsInFrontOfShops
     uniqueID: 790931787
+    locked: 0
+  - name: Escalator
+    uniqueID: 2261672265
+    locked: 0
+  - name: Background3
+    uniqueID: 452870787
     locked: 0
   - name: Player
     uniqueID: 3918321323
