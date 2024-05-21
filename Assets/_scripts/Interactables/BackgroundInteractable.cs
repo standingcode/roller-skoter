@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 
 public class BackgroundInteractable : MonoBehaviour
 {
-	public static Action BackgroundModeActivated;
-	public static Action ForegroundModeActivated;
+	public Action BackgroundModeActivated;
+	public Action ForegroundModeActivated;
 
 	private bool backgroundModeActive = false;
 	public bool BackgroundModeActive => backgroundModeActive;
@@ -16,6 +16,9 @@ public class BackgroundInteractable : MonoBehaviour
 
 	[SerializeField]
 	private Transform[] transformsToActivateInBackgroundMode;
+
+	[SerializeField]
+	private Transform[] transformsToDeactivateInBackgroundMode;
 
 	private void Awake()
 	{
@@ -30,14 +33,19 @@ public class BackgroundInteractable : MonoBehaviour
 		if (!backgroundModeActive)
 			return;
 
+		ForegroundModeActivated?.Invoke();
+
 		backgroundModeActive = false;
 
-		foreach (Transform transform in transformsToActivateInBackgroundMode)
+		foreach (Transform activateTransform in transformsToActivateInBackgroundMode)
 		{
-			transform.gameObject.SetActive(false);
+			activateTransform.gameObject.SetActive(false);
 		}
 
-		ForegroundModeActivated?.Invoke();
+		foreach (Transform deactivateTransform in transformsToDeactivateInBackgroundMode)
+		{
+			deactivateTransform.gameObject.SetActive(true);
+		}
 	}
 
 	public void ActivateBackgroundMode()
@@ -45,13 +53,18 @@ public class BackgroundInteractable : MonoBehaviour
 		if (backgroundModeActive)
 			return;
 
-		foreach (Transform transform in transformsToActivateInBackgroundMode)
+		BackgroundModeActivated?.Invoke();
+
+		foreach (Transform activateTransform in transformsToActivateInBackgroundMode)
 		{
-			transform.gameObject.SetActive(true);
+			activateTransform.gameObject.SetActive(true);
+		}
+
+		foreach (Transform deactivateTransform in transformsToDeactivateInBackgroundMode)
+		{
+			deactivateTransform.gameObject.SetActive(false);
 		}
 
 		backgroundModeActive = true;
-
-		BackgroundModeActivated?.Invoke();
 	}
 }

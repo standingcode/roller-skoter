@@ -64,6 +64,8 @@ public class PlayerBackgroundForegroundController : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		Debug.Log("A trigger enter did happen");
+
 		if (collision.gameObject.tag == "BackgroundInteractable")
 		{
 			currentBackgroundInteractable = collision.gameObject.GetComponent<BackgroundInteractable>();
@@ -76,6 +78,8 @@ public class PlayerBackgroundForegroundController : MonoBehaviour
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
+		Debug.Log("A trigger exit did happen");
+
 		if (collision.gameObject.tag == "BackgroundInteractable")
 		{
 			currentBackgroundInteractable = null;

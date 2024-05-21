@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5777709957855811066}
   - component: {fileID: 3171756264572645271}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +78,7 @@ GameObject:
   m_Component:
   - component: {fileID: 889818283014205156}
   - component: {fileID: 6366736260615270024}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8141287542952950679}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7301899405119090719}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightSkate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,13 +214,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2462425536191745184}
   - component: {fileID: 5274500182636219552}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: TriggerForEscalator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2462425536191745184
 Transform:
   m_ObjectHideFlags: 0
@@ -243,7 +243,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930541856183047603}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -623,7 +623,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2389081355896582193}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: RaycastOrigin1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -654,7 +654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2034524811632237721}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightSkateWheelBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -685,7 +685,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7376566730002841940}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LowerRightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 1320071625264236852}
   - component: {fileID: 639011927094286079}
   - component: {fileID: 4196765466465900194}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: DebugCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -900,7 +900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4754328010917553143}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -934,7 +934,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6176369965048244894}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UpperRightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -966,7 +966,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2714956389878176843}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightSkateWheelFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -998,9 +998,9 @@ GameObject:
   m_Component:
   - component: {fileID: 274756938541861985}
   - component: {fileID: 6743263152120584372}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1066,7 +1066,7 @@ GameObject:
   m_Component:
   - component: {fileID: 98476979210841940}
   - component: {fileID: 4291021622835945474}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UpperLeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1136,7 +1136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5245019639496082047}
   - component: {fileID: 2878417986601598244}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UpperRightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1205,7 +1205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2447692033156771032}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftSkateWheelFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1238,7 +1238,7 @@ GameObject:
   - component: {fileID: 2534672331641754447}
   - component: {fileID: 4187685099202807412}
   - component: {fileID: 6196416354269653187}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: SpeedField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1533,7 +1533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 809952412309614724}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftSkate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1567,7 +1567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 920484305397433092}
   - component: {fileID: 5226189570044328439}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LowerRightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1638,7 +1638,7 @@ GameObject:
   - component: {fileID: 940656587407585682}
   - component: {fileID: 399178519417162680}
   - component: {fileID: 8767688780902656824}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: GenericField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1773,7 +1773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2237787533217495965}
   - component: {fileID: 7022775287729892450}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LowerLeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1842,7 +1842,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1567363957071215962}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UpperLeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1874,7 +1874,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5349078192591665434}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: RaycastOrigin2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1905,7 +1905,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7346915157049154306}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftSkateWheelBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1938,7 +1938,7 @@ GameObject:
   - component: {fileID: 4632302884196857529}
   - component: {fileID: 4426669329188259945}
   - component: {fileID: 2402104999103639720}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: HeightField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2072,7 +2072,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1869440044020841369}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LowerLeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
