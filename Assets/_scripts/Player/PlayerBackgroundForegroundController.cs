@@ -11,9 +11,6 @@ public class PlayerBackgroundForegroundController : MonoBehaviour
 
 	Color originalCharacterColor, currentCharacterColor;
 
-	[SerializeField]
-	private SortingGroup sortingGroup;
-
 	private void Awake()
 	{
 		originalCharacterColor = characterSpriteRenderer.color;
@@ -21,7 +18,11 @@ public class PlayerBackgroundForegroundController : MonoBehaviour
 
 	public void ActivateBackgroundMode()
 	{
-		ChangeCharacterLayerToBackground();
+		if (string.IsNullOrEmpty(CurrentBackgroundInteractable.AlternateBackgroundLayerName))
+			ChangeCharacterLayerToBackground();
+		else
+			ChangeCharacterLayerToBackground(CurrentBackgroundInteractable.AlternateBackgroundLayerName);
+
 		ChangeCharacterColorToBackground();
 		CurrentBackgroundInteractable.ActivateBackgroundMode();
 	}
@@ -47,12 +48,12 @@ public class PlayerBackgroundForegroundController : MonoBehaviour
 
 	public void ChangeCharacterLayerToForeground()
 	{
-		sortingGroup.sortingLayerID = SortingLayer.NameToID("Player");
+		characterSpriteRenderer.sortingLayerID = SortingLayer.NameToID("Player");
 	}
 
-	public void ChangeCharacterLayerToBackground()
+	public void ChangeCharacterLayerToBackground(string backgroundLayerName = "PlayerBackgroundLayer")
 	{
-		sortingGroup.sortingLayerID = SortingLayer.NameToID("PlayerBackgroundLayer");
+		characterSpriteRenderer.sortingLayerID = SortingLayer.NameToID(backgroundLayerName);
 	}
 
 	public void AutoDeactivateBackgroundMode(AutoCancelBackgroundInteractable autoCancelBackgroundInteractable)
@@ -64,8 +65,6 @@ public class PlayerBackgroundForegroundController : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		Debug.Log("A trigger enter did happen");
-
 		if (collision.gameObject.tag == "BackgroundInteractable")
 		{
 			currentBackgroundInteractable = collision.gameObject.GetComponent<BackgroundInteractable>();
@@ -78,8 +77,6 @@ public class PlayerBackgroundForegroundController : MonoBehaviour
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		Debug.Log("A trigger exit did happen");
-
 		if (collision.gameObject.tag == "BackgroundInteractable")
 		{
 			currentBackgroundInteractable = null;

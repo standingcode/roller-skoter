@@ -20,6 +20,10 @@ public class BackgroundInteractable : MonoBehaviour
 	[SerializeField]
 	private Transform[] transformsToDeactivateInBackgroundMode;
 
+	[SerializeField]
+	private string alternateBackgroundLayerName = null;
+	public string AlternateBackgroundLayerName => alternateBackgroundLayerName;
+
 	private void Awake()
 	{
 		foreach (Transform transform in transformsToActivateInBackgroundMode)

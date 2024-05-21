@@ -56,6 +56,9 @@ TagManager:
   - name: PropsInFrontOfShops
     uniqueID: 790931787
     locked: 0
+  - name: PlayerEscalatorLayer
+    uniqueID: 4055995397
+    locked: 0
   - name: Escalator
     uniqueID: 2261672265
     locked: 0
