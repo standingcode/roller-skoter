@@ -59,8 +59,8 @@ public class Escalator : MonoBehaviour
 			playerTransformReference = collidingTransform;
 		}
 
-		stepParent = stepTransform;
-		playerTransformReference.SetParent(stepTransform);
+		stepParent = PlayerReferences.Instance.ConstantRayCasting.Hit.collider.transform;
+		playerTransformReference.SetParent(PlayerReferences.Instance.ConstantRayCasting.Hit.collider.transform);
 	}
 
 	public void RemovePlayerAsChildOfStep()
