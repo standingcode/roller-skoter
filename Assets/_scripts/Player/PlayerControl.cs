@@ -73,10 +73,13 @@ public class PlayerControl : MonoBehaviour
 		SetConstantForce();
 	}
 
+	private float rayDistance;
 	public float GetPlayerCurrentHeight()
 	{
+		rayDistance = PlayerReferences.Instance.ConstantRayCasting.Hit.distance < PlayerReferences.Instance.ConstantRayCasting.Hit2.distance ?
+			PlayerReferences.Instance.ConstantRayCasting.Hit.distance : PlayerReferences.Instance.ConstantRayCasting.Hit2.distance;
 		return
-			PlayerReferences.Instance.ConstantRayCasting.Hit.distance - distanceBetweenRaycastAndBaseOfPlayer;
+			rayDistance - distanceBetweenRaycastAndBaseOfPlayer;
 	}
 
 	public void SetConstantForce()

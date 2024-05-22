@@ -42,7 +42,7 @@ public class Escalator : MonoBehaviour
 		backgroundInteractable.ForegroundModeActivated += () => RemovePlayerAsChildOfStep(null);
 	}
 
-	void FixedUpdate()
+	void Update()
 	{
 		if (!Play)
 			return;
@@ -92,6 +92,7 @@ public class Escalator : MonoBehaviour
 	{
 		// Reset second step position to the slide sideways position
 		stepsTransforms[1].position = new Vector3(stepsTransforms[1].position.x, slideSidewaysPoint.position.y, stepsTransforms[1].position.z);
+		escalatorSteps[1].SetLongCollider();
 
 
 		// Do the list swapping stuff, ie move the first step to be the last step
@@ -107,6 +108,7 @@ public class Escalator : MonoBehaviour
 		stepsTransforms[^1].position = spawnPoint.position;
 
 		escalatorSteps.RemoveAt(0);
+		firstEscalatorStep.SetShortCollider();
 		escalatorSteps.Add(firstEscalatorStep);
 
 	}

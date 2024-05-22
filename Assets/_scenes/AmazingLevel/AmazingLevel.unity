@@ -5626,6 +5626,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1622336413785350620, guid: a98c1d515e4c7c940946a8a2429363a3, type: 3}
+      propertyPath: m_Size.y
+      value: 5.636919
+      objectReference: {fileID: 0}
+    - target: {fileID: 1622336413785350620, guid: a98c1d515e4c7c940946a8a2429363a3, type: 3}
+      propertyPath: m_Offset.y
+      value: -2.437193
+      objectReference: {fileID: 0}
     - target: {fileID: 2660127173213257544, guid: a98c1d515e4c7c940946a8a2429363a3, type: 3}
       propertyPath: m_Name
       value: Escalator
