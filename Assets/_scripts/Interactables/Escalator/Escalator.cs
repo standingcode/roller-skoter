@@ -39,7 +39,7 @@ public class Escalator : MonoBehaviour
 			escalatorStep.gameObject.SetActive(false);
 		}
 
-		backgroundInteractable.ForegroundModeActivated += RemovePlayerAsChildOfStep;
+		backgroundInteractable.ForegroundModeActivated += () => RemovePlayerAsChildOfStep(null);
 	}
 
 	void FixedUpdate()
@@ -59,13 +59,16 @@ public class Escalator : MonoBehaviour
 			playerTransformReference = collidingTransform;
 		}
 
-		stepParent = PlayerReferences.Instance.ConstantRayCasting.Hit.collider.transform;
-		playerTransformReference.SetParent(PlayerReferences.Instance.ConstantRayCasting.Hit.collider.transform);
+		stepParent = stepTransform;
+		playerTransformReference.SetParent(stepTransform);
 	}
 
-	public void RemovePlayerAsChildOfStep()
+	public void RemovePlayerAsChildOfStep(Transform stepTransform = null)
 	{
 		if (playerTransformReference == null)
+			return;
+
+		if (stepTransform != null && stepTransform != stepParent)
 			return;
 
 		playerTransformReference.SetParent(null);
@@ -75,8 +78,8 @@ public class Escalator : MonoBehaviour
 	private void CheckSecondStep()
 	{
 		if (
-		(escalatorDirection == EscalatorDirection.UpLeft || escalatorDirection == EscalatorDirection.DownLeft) && (stepsTransforms[1].position.x <= slideSidewaysPoint.position.x)
-		|| (escalatorDirection == EscalatorDirection.UpRight || escalatorDirection == EscalatorDirection.DownRight) && (stepsTransforms[1].position.x >= slideSidewaysPoint.position.x)
+		(escalatorDirection == EscalatorDirection.UpLeft || escalatorDirection == EscalatorDirection.UpRight) && (stepsTransforms[1].position.y > slideSidewaysPoint.position.y)
+		|| (escalatorDirection == EscalatorDirection.DownLeft || escalatorDirection == EscalatorDirection.DownRight) && (stepsTransforms[1].position.y < slideSidewaysPoint.position.y)
 		)
 		{
 			SpawnAndReorder();
@@ -106,11 +109,6 @@ public class Escalator : MonoBehaviour
 		escalatorSteps.RemoveAt(0);
 		escalatorSteps.Add(firstEscalatorStep);
 
-	}
-
-	private void MoveSecondStepTowardsAimingPoint()
-	{
-		stepsTransforms[1].position = Vector3.MoveTowards(stepsTransforms[1].position, aimingPoint.position, escalatorSpeed * Time.fixedDeltaTime);
 	}
 
 	private void MoveFirstStepTowardsKillPosition()

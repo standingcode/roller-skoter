@@ -6,11 +6,12 @@ public class EscalatorStep : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		Escalator.SetPlayerAsChildOfStep(collision.transform.root, transform);
+		if (collision.GetContact(0).point.y > transform.position.y)
+			Escalator.SetPlayerAsChildOfStep(collision.transform.root, transform);
 	}
 
 	private void OnCollisionExit2D(Collision2D collision)
 	{
-		Escalator.RemovePlayerAsChildOfStep();
+		Escalator.RemovePlayerAsChildOfStep(transform);
 	}
 }

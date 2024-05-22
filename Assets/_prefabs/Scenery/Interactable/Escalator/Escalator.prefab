@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8228808634814157523
 Transform:
   m_ObjectHideFlags: 0
@@ -76,15 +76,15 @@ MonoBehaviour:
   - m_Vertices: 05000000
   m_SharedTextures: []
   m_Positions:
-  - {x: -1.5, y: 0.000009536743, z: -2.4000015}
-  - {x: -1.5, y: -0.00001001358, z: -5.4000015}
+  - {x: -1.4000001, y: 0.000009536743, z: -2.4000015}
+  - {x: -1.4000001, y: -0.00001001358, z: -5.4000015}
   - {x: -0.6, y: -0.000007033348, z: -5.4000015}
   - {x: -0.6, y: 0.00001001358, z: -2.9000015}
   - {x: 5.2000003, y: 0.000012874603, z: 2.8999996}
   - {x: 5.2000003, y: 0.000014781952, z: 4.499998}
   m_Textures0:
-  - {x: -1.5, y: -2.4000015}
-  - {x: -1.5, y: -5.4000015}
+  - {x: -1.4000001, y: -2.4000015}
+  - {x: -1.4000001, y: -5.4000015}
   - {x: -0.6, y: -5.4000015}
   - {x: -0.6, y: -2.9000015}
   - {x: 5.2000003, y: 2.8999996}
@@ -92,12 +92,12 @@ MonoBehaviour:
   m_Textures2: []
   m_Textures3: []
   m_Tangents:
-  - {x: 1, y: 0.0000014074022, z: 0, w: -1}
-  - {x: 1, y: 0.0000037308093, z: 0, w: -1}
-  - {x: 1, y: 0.0000033113693, z: 0, w: -1}
-  - {x: 1, y: 0.0000026594626, z: 0, w: -1}
-  - {x: 1, y: 0.000000035978687, z: 8.3034345e-21, w: -1}
-  - {x: 1, y: -0.0000004448119, z: 3.388135e-20, w: -1}
+  - {x: 1, y: 0.0000015913332, z: 0, w: -1}
+  - {x: 1, y: 0.00000419716, z: 3.0321521e-18, w: -1}
+  - {x: 1, y: 0.0000037252898, z: 1.550409e-18, w: -1}
+  - {x: 1, y: 0.0000029836135, z: 1.0059243e-18, w: -1}
+  - {x: 1, y: 0.00000005248465, z: -8.020984e-21, w: -1}
+  - {x: 1, y: -0.00000045155141, z: -3.388135e-20, w: -1}
   m_Colors: []
   m_UnwrapParameters:
     m_HardAngle: 88
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6912
+  m_VersionIndex: 7455
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -125,8 +125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Points:
-  - {x: -1.5, y: 0.000009536743, z: -2.4000015}
-  - {x: -1.5, y: -0.00001001358, z: -5.4000015}
+  - {x: -1.4000001, y: 0.000009536743, z: -2.4000015}
+  - {x: -1.4000001, y: -0.00001001358, z: -5.4000015}
   - {x: -0.6, y: -0.000007033348, z: -5.4000015}
   - {x: -0.6, y: 0.00001001358, z: -2.9000015}
   - {x: 5.2000003, y: 0.000012874603, z: 2.8999996}
@@ -433,7 +433,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -3.0321856, y: 2.0472083}
+  m_Offset: {x: -2.700386, y: 1.980679}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -443,7 +443,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.1931324, y: 1.0000002}
+  m_Size: {x: 1.776432, y: 1.1330585}
   m_EdgeRadius: 0
 --- !u!1 &1782880561571932174
 GameObject:
@@ -535,7 +535,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9070225357638642398
 Transform:
   m_ObjectHideFlags: 0
@@ -734,8 +734,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -1.5, y: -2.4000015, z: 0}
-  - {x: -1.5, y: -5.4000015, z: 0}
+  - {x: -1.4000001, y: -2.4000015, z: 0}
+  - {x: -1.4000001, y: -5.4000015, z: 0}
   - {x: -0.6, y: -5.4000015, z: 0}
   - {x: -0.6, y: -2.9000015, z: 0}
   - {x: 5.2000003, y: 2.8999996, z: 0}
@@ -1171,7 +1171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5684536293392531109
 Transform:
   m_ObjectHideFlags: 0
@@ -1221,7 +1221,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.9870739, y: 0}
+  m_Offset: {x: 0.740571, y: 0.46994483}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1231,7 +1231,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.9741478, y: 1}
+  m_Size: {x: 3.1814518, y: 0.06011033}
   m_EdgeRadius: 0
 --- !u!1 &7932428409791597598
 GameObject:
@@ -1351,7 +1351,7 @@ Transform:
   m_GameObject: {fileID: 8255587717662453779}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15, y: 1.5999999, z: 0}
+  m_LocalPosition: {x: -15.46, y: 1.5999999, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1438,7 +1438,7 @@ Transform:
   m_GameObject: {fileID: 8429429474098448028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.1000004, y: 1.759, z: 0}
+  m_LocalPosition: {x: -4.101, y: 1.591, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -478,7 +478,7 @@ MonoBehaviour:
   playerAnimationControl: {fileID: 431623067733495648}
   playerBackgroundForegroundController: {fileID: 2748003316954644699}
   leftStickXDeadZone: 0.2
-  leftStickYDeadZone: 0.5
+  leftStickYDeadZone: 0.8
   amountOfValuesToUseForAveraging: 5
 --- !u!114 &7458280094217756738
 MonoBehaviour:
