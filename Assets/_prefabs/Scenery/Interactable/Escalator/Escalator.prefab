@@ -163,7 +163,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: b477eb556f22ee34d8e0fd1e69bf3fd4, type: 2}
@@ -693,6 +693,7 @@ MonoBehaviour:
   edgeCollider2D: {fileID: 0}
   lineRenderer: {fileID: 3150193626667308113}
   polyShape: {fileID: 2851948398514089118}
+  interiorPadding: 0
 --- !u!120 &3150193626667308113
 LineRenderer:
   serializedVersion: 2
