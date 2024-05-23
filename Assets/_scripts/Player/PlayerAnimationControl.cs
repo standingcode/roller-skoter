@@ -10,9 +10,6 @@ public class PlayerAnimationControl : MonoBehaviour
 	[SerializeField]
 	private string skateAnimationName, jumpAnimationName, landAnimationName, idleAnimationName;
 
-	[SerializeField]
-	private LayerMask layerMask;
-
 	private bool isJumping = false;
 
 	private void Start()

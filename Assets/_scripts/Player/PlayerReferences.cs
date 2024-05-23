@@ -14,6 +14,10 @@ public class PlayerReferences : MonoBehaviour
 	private PlayerManager playerManager;
 	public PlayerManager PlayerManager => playerManager;
 
+	[SerializeField]
+	private LayerMask playerLayers;
+	public LayerMask PlayerLayers => playerLayers;
+
 
 	protected static PlayerReferences instance;
 	public static PlayerReferences Instance { get => instance; }

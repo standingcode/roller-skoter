@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class BackgroundInteractable : MonoBehaviour
 {
@@ -21,6 +20,9 @@ public class BackgroundInteractable : MonoBehaviour
 	private Transform[] transformsToDeactivateInBackgroundMode;
 
 	[SerializeField]
+	private LayerMask layersWhichShouldBeIgnoredWhenInBackgroundMode;
+
+	[SerializeField]
 	private string alternateBackgroundLayerName = null;
 	public string AlternateBackgroundLayerName => alternateBackgroundLayerName;
 
@@ -38,6 +40,8 @@ public class BackgroundInteractable : MonoBehaviour
 			return;
 
 		ForegroundModeActivated?.Invoke();
+
+		ExtensionMethods.AllowCollisionsBetweenTwoLayerMasks(PlayerReferences.Instance.PlayerLayers, layersWhichShouldBeIgnoredWhenInBackgroundMode);
 
 		backgroundModeActive = false;
 
@@ -58,6 +62,8 @@ public class BackgroundInteractable : MonoBehaviour
 			return;
 
 		BackgroundModeActivated?.Invoke();
+
+		ExtensionMethods.IgnoreCollisionsBetweenTwoLayerMasks(PlayerReferences.Instance.PlayerLayers, layersWhichShouldBeIgnoredWhenInBackgroundMode);
 
 		foreach (Transform activateTransform in transformsToActivateInBackgroundMode)
 		{

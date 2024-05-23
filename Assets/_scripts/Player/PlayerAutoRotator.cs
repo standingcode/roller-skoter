@@ -11,9 +11,6 @@ public class PlayerAutoRotator : MonoBehaviour
 	private AnimationCurve rotationSpeedCurve;
 
 	[SerializeField]
-	private LayerMask layerMask;
-
-	[SerializeField]
 	PlayerAnimationControl playerAnimationControl;
 
 	private Vector3 newEulerAngles = Vector3.zero;
