@@ -332,6 +332,9 @@ MonoBehaviour:
   constantRayCasting: {fileID: 902406090031303065}
   playerControl: {fileID: 6020665726561071308}
   playerManager: {fileID: 4735998495464464823}
+  playerLayers:
+    serializedVersion: 2
+    m_Bits: 1088
 --- !u!114 &4735998495464464823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,11 +422,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 256
   playerAnimationControl: {fileID: 431623067733495648}
   rotatingZTarget: 0
+  maxDistanceToSurfaceToGetRotationFrom: 2
 --- !u!114 &431623067733495648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,9 +442,6 @@ MonoBehaviour:
   jumpAnimationName: jump
   landAnimationName: land
   idleAnimationName: idle
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &902406090031303065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,7 +458,7 @@ MonoBehaviour:
   raycastOrigin2: {fileID: 5349078192591665434}
   floorLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2304
 --- !u!114 &3270696375037757162
 MonoBehaviour:
   m_ObjectHideFlags: 0

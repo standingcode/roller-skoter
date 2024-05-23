@@ -18,6 +18,9 @@ public class PlayerAutoRotator : MonoBehaviour
 	[SerializeField]
 	private float rotatingZTarget = 0;
 
+	[SerializeField]
+	private float maxDistanceToSurfaceToGetRotationFrom = 5f;
+
 	private float degreesOfRotationDifference;
 
 	private void Update()
@@ -34,7 +37,8 @@ public class PlayerAutoRotator : MonoBehaviour
 	Vector2 averageNormal;
 	public void DetermineRotation()
 	{
-		if (PlayerReferences.Instance.ConstantRayCasting.Hit.collider == null)
+		if (PlayerReferences.Instance.ConstantRayCasting.Hit.collider == null
+		|| PlayerReferences.Instance.PlayerControl.PlayerHeight > maxDistanceToSurfaceToGetRotationFrom)
 		{
 			rotatingZTarget = 0;
 		}
