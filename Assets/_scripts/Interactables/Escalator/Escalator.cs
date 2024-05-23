@@ -115,14 +115,14 @@ public class Escalator : MonoBehaviour
 
 	private void MoveFirstStepTowardsKillPosition()
 	{
-		stepsTransforms[0].position = Vector3.MoveTowards(stepsTransforms[0].position, killAimingPoint.position, escalatorSpeed * Time.fixedDeltaTime);
+		stepsTransforms[0].position = Vector3.MoveTowards(stepsTransforms[0].position, killAimingPoint.position, escalatorSpeed * Time.deltaTime);
 	}
 
 	private void MoveAllStepsExceptFirstStepTowardsAimingPoint()
 	{
 		for (int i = 1; i < stepsTransforms.Count; i++)
 		{
-			stepsTransforms[i].position = Vector3.MoveTowards(stepsTransforms[i].position, aimingPoint.position, escalatorSpeed * Time.fixedDeltaTime);
+			stepsTransforms[i].position = Vector3.MoveTowards(stepsTransforms[i].position, aimingPoint.position, escalatorSpeed * Time.deltaTime);
 		}
 	}
 }
