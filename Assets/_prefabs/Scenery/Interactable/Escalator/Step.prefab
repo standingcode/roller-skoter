@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3230320218450080542}
   - component: {fileID: 1325992325283729236}
   - component: {fileID: 3148509628127040875}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: StepCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
