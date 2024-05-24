@@ -21,6 +21,7 @@ public class BackgroundInteractable : MonoBehaviour
 
 	[SerializeField]
 	private LayerMask layersWhichShouldBeIgnoredWhenInBackgroundMode;
+	public LayerMask LayersWhichShouldBeIgnoredWhenInBackgroundMode => layersWhichShouldBeIgnoredWhenInBackgroundMode;
 
 	[SerializeField]
 	private string alternateBackgroundLayerName = null;

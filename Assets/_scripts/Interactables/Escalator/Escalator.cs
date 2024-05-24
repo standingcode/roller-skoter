@@ -131,4 +131,3 @@ public enum EscalatorDirection
 {
 	UpLeft, UpRight, DownLeft, DownRight
 }
-

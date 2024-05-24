@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -8,6 +9,9 @@ public class PlayerBackgroundForegroundController : MonoBehaviour
 
 	[SerializeField]
 	private SpriteRenderer characterSpriteRenderer;
+
+	public static Action<LayerMask> BackgroundModeActivated;
+	public static Action ForegroundModeActivated;
 
 	Color originalCharacterColor, currentCharacterColor;
 
@@ -25,6 +29,8 @@ public class PlayerBackgroundForegroundController : MonoBehaviour
 
 		ChangeCharacterColorToBackground();
 		CurrentBackgroundInteractable.ActivateBackgroundMode();
+
+		BackgroundModeActivated?.Invoke(CurrentBackgroundInteractable.LayersWhichShouldBeIgnoredWhenInBackgroundMode);
 	}
 
 	public void ActivateForegroundMode()
@@ -32,6 +38,8 @@ public class PlayerBackgroundForegroundController : MonoBehaviour
 		ChangeCharacterLayerToForeground();
 		ChangeCharacterColorToForeground();
 		CurrentBackgroundInteractable.ActivateForegroundMode();
+
+		ForegroundModeActivated?.Invoke();
 	}
 
 	public void ChangeCharacterColorToForeground()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerAutoRotator : MonoBehaviour
 {
@@ -33,31 +34,44 @@ public class PlayerAutoRotator : MonoBehaviour
 		StopAllCoroutines();
 	}
 
-	float averageRotation;
-	Vector2 averageNormal;
+
 	public void DetermineRotation()
 	{
-		if (PlayerReferences.Instance.ConstantRayCasting.Hit.collider == null
-		|| PlayerReferences.Instance.PlayerControl.PlayerHeight > maxDistanceToSurfaceToGetRotationFrom)
-		{
+		// Set the target rotation as average of hit1 and hit2
+
+		DebugCanvas.Instance.ShowSomething(
+		$"hit1: {GetAverageForHit(PlayerReferences.Instance.ConstantRayCasting.Hit)} -> {PlayerReferences.Instance.ConstantRayCasting.Hit.collider} " +
+		$"hit2: {GetAverageForHit(PlayerReferences.Instance.ConstantRayCasting.Hit2)} -> {PlayerReferences.Instance.ConstantRayCasting.Hit2.collider} " +
+		$"");
+
+		if (PlayerReferences.Instance.PlayerControl.PlayerHeight > maxDistanceToSurfaceToGetRotationFrom)
 			rotatingZTarget = 0;
-		}
 		else
-		{
-			if (PlayerReferences.Instance.ConstantRayCasting.Hit.collider.tag.Equals("UseColliderMainRotation"))
-			{
-				averageRotation = (PlayerReferences.Instance.ConstantRayCasting.Hit.transform.eulerAngles.z + PlayerReferences.Instance.ConstantRayCasting.Hit2.transform.eulerAngles.z) / 2;
-				rotatingZTarget = averageRotation;
-			}
-			else
-			{
-				// Get average here too 
-				averageNormal = (PlayerReferences.Instance.ConstantRayCasting.Hit.normal + PlayerReferences.Instance.ConstantRayCasting.Hit2.normal) / 2;
-				rotatingZTarget = Quaternion.FromToRotation(Vector3.up, averageNormal).eulerAngles.z;
-			}
-		}
+			rotatingZTarget = (GetAverageForHit(PlayerReferences.Instance.ConstantRayCasting.Hit) + GetAverageForHit(PlayerReferences.Instance.ConstantRayCasting.Hit2)) / 2f;
+		//else
+		//	rotatingZTarget = GetAverageForHit(PlayerReferences.Instance.ConstantRayCasting.Hit);
 
 		CheckDirectionAndCallRotate();
+	}
+
+	private float eulerAngleZ;
+	private float GetAverageForHit(RaycastHit2D hit)
+	{
+		if (hit.collider == null)
+		{
+			return 0f;
+		}
+
+		if (hit.collider.tag.Equals("UseColliderMainRotation"))
+		{
+			return hit.transform.eulerAngles.z;
+		}
+
+		eulerAngleZ = Quaternion.FromToRotation(Vector3.up, hit.normal).eulerAngles.z;
+
+		eulerAngleZ = eulerAngleZ > 180 ? eulerAngleZ - 360 : eulerAngleZ;
+
+		return eulerAngleZ;
 	}
 
 	float ratioBetweenFloorAndMaxHeight;
