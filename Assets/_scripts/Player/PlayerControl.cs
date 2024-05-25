@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
@@ -78,8 +77,11 @@ public class PlayerControl : MonoBehaviour
 	{
 		rayDistance = PlayerReferences.Instance.ConstantRayCasting.Hit.distance < PlayerReferences.Instance.ConstantRayCasting.Hit2.distance ?
 			PlayerReferences.Instance.ConstantRayCasting.Hit.distance : PlayerReferences.Instance.ConstantRayCasting.Hit2.distance;
-		return
-			rayDistance - distanceBetweenRaycastAndBaseOfPlayer;
+
+		if (rayDistance < distanceBetweenRaycastAndBaseOfPlayer)
+			return 0;
+		else
+			return rayDistance - distanceBetweenRaycastAndBaseOfPlayer;
 	}
 
 	public void SetConstantForce()
@@ -100,7 +102,9 @@ public class PlayerControl : MonoBehaviour
 		// If the ray hits nothing, and CurrentlyFlying is false, then we need to take action
 		// If the ray distance is over the threshold and CurrentlyFlying is false, then we need to take action
 		if (
-		(PlayerReferences.Instance.ConstantRayCasting.Hit.collider == null || PlayerHeight >= heightToConsiderBeingOffTheGround)
+		(
+		//PlayerReferences.Instance.ConstantRayCasting.Hit.collider == null || 
+		PlayerHeight >= heightToConsiderBeingOffTheGround)
 		&& CurrentlyFlying == false
 		)
 		{
@@ -111,7 +115,9 @@ public class PlayerControl : MonoBehaviour
 		}
 
 		// If the ray distance is lower than threshold, and CurrentlyFlying is true, then we need to take action
-		if (PlayerReferences.Instance.ConstantRayCasting.Hit.collider != null && PlayerHeight < heightToConsiderBeingOffTheGround)
+		if (
+		//PlayerReferences.Instance.ConstantRayCasting.Hit.collider != null && 
+		PlayerHeight < heightToConsiderBeingOffTheGround)
 		{
 			CurrentlyFlying = false;
 			PlayerLanded?.Invoke();

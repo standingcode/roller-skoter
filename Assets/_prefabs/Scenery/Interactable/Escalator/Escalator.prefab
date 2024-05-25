@@ -107,7 +107,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 7505
+  m_VersionIndex: 7514
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -210,7 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7020051452592989816}
   - component: {fileID: 3766387333952288290}
-  - component: {fileID: 3959204532606397899}
+  - component: {fileID: 482413615539268430}
   m_Layer: 0
   m_Name: AutoDeactivateAreaLeft
   m_TagString: AutoDeactivateBackgroundInteractable
@@ -279,7 +279,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.7139225, y: 5.733032}
   m_EdgeRadius: 0
---- !u!114 &3959204532606397899
+--- !u!114 &482413615539268430
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1277,7 +1277,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7274230409611636653}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -1326,7 +1326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4384969501605557696}
   - component: {fileID: 1622336413785350620}
-  - component: {fileID: 6555999151904638713}
+  - component: {fileID: 1828105520260462258}
   m_Layer: 0
   m_Name: AutoDeactivateAreaRight
   m_TagString: AutoDeactivateBackgroundInteractable
@@ -1395,7 +1395,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.8929138, y: 5.636919}
   m_EdgeRadius: 0
---- !u!114 &6555999151904638713
+--- !u!114 &1828105520260462258
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

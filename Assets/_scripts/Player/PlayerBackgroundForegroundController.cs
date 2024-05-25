@@ -37,7 +37,8 @@ public class PlayerBackgroundForegroundController : MonoBehaviour
 	{
 		ChangeCharacterLayerToForeground();
 		ChangeCharacterColorToForeground();
-		CurrentBackgroundInteractable.ActivateForegroundMode();
+		currentBackgroundInteractable?.ActivateForegroundMode();
+		currentBackgroundInteractable = null;
 
 		ForegroundModeActivated?.Invoke();
 	}
@@ -66,9 +67,7 @@ public class PlayerBackgroundForegroundController : MonoBehaviour
 
 	public void AutoDeactivateBackgroundMode(AutoCancelBackgroundInteractable autoCancelBackgroundInteractable)
 	{
-		ChangeCharacterColorToForeground();
-		ChangeCharacterLayerToForeground();
-		autoCancelBackgroundInteractable.CancelBackgroundMode();
+		ActivateForegroundMode();
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -79,7 +78,8 @@ public class PlayerBackgroundForegroundController : MonoBehaviour
 		}
 		else if (collision.gameObject.tag == "AutoDeactivateBackgroundInteractable")
 		{
-			AutoDeactivateBackgroundMode(collision.gameObject.GetComponent<AutoCancelBackgroundInteractable>());
+			ActivateForegroundMode();
+			collision.gameObject.GetComponent<AutoCancelBackgroundInteractable>().CancelBackgroundMode();
 		}
 	}
 

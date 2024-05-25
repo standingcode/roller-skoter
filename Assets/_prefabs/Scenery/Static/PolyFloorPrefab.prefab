@@ -1012,7 +1012,6 @@ MonoBehaviour:
   edgeCollider2D: {fileID: 1093671769383791360}
   lineRenderer: {fileID: 6401957874544276929}
   polyShape: {fileID: 4198835489853703969}
-  interiorPadding: 0
 --- !u!120 &6401957874544276929
 LineRenderer:
   serializedVersion: 2
