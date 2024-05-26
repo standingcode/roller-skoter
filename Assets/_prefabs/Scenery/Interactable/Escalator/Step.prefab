@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3625601700537409035}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.1, y: 2.6000004, z: -0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41,8 +41,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 905358224578316003}
-  - component: {fileID: 3230320218450080542}
   - component: {fileID: 1325992325283729236}
+  - component: {fileID: 3230320218450080542}
   - component: {fileID: 3148509628127040875}
   m_Layer: 11
   m_Name: StepCollider
@@ -66,6 +66,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1068321979863200314}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1325992325283729236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4425538252627196529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0fc1ddf451cee44bef4a83d23f0556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shortCollider: {fileID: 3230320218450080542}
+  longCollider: {fileID: 3148509628127040875}
 --- !u!61 &3230320218450080542
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -112,20 +126,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1325992325283729236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4425538252627196529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0fc1ddf451cee44bef4a83d23f0556, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shortCollider: {fileID: 3230320218450080542}
-  longCollider: {fileID: 3148509628127040875}
 --- !u!61 &3148509628127040875
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -199,7 +199,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 905358224578316003}
