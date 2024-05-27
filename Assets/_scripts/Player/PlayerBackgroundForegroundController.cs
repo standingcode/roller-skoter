@@ -38,7 +38,7 @@ public class PlayerBackgroundForegroundController : MonoBehaviour
 		ChangeCharacterLayerToForeground();
 		ChangeCharacterColorToForeground();
 		currentBackgroundInteractable?.ActivateForegroundMode();
-		currentBackgroundInteractable = null;
+		//currentBackgroundInteractable = null;
 
 		ForegroundModeActivated?.Invoke();
 	}

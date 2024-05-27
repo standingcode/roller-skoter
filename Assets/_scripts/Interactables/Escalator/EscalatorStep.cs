@@ -6,18 +6,24 @@ public class EscalatorStep : MonoBehaviour
 	public Escalator Escalator { get; set; }
 
 	[SerializeField]
-	private BoxCollider2D shortCollider, longCollider;
+	private BoxCollider2D shortCollider;
 
 	private int playerCollisionsWithStep = new();
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.GetContact(0).point.y > transform.position.y)
+		if (collision.GetContact(0).normal == Vector2.down)
 		{
+			//contactPoint = collision.GetContact(0).point;
+
 			if (playerCollisionsWithStep == 0)
 				Escalator.SetPlayerAsChildOfStep(collision.transform.root, transform);
 
 			playerCollisionsWithStep++; ;
+		}
+		else
+		{
+			playerCollisionsWithStep = 0;
 		}
 	}
 
@@ -29,20 +35,10 @@ public class EscalatorStep : MonoBehaviour
 			Escalator.RemovePlayerAsChildOfStep(transform);
 	}
 
-	public void SetShortCollider()
-	{
-		shortCollider.enabled = true;
-		longCollider.enabled = false;
-	}
-
-	public void SetLongCollider()
-	{
-		shortCollider.enabled = false;
-		longCollider.enabled = true;
-	}
-
-	public void Test()
-	{
-		// NO nothing
-	}
+	//private Vector3 contactPoint;
+	//private void OnDrawGizmos()
+	//{
+	//	Gizmos.color = Color.red;
+	//	Gizmos.DrawSphere(contactPoint, 0.1f);
+	//}
 }

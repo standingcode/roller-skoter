@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Hierarchy;
 using UnityEngine;
 
 public class Escalator : MonoBehaviour
@@ -11,29 +10,32 @@ public class Escalator : MonoBehaviour
 	[SerializeField]
 	private Transform stepsRoot;
 
-	private Vector3 spawnPoint, switchPoint;
-	private float topStepYMax;
+	private Vector3 switchPointTop, switchPointBottom;
+
+	private float topStepY, bottomStepY;
 
 	[SerializeField]
 	private BackgroundInteractable backgroundInteractable;
 
 	[SerializeField]
-	private EscalatorDirection escalatorDirection;
-
-	[SerializeField]
 	private float escalatorSpeed;
 
-	[SerializeField]
 	private List<Transform> stepsTransforms = new();
-
-	[SerializeField]
 	private List<EscalatorStep> escalatorSteps = new();
+	private List<EscalatorStep> escalatorStepsForEnablingAndDisablingColliders;
 
 	private Transform stepParent;
 	private Transform playerTransformReference;
 
 	[SerializeField]
 	private List<GameObject> gameObjectsToActivateOnBackgroundMode;
+
+	[SerializeField]
+	private int numberOfHorizontalSteps = 0;
+
+	private Vector3 offsetVector;
+
+	private Vector3 diagonalVector = Vector3.up + Vector3.left;
 
 	void Start()
 	{
@@ -44,17 +46,22 @@ public class Escalator : MonoBehaviour
 		}
 
 		// Get all the escalator step scripts and add them to a list, whilst also passing them reference to this Escalator script
-		escalatorSteps = stepsRoot.gameObject.GetComponentsInChildren<EscalatorStep>(true).ToList();
+		escalatorSteps = stepsRoot.transform.GetComponentsInChildren<EscalatorStep>(true).ToList();
+
 		foreach (var escalatorStep in escalatorSteps)
 		{
 			escalatorStep.Escalator = this;
 			escalatorStep.gameObject.SetActive(false);
 		}
 
-		// Set the positions needed for movement
-		spawnPoint = stepsTransforms[0].position;
-		switchPoint = stepsTransforms[1].position;
-		topStepYMax = stepsTransforms[^1].position.y;
+		// Set the positions needed for movement		
+		topStepY = stepsTransforms[^1].position.y;
+		bottomStepY = stepsTransforms[0].position.y;
+
+		offsetVector = new Vector3(stepsTransforms[0].position.x - stepsTransforms[1].position.x, 0f, 0f);
+
+		switchPointBottom = stepsTransforms[numberOfHorizontalSteps].position;
+		switchPointTop = stepsTransforms[stepsTransforms.Count - 1 - numberOfHorizontalSteps].position;
 
 		// Subscribe to the background interactable events
 		backgroundInteractable.ForegroundModeActivated += ForegroundModeWasActivated;
@@ -64,6 +71,8 @@ public class Escalator : MonoBehaviour
 		{
 			gameObject.SetActive(false);
 		}
+
+		escalatorStepsForEnablingAndDisablingColliders = escalatorSteps.ToList();
 	}
 
 	void Update()
@@ -101,7 +110,7 @@ public class Escalator : MonoBehaviour
 	{
 		RemovePlayerAsChildOfStep();
 
-		foreach (var escalatorStep in escalatorSteps)
+		foreach (var escalatorStep in escalatorStepsForEnablingAndDisablingColliders)
 		{
 			escalatorStep.gameObject.SetActive(false);
 		}
@@ -114,7 +123,7 @@ public class Escalator : MonoBehaviour
 
 	private void BackgroundModeWasActivated()
 	{
-		foreach (var escalatorStep in escalatorSteps)
+		foreach (var escalatorStep in escalatorStepsForEnablingAndDisablingColliders)
 		{
 			escalatorStep.gameObject.SetActive(true);
 		}
@@ -127,61 +136,145 @@ public class Escalator : MonoBehaviour
 
 	private Transform firstStep;
 	private EscalatorStep firstEscalatorStep;
-	private Vector3 aimingVector = new Vector3(-1, 1, 0);
-	private Vector3 nextFramePositionOfLastStep;
+	private Vector3 nextFramePositionOfCheckStep;
 	private void CheckForSpawningAndMoveSteps()
 	{
 		// Check for spawning and do the swapping including making sure the index 0 step has long collider enabled
-		// This involves seeing if the first step would be on or go past position of second step, and passing the difference (which could be 0,0,0).
-		nextFramePositionOfLastStep = stepsTransforms[0].position + (aimingVector * escalatorSpeed * Time.deltaTime);
-		if (nextFramePositionOfLastStep.x <= switchPoint.x || nextFramePositionOfLastStep.y >= switchPoint.y)
+		// This involves seeing if the first step would be on or go past position of second step,
+		// and passing the difference (which could be 0,0,0).
+
+		nextFramePositionOfCheckStep = stepsTransforms[GetIndexOfSwitchPositionStep()].position + (diagonalVector * escalatorSpeed * Time.deltaTime);
+		if ((escalatorSpeed >= 0 && nextFramePositionOfCheckStep.x <= switchPointBottom.x) ||
+			(escalatorSpeed < 0 && nextFramePositionOfCheckStep.x >= switchPointTop.x))
 		{
-			DoRespawn(nextFramePositionOfLastStep - switchPoint);
+			if (escalatorSpeed >= 0)
+				DoRespawn();
+			else
+				DoRespawn();
 		}
 
-		// Now the last index step always moves sideways
-		stepsTransforms[^1].position = stepsTransforms[^1].position + (Vector3.left * escalatorSpeed * Time.deltaTime);
+		MoveMiddleSteps();
+		MoveTopAndBottomSteps();
+	}
 
-		if (stepsTransforms[^1].position.y > topStepYMax)
+	private void MoveTopAndBottomSteps()
+	{
+		if (escalatorSpeed > 0)
 		{
-			stepsTransforms[^1].position = new Vector3(stepsTransforms[^1].position.x, topStepYMax, stepsTransforms[^1].position.z);
-		}
-
-		// The rest of the steps move towards the aiming point
-		for (int i = 0; i < stepsTransforms.Count - 1; i++)
-		{
-			stepsTransforms[i].position = stepsTransforms[i].position + (aimingVector * escalatorSpeed * Time.deltaTime);
-
-			if (stepsTransforms[i].position.y > topStepYMax)
+			// Top steps
+			for (int i = stepsTransforms.Count - 1; i >= GetIndexOfInnerTopHorizontalStep(); i--)
 			{
-				stepsTransforms[i].position = new Vector3(stepsTransforms[i].position.x, topStepYMax, stepsTransforms[i].position.z);
+				MoveStepSideways(i, topStepY);
 			}
+
+			// Bottom steps
+			for (int i = 0; i < GetIndexOfInnerBottomHorizontalStep(); i++)
+			{
+				MoveStepSideways(i, bottomStepY);
+			}
+
+			return;
+		}
+
+		// Bottom steps
+		for (int i = 0; i <= GetIndexOfInnerBottomHorizontalStep(); i++)
+		{
+			MoveStepSideways(i, bottomStepY);
+		}
+
+		// Top steps
+		for (int i = stepsTransforms.Count - 1; i > GetIndexOfInnerTopHorizontalStep(); i--)
+		{
+			MoveStepSideways(i, topStepY);
 		}
 	}
 
-	private void DoRespawn(Vector3 positionPastSwitchPoint)
+	private void MoveMiddleSteps()
 	{
-		// Do the list swapping stuff, ie move the first step to be the last step
+		if (escalatorSpeed > 0)
+		{
+			for (int i = numberOfHorizontalSteps - 1; i < GetIndexOfInnerTopHorizontalStep(); i++)
+			{
+				MoveStepTowardsAimingPoint(i);
+			}
 
-		firstStep = stepsTransforms[^1];
-		firstEscalatorStep = escalatorSteps[^1];
+			return;
+		}
+
+		for (int i = stepsTransforms.Count - numberOfHorizontalSteps; i > GetIndexOfInnerBottomHorizontalStep(); i--)
+		{
+			MoveStepTowardsAimingPoint(i);
+		}
+	}
+
+	private Vector3 amountToMoveStepSideways = Vector3.zero;
+	private void MoveStepSideways(int index, float verticalPosition)
+	{
+		amountToMoveStepSideways.x = Vector3.left.x * escalatorSpeed * Time.deltaTime;
+		stepsTransforms[index].position = stepsTransforms[index].position + amountToMoveStepSideways;
+
+		if (stepsTransforms[index].position.y != verticalPosition)
+		{
+			stepsTransforms[index].position = new Vector3(stepsTransforms[index].position.x, verticalPosition, stepsTransforms[index].position.z);
+		}
+	}
+
+	private void MoveStepTowardsAimingPoint(int index)
+	{
+		stepsTransforms[index].position = stepsTransforms[index].position + (diagonalVector * escalatorSpeed * Time.deltaTime);
+	}
+
+	private void DoRespawn()
+	{
+		// Do the list swapping stuff, ie move the first step to be the last step	
+		firstStep = stepsTransforms[GetIndexOfFirstStep()];
+		firstEscalatorStep = escalatorSteps[GetIndexOfFirstStep()];
 
 		if (firstEscalatorStep.transform == stepParent)
 			RemovePlayerAsChildOfStep();
 
-		stepsTransforms.RemoveAt(stepsTransforms.Count - 1);
-		stepsTransforms.Insert(0, firstStep);
-		stepsTransforms[0].position = spawnPoint + positionPastSwitchPoint;
+		stepsTransforms.RemoveAt(GetIndexOfFirstStep());
+		escalatorSteps.RemoveAt(GetIndexOfFirstStep());
 
-		escalatorSteps.RemoveAt(escalatorSteps.Count - 1);
-		firstEscalatorStep.SetShortCollider();
-		escalatorSteps.Insert(0, firstEscalatorStep);
+		if (escalatorSpeed >= 0)
+		{
+			stepsTransforms.Insert(0, firstStep);
+			stepsTransforms[0].position = stepsTransforms[1].position + offsetVector;
 
-		escalatorSteps[escalatorSteps.Count - 1].SetLongCollider();
+			escalatorSteps.Insert(0, firstEscalatorStep);
+		}
+		else
+		{
+			stepsTransforms.Add(firstStep);
+			stepsTransforms[^1].position = stepsTransforms[^2].position - offsetVector;
+
+			escalatorSteps.Add(firstEscalatorStep);
+		}
 	}
-}
 
-public enum EscalatorDirection
-{
-	UpLeft, UpRight, DownLeft, DownRight
+	private int GetIndexOfFirstStep()
+	{
+		if (escalatorSpeed >= 0)
+			return stepsTransforms.Count - 1;
+		else
+			return 0;
+	}
+
+	private int GetIndexOfSwitchPositionStep()
+	{
+		if (escalatorSpeed >= 0)
+			return numberOfHorizontalSteps - 1;
+		else
+			return stepsTransforms.Count - numberOfHorizontalSteps;
+	}
+
+	private int GetIndexOfInnerTopHorizontalStep()
+	{
+		return stepsTransforms.Count - numberOfHorizontalSteps;
+	}
+
+	private int GetIndexOfInnerBottomHorizontalStep()
+	{
+		return numberOfHorizontalSteps - 1;
+	}
 }
