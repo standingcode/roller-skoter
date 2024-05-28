@@ -36,12 +36,7 @@ public class PlayerAutoRotator : MonoBehaviour
 
 	public void DetermineRotation()
 	{
-		// Set the target rotation as average of hit1 and hit2
-
-		DebugCanvas.Instance.ShowSomething(
-		$"hit1: {GetAverageForHit(PlayerReferences.Instance.ConstantRayCasting.Hit)} -> {PlayerReferences.Instance.ConstantRayCasting.Hit.collider} " +
-		$"hit2: {GetAverageForHit(PlayerReferences.Instance.ConstantRayCasting.Hit2)} -> {PlayerReferences.Instance.ConstantRayCasting.Hit2.collider} " +
-		$"");
+		// Set the target rotation as average of hit1 and hit2	
 
 		if (PlayerReferences.Instance.PlayerControl.PlayerHeight > maxDistanceToSurfaceToGetRotationFrom)
 			rotatingZTarget = 0;

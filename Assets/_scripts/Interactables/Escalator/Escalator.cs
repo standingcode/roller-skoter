@@ -10,9 +10,7 @@ public class Escalator : MonoBehaviour
 	[SerializeField]
 	private Transform stepsRoot;
 
-	private Vector3 switchPointTop, switchPointBottom;
-
-	private float topStepY, bottomStepY;
+	private Vector3 topStepStartPosition, bottomStepStartPosition;
 
 	[SerializeField]
 	private BackgroundInteractable backgroundInteractable;
@@ -33,7 +31,7 @@ public class Escalator : MonoBehaviour
 	[SerializeField]
 	private int numberOfHorizontalSteps = 0;
 
-	private Vector3 offsetVector;
+	private Vector3 horizontalStepsVector, diagonalStepsVectorBottom, diagonalStepsVectorTop;
 
 	private Vector3 diagonalVector = Vector3.up + Vector3.left;
 
@@ -55,13 +53,12 @@ public class Escalator : MonoBehaviour
 		}
 
 		// Set the positions needed for movement		
-		topStepY = stepsTransforms[^1].position.y;
-		bottomStepY = stepsTransforms[0].position.y;
+		topStepStartPosition = stepsTransforms[^1].position;
+		bottomStepStartPosition = stepsTransforms[0].position;
 
-		offsetVector = new Vector3(stepsTransforms[0].position.x - stepsTransforms[1].position.x, 0f, 0f);
-
-		switchPointBottom = stepsTransforms[numberOfHorizontalSteps].position;
-		switchPointTop = stepsTransforms[stepsTransforms.Count - 1 - numberOfHorizontalSteps].position;
+		horizontalStepsVector = new Vector3(stepsTransforms[0].position.x - stepsTransforms[1].position.x, 0f, 0f);
+		diagonalStepsVectorBottom = stepsTransforms[stepsTransforms.Count / 2].position - stepsTransforms[(stepsTransforms.Count / 2) + 1].position;
+		diagonalStepsVectorTop = stepsTransforms[(stepsTransforms.Count / 2) + 1].position - stepsTransforms[stepsTransforms.Count / 2].position;
 
 		// Subscribe to the background interactable events
 		backgroundInteractable.ForegroundModeActivated += ForegroundModeWasActivated;
@@ -143,14 +140,11 @@ public class Escalator : MonoBehaviour
 		// This involves seeing if the first step would be on or go past position of second step,
 		// and passing the difference (which could be 0,0,0).
 
-		nextFramePositionOfCheckStep = stepsTransforms[GetIndexOfSwitchPositionStep()].position + (diagonalVector * escalatorSpeed * Time.deltaTime);
-		if ((escalatorSpeed >= 0 && nextFramePositionOfCheckStep.x <= switchPointBottom.x) ||
-			(escalatorSpeed < 0 && nextFramePositionOfCheckStep.x >= switchPointTop.x))
+		nextFramePositionOfCheckStep = stepsTransforms[GetIndexOfSwitchPositionStep()].position + (Vector3.left * escalatorSpeed * Time.deltaTime);
+		if (escalatorSpeed >= 0 && nextFramePositionOfCheckStep.x <= (topStepStartPosition.x - horizontalStepsVector.x) ||
+			escalatorSpeed < 0 && nextFramePositionOfCheckStep.x >= (bottomStepStartPosition.x + horizontalStepsVector.x))
 		{
-			if (escalatorSpeed >= 0)
-				DoRespawn();
-			else
-				DoRespawn();
+			DoRespawn();
 		}
 
 		MoveMiddleSteps();
@@ -164,13 +158,13 @@ public class Escalator : MonoBehaviour
 			// Top steps
 			for (int i = stepsTransforms.Count - 1; i >= GetIndexOfInnerTopHorizontalStep(); i--)
 			{
-				MoveStepSideways(i, topStepY);
+				MoveStepSideways(i, topStepStartPosition.y);
 			}
 
 			// Bottom steps
 			for (int i = 0; i < GetIndexOfInnerBottomHorizontalStep(); i++)
 			{
-				MoveStepSideways(i, bottomStepY);
+				MoveStepSideways(i, bottomStepStartPosition.y);
 			}
 
 			return;
@@ -179,13 +173,13 @@ public class Escalator : MonoBehaviour
 		// Bottom steps
 		for (int i = 0; i <= GetIndexOfInnerBottomHorizontalStep(); i++)
 		{
-			MoveStepSideways(i, bottomStepY);
+			MoveStepSideways(i, bottomStepStartPosition.y);
 		}
 
 		// Top steps
 		for (int i = stepsTransforms.Count - 1; i > GetIndexOfInnerTopHorizontalStep(); i--)
 		{
-			MoveStepSideways(i, topStepY);
+			MoveStepSideways(i, topStepStartPosition.y);
 		}
 	}
 
@@ -239,14 +233,20 @@ public class Escalator : MonoBehaviour
 		if (escalatorSpeed >= 0)
 		{
 			stepsTransforms.Insert(0, firstStep);
-			stepsTransforms[0].position = stepsTransforms[1].position + offsetVector;
+			stepsTransforms[0].position = stepsTransforms[1].position + horizontalStepsVector;
+
+			stepsTransforms[GetIndexOfInnerBottomHorizontalStep()].position
+				= stepsTransforms[GetIndexOfInnerBottomHorizontalStep() + 1].position - diagonalStepsVectorTop;
 
 			escalatorSteps.Insert(0, firstEscalatorStep);
 		}
 		else
 		{
 			stepsTransforms.Add(firstStep);
-			stepsTransforms[^1].position = stepsTransforms[^2].position - offsetVector;
+			stepsTransforms[^1].position = stepsTransforms[^2].position - horizontalStepsVector;
+
+			stepsTransforms[GetIndexOfInnerTopHorizontalStep()].position
+				= stepsTransforms[GetIndexOfInnerTopHorizontalStep() - 1].position + diagonalStepsVectorTop;
 
 			escalatorSteps.Add(firstEscalatorStep);
 		}
@@ -263,9 +263,9 @@ public class Escalator : MonoBehaviour
 	private int GetIndexOfSwitchPositionStep()
 	{
 		if (escalatorSpeed >= 0)
-			return numberOfHorizontalSteps - 1;
+			return stepsTransforms.Count - 1;
 		else
-			return stepsTransforms.Count - numberOfHorizontalSteps;
+			return 0;
 	}
 
 	private int GetIndexOfInnerTopHorizontalStep()
