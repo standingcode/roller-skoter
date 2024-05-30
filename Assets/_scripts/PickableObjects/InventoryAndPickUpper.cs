@@ -43,7 +43,7 @@ public class InventorySlot
 	}
 }
 
-public class InventoryAndPickupper : MonoBehaviour
+public class InventoryAndPickUpper : MonoBehaviour
 {
 	//[SerializeField]
 	//private PlayerCharacter playerCharacter;
