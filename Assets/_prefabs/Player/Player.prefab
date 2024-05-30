@@ -290,10 +290,10 @@ GameObject:
   - component: {fileID: 431623067733495648}
   - component: {fileID: 902406090031303065}
   - component: {fileID: 3270696375037757162}
+  - component: {fileID: 6385617918299138968}
   - component: {fileID: 7458280094217756738}
   - component: {fileID: 977706262271196140}
   - component: {fileID: 8029703225111056748}
-  - component: {fileID: 6385617918299138968}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -333,6 +333,7 @@ MonoBehaviour:
   constantRayCasting: {fileID: 902406090031303065}
   playerControl: {fileID: 6020665726561071308}
   playerManager: {fileID: 4735998495464464823}
+  playerBackgroundForegroundController: {fileID: 2748003316954644699}
   playerLayers:
     serializedVersion: 2
     m_Bits: 1088
@@ -480,6 +481,18 @@ MonoBehaviour:
   leftStickXDeadZone: 0.2
   leftStickYDeadZone: 0.8
   amountOfValuesToUseForAveraging: 5
+--- !u!114 &6385617918299138968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858348318750441727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb87e402691ba9444b2a85979372f24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7458280094217756738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,18 +561,6 @@ ConstantForce2D:
   m_Force: {x: 0, y: 0}
   m_RelativeForce: {x: 0, y: 0}
   m_Torque: 0
---- !u!114 &6385617918299138968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1858348318750441727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb87e402691ba9444b2a85979372f24e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1868078238956093596
 GameObject:
   m_ObjectHideFlags: 0

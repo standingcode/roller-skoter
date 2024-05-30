@@ -15,6 +15,10 @@ public class PlayerReferences : MonoBehaviour
 	public PlayerManager PlayerManager => playerManager;
 
 	[SerializeField]
+	private PlayerBackgroundForegroundController playerBackgroundForegroundController;
+	public PlayerBackgroundForegroundController PlayerBackgroundForegroundController => playerBackgroundForegroundController;
+
+	[SerializeField]
 	private LayerMask playerLayers;
 	public LayerMask PlayerLayers => playerLayers;
 

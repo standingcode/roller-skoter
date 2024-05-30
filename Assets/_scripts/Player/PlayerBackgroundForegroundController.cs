@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBackgroundForegroundController : MonoBehaviour
@@ -8,7 +9,9 @@ public class PlayerBackgroundForegroundController : MonoBehaviour
 
 	[SerializeField]
 	private SpriteRenderer characterSpriteRenderer;
+	public SpriteRenderer CharacterSpriteRenderer => characterSpriteRenderer;
 
+	// Layer mask contains layers which should ignore each other in background mode
 	public static Action<LayerMask> BackgroundModeActivated;
 	public static Action ForegroundModeActivated;
 

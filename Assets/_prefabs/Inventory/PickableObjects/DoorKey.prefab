@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 1
+  spriteRenderer: {fileID: 461084799284169836}
   keyType: 0
 --- !u!61 &2486332073327361087
 BoxCollider2D:
@@ -301,8 +302,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1858346143
-  m_SortingLayer: -1
+  m_SortingLayerID: -376645973
+  m_SortingLayer: -3
   m_SortingOrder: 1
   m_Sprite: {fileID: 1095141833252711340, guid: 1f4e8fa17f1e1bd4591b3c1b58a67ab2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class PickUpper : MonoBehaviour
 {
-	protected virtual void CheckIfPickableObject(Collider2D collider)
+	[SerializeField]
+	private
+		protected virtual void CheckIfPickableObject(Collider2D collider)
 	{
-		//Debug.Log($"A collision: {collider.name}");
-
 		PickableObjectBase pickableObject = collider.GetComponent<PickableObjectBase>();
 
-		if (pickableObject != null)
+		if (
+			pickableObject != null &&
+			pickableObject.GetSortingLayer().Equals(PlayerReferences.Instance.PlayerBackgroundForegroundController.CharacterSpriteRenderer.sortingLayerName)
+		)
 		{
-			//Debug.Log($"Collided with: {pickableObject.ObjectName}");
-
 			//Item that is collected
 			if (pickableObject.ObjectType == ObjectType.CollectableObject)
 			{
@@ -23,8 +24,6 @@ public class PickUpper : MonoBehaviour
 			else if (pickableObject.ObjectType == ObjectType.ValueObject)
 			{
 				ValueObjectBase valueObjectBase = (ValueObjectBase)pickableObject;
-
-				// Now update the stats (Or try to)
 				StatsAndInventory.Instance.UpdateStat(valueObjectBase);
 			}
 			else
