@@ -12,6 +12,14 @@ public class StatsAndInventory : MonoBehaviour
 	protected List<CollectableObjectBase> inventoryObjects = new List<CollectableObjectBase>();
 	public List<CollectableObjectBase> InventoryObjects { get { return inventoryObjects; } protected set { inventoryObjects = value; } }
 
+	[SerializeField]
+	protected int currentHealth;
+	public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
+
+	[SerializeField]
+	protected int currentSecurityAwareness;
+	public int CurrentSecurityAwareness { get => currentSecurityAwareness; set => currentSecurityAwareness = value; }
+
 	private void Start()
 	{
 		if (Instance != null)

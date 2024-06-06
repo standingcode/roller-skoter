@@ -357,6 +357,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amountOfInventorySlots: 10
   inventoryObjects: []
+  currentHealth: 0
+  currentSecurityAwareness: 0
 --- !u!1001 &1248121143265088228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -475,6 +477,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8258705359262586234, guid: 6fbef37be3ea0354f851b0c8275f52d2, type: 3}
       propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8805918553948289630, guid: 6fbef37be3ea0354f851b0c8275f52d2, type: 3}
+      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8930937860805460398, guid: 6fbef37be3ea0354f851b0c8275f52d2, type: 3}
@@ -716,6 +722,10 @@ PrefabInstance:
     - target: {fileID: 8258705359262586234, guid: 6fbef37be3ea0354f851b0c8275f52d2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8805918553948289630, guid: 6fbef37be3ea0354f851b0c8275f52d2, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8930937860805460398, guid: 6fbef37be3ea0354f851b0c8275f52d2, type: 3}
       propertyPath: m_fontSize
