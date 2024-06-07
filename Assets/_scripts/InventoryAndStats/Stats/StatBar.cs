@@ -1,36 +1,41 @@
 using TMPro;
 using UnityEngine;
 
-[ExecuteAlways]
 public class StatBar : MonoBehaviour
 {
-	[SerializeField]
-	[Range(0, 100)]
-	private int value;
-	public int Value
-	{
-		get => value;
-		set
-		{
-			this.value = value;
-			ChangeBarWidthAndTextValuesToMatchValue();
-		}
-	}
-
 	[SerializeField]
 	private RectTransform filledBar;
 
 	[SerializeField]
 	private TextMeshProUGUI valueText;
 
-	public void ChangeBarWidthAndTextValuesToMatchValue()
+	[SerializeField]
+	private float minValue = 0f;
+
+	[SerializeField]
+	private float maxValue = 100f;
+
+	[SerializeField]
+	private float currentValue = 100f;
+	public float CurrentValue
 	{
-		filledBar.anchorMax = new Vector2(value / 100f, filledBar.anchorMax.y);
-		valueText.text = value.ToString();
+		get => currentValue;
+		set
+		{
+			currentValue = Mathf.Clamp(value, minValue, maxValue);
+			ChangeBarWidthAndTextValuesToMatchValue();
+		}
 	}
 
-	private void Update()
+	public void Start()
 	{
 		ChangeBarWidthAndTextValuesToMatchValue();
+	}
+
+	[ContextMenu("ChangeBarWidthAndTextValuesToMatchValue")]
+	public void ChangeBarWidthAndTextValuesToMatchValue()
+	{
+		filledBar.anchorMax = new Vector2(currentValue / maxValue, filledBar.anchorMax.y);
+		valueText.text = currentValue.ToString("0");
 	}
 }

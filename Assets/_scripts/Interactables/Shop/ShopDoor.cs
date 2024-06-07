@@ -20,11 +20,13 @@ public class ShopDoor : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		OpenDoors();
+		if (collision.tag == "Player")
+			OpenDoors();
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		CloseDoors();
+		if (collision.tag == "Player")
+			CloseDoors();
 	}
 }

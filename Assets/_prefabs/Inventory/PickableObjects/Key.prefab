@@ -17,6 +17,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1095141833252711340, guid: 1f4e8fa17f1e1bd4591b3c1b58a67ab2, type: 3}
     - target: {fileID: 2593077127902004703, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593077127902004703, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
@@ -58,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4332472103962830566, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.5486
+      value: -4.553
       objectReference: {fileID: 0}
     - target: {fileID: 4332472103962830566, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
       propertyPath: m_LocalPosition.z
@@ -124,4 +128,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 1
   spriteRenderer: {fileID: 5169908934391043218}
+  collectableObjectScriptable: {fileID: 11400000, guid: b51e27afa58a68a498f0da9f15ad53d5, type: 2}
   keyType: 0

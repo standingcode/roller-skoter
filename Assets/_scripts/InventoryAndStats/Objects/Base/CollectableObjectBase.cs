@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CollectableObjectBase : PickableObjectBase
 {
-	public CollectableObjectScriptable CollectableObjectScriptable { get; private set; }
+	[SerializeField]
+	protected CollectableObjectScriptable collectableObjectScriptable;
+	public CollectableObjectScriptable CollectableObjectScriptable { get => collectableObjectScriptable; set => collectableObjectScriptable = value; }
 
 	private void OnEnable()
 	{

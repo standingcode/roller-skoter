@@ -4,8 +4,9 @@ using UnityEngine;
 
 public abstract class ValueObjectBase : PickableObjectBase
 {
-	public ValueObjectScriptable ValueObjectScriptable { get; private set; }
-	public abstract void UpdateValuesForPlayer();
+	[SerializeField]
+	protected ValueObjectScriptable valueObjectScriptable;
+	public ValueObjectScriptable ValueObjectScriptable { get => valueObjectScriptable; set => valueObjectScriptable = value; }
 
 	private void OnEnable()
 	{
