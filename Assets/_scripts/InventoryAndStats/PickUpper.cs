@@ -15,6 +15,11 @@ public class PickUpper : MonoBehaviour
 			pickableObject.GetSortingLayer().Equals(PlayerReferences.Instance.PlayerBackgroundForegroundController.CharacterSpriteRenderer.sortingLayerName)
 		)
 		{
+			if (pickableObject.IsPickedUp)
+				return;
+
+			pickableObject.HideObject();
+
 			//Item that is collected
 			if (pickableObject.ObjectType == ObjectType.CollectableObject)
 			{
@@ -30,8 +35,6 @@ public class PickUpper : MonoBehaviour
 			{
 				Debug.LogError("I have no idea what to do with the object picked up");
 			}
-
-			pickableObject.HideObject();
 		}
 	}
 

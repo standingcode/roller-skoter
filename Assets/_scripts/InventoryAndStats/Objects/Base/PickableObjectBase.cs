@@ -16,6 +16,9 @@ public abstract class PickableObjectBase : MonoBehaviour
 	[SerializeField]
 	private SpriteRenderer spriteRenderer;
 
+	private bool isPickedUp = false;
+	public bool IsPickedUp { get => isPickedUp; set => isPickedUp = value; }
+
 	public string GetSortingLayer()
 	{
 		return spriteRenderer.sortingLayerName;
@@ -23,6 +26,7 @@ public abstract class PickableObjectBase : MonoBehaviour
 
 	public void HideObject()
 	{
+		isPickedUp = true;
 		gameObject.SetActive(false);
 	}
 }
