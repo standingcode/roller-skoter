@@ -6,7 +6,7 @@ public class StatsAndInventory : MonoBehaviour
 	public static StatsAndInventory Instance { get; private set; }
 
 	[SerializeField]
-	private int amountOfInventorySlots = 10;
+	private int amountOfInventorySlots = 0;
 
 	[SerializeField]
 	protected List<CollectableObjectBase> inventoryObjects = new List<CollectableObjectBase>();
@@ -47,7 +47,7 @@ public class StatsAndInventory : MonoBehaviour
 		if (inventoryObjects.Count < amountOfInventorySlots)
 		{
 			inventoryObjects.Add(collectableObjectBase);
-			collectableObjectBase.gameObject.SetActive(false);
+			collectableObjectBase.HideObject();
 		}
 		else
 		{
@@ -72,5 +72,10 @@ public class StatsAndInventory : MonoBehaviour
 		{
 			Debug.Log("ValueObjectBase is not of type HealthValueObject or SecurityAwarenessValueObject");
 		}
+	}
+
+	public void ClearInventorySlotImages()
+	{
+
 	}
 }

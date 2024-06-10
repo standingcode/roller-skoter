@@ -1,5 +1,5 @@
-using Unity.Loading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventorySlotItem : MonoBehaviour
 {
@@ -7,14 +7,33 @@ public class InventorySlotItem : MonoBehaviour
 	private RectTransform rectTransform;
 
 	[SerializeField]
-	private int slotSize = 1;
+	private Image image;
 
-	[ContextMenu("Set Slot Size")]
-	public void SetSlotSize()
+	//[SerializeField]
+	//private int slotSize = 1;
+
+	//[ContextMenu("Set Slot Size")]
+	//public void SetSlotSize()
+	//{
+	//	Rect rect = rectTransform.rect;
+	//	rect.width *= slotSize;
+
+	//	rectTransform.sizeDelta = new Vector2(rect.width, rect.height);
+	//}
+
+	public void SetImage(Sprite sprite)
 	{
-		Rect rect = rectTransform.rect;
-		rect.width *= slotSize;
+		image.sprite = sprite;
+		Color color = image.color;
+		color.a = 255;
+		image.color = color;
+	}
 
-		rectTransform.sizeDelta = new Vector2(rect.width, rect.height);
+	[ContextMenu("Clear Image")]
+	public void ClearImage()
+	{
+		Color color = image.color;
+		color.a = 0;
+		image.color = color;
 	}
 }

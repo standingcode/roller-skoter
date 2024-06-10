@@ -8,8 +8,10 @@ public abstract class ValueObjectBase : PickableObjectBase
 	protected ValueObjectScriptable valueObjectScriptable;
 	public ValueObjectScriptable ValueObjectScriptable { get => valueObjectScriptable; set => valueObjectScriptable = value; }
 
-	private void OnEnable()
+	public override void OnEnable()
 	{
 		ObjectType = ObjectType.ValueObject;
+
+		base.OnEnable();
 	}
 }

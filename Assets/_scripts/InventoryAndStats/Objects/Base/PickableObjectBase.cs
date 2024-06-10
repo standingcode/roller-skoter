@@ -10,14 +10,23 @@ public enum ObjectType
 public abstract class PickableObjectBase : MonoBehaviour
 {
 	[SerializeField]
-	private ObjectType objectType;
+	protected ObjectType objectType;
 	public ObjectType ObjectType { get => objectType; set => objectType = value; }
 
 	[SerializeField]
-	private SpriteRenderer spriteRenderer;
+	protected SpriteRenderer spriteRenderer;
 
-	private bool isPickedUp = false;
-	public bool IsPickedUp { get => isPickedUp; set => isPickedUp = value; }
+	private bool pickupInProgress = false;
+	public bool PickupInProgress { get => pickupInProgress; set => pickupInProgress = value; }
+
+	[SerializeField]
+	protected Collider2D collectableObjectCollider;
+
+	public virtual void OnEnable()
+	{
+		if (collectableObjectCollider == null)
+			collectableObjectCollider = GetComponent<Collider2D>();
+	}
 
 	public string GetSortingLayer()
 	{
@@ -26,7 +35,7 @@ public abstract class PickableObjectBase : MonoBehaviour
 
 	public void HideObject()
 	{
-		isPickedUp = true;
 		gameObject.SetActive(false);
+		collectableObjectCollider.enabled = false;
 	}
 }
