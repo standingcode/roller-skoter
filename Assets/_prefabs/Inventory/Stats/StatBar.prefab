@@ -298,9 +298,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cfea37b655960c45b51967172c46f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 100
   filledBar: {fileID: 4121021563680048390}
   valueText: {fileID: 8399000525627504025}
+  minValue: 0
+  maxValue: 100
+  currentValue: 100
 --- !u!1 &5434625452980269195
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +505,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4781439831583367400, guid: ead818f651935c844b91544d01af4f9d, type: 3}
+  m_Sprite: {fileID: -5536050478154543204, guid: 0550f5b1ec2c19a438306dd02a485a3a, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -9,6 +9,9 @@ public class InventorySlotItem : MonoBehaviour
 	[SerializeField]
 	private Image image;
 
+	protected CollectableObjectBase collectableObjectBase;
+	public CollectableObjectBase CollectableObjectBase { get => collectableObjectBase; set => collectableObjectBase = value; }
+
 	//[SerializeField]
 	//private int slotSize = 1;
 

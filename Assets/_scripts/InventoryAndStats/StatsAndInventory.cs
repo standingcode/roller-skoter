@@ -6,11 +6,8 @@ public class StatsAndInventory : MonoBehaviour
 	public static StatsAndInventory Instance { get; private set; }
 
 	[SerializeField]
-	private int amountOfInventorySlots = 0;
-
-	[SerializeField]
-	protected List<CollectableObjectBase> inventoryObjects = new List<CollectableObjectBase>();
-	public List<CollectableObjectBase> InventoryObjects { get { return inventoryObjects; } protected set { inventoryObjects = value; } }
+	protected List<InventorySlotItem> inventorySlots = new List<InventorySlotItem>();
+	public List<InventorySlotItem> InventorySlots { get { return inventorySlots; } protected set { inventorySlots = value; } }
 
 	[SerializeField]
 	protected StatBar healthBar;
@@ -38,21 +35,26 @@ public class StatsAndInventory : MonoBehaviour
 		{
 			Instance = this;
 		}
+
+		ClearInventorySlotImages();
 	}
 
 	public void AddToInventory(CollectableObjectBase collectableObjectBase)
 	{
 		Debug.Log("Updating inventory");
 
-		if (inventoryObjects.Count < amountOfInventorySlots)
+		foreach (var item in inventorySlots)
 		{
-			inventoryObjects.Add(collectableObjectBase);
-			collectableObjectBase.HideObject();
+			if (item.CollectableObjectBase == null)
+			{
+				item.CollectableObjectBase = collectableObjectBase;
+				item.SetImage(collectableObjectBase.CollectableObjectScriptable.sprite);
+				collectableObjectBase.HideObject();
+				return;
+			}
 		}
-		else
-		{
-			Debug.Log("Inventory is full");
-		}
+
+		Debug.Log("Inventory is full");
 	}
 
 	public void UpdateStat(ValueObjectBase valueObjectBase)
@@ -76,6 +78,9 @@ public class StatsAndInventory : MonoBehaviour
 
 	public void ClearInventorySlotImages()
 	{
-
+		foreach (var item in inventorySlots)
+		{
+			item.ClearImage();
+		}
 	}
 }
