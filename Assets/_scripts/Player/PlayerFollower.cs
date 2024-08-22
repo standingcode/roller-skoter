@@ -18,7 +18,7 @@ public class PlayerFollower : MonoBehaviour
 
 	float targetXPosition;
 	float targetYPosition;
-	void Update()
+	void FixedUpdate()
 	{
 		targetXPosition = playerTransform.position.x;
 		targetYPosition = playerTransform.position.y;

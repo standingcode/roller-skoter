@@ -38,4 +38,9 @@ public abstract class PickableObjectBase : MonoBehaviour
 		gameObject.SetActive(false);
 		collectableObjectCollider.enabled = false;
 	}
+
+	public Sprite GetSpriteForObject()
+	{
+		return spriteRenderer.sprite;
+	}
 }

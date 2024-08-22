@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 126
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5967861676968011385
 Transform:
@@ -131,39 +131,39 @@ MonoBehaviour:
   - m_Vertices: 0f000000
   m_SharedTextures: []
   m_Positions:
-  - {x: -2.07, y: 0, z: -0.175}
-  - {x: -2.07, y: 0, z: 0}
+  - {x: -2.515, y: 0, z: -0.175}
+  - {x: -2.515, y: 0, z: 0}
   - {x: 0, y: 0, z: -0.175}
   - {x: 0, y: 0, z: 0}
-  - {x: -2.07, y: 0, z: 0}
-  - {x: -2.07, y: 0, z: 0.175}
+  - {x: -2.515, y: 0, z: 0}
+  - {x: -2.515, y: 0, z: 0.175}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0.175}
   - {x: 0, y: 0, z: -0.175}
   - {x: 0, y: 0, z: 0}
-  - {x: 2.07, y: 0, z: -0.175}
-  - {x: 2.07, y: 0, z: 0}
+  - {x: 2.515, y: 0, z: -0.175}
+  - {x: 2.515, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0.175}
-  - {x: 2.07, y: 0, z: 0}
-  - {x: 2.07, y: 0, z: 0.175}
+  - {x: 2.515, y: 0, z: 0}
+  - {x: 2.515, y: 0, z: 0.175}
   m_Textures0:
-  - {x: -2.07, y: -0.175}
-  - {x: -2.07, y: 0}
+  - {x: -2.515, y: -0.175}
+  - {x: -2.515, y: 0}
   - {x: 0, y: -0.175}
   - {x: 0, y: 0}
-  - {x: -2.07, y: 0}
-  - {x: -2.07, y: 0.175}
+  - {x: -2.515, y: 0}
+  - {x: -2.515, y: 0.175}
   - {x: 0, y: 0}
   - {x: 0, y: 0.175}
   - {x: 0, y: -0.175}
   - {x: 0, y: 0}
-  - {x: 2.07, y: -0.175}
-  - {x: 2.07, y: 0}
+  - {x: 2.515, y: -0.175}
+  - {x: 2.515, y: 0}
   - {x: 0, y: 0}
   - {x: 0, y: 0.175}
-  - {x: 2.07, y: 0}
-  - {x: 2.07, y: 0.175}
+  - {x: 2.515, y: 0}
+  - {x: 2.515, y: 0.175}
   m_Textures2: []
   m_Textures3: []
   m_Tangents:
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 18868
+  m_VersionIndex: 18951
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -212,8 +212,8 @@ MonoBehaviour:
   m_Shape:
     rid: 7389461712789569610
   m_ShapeRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_UnmodifiedMeshVersion: 18865
-  m_Size: {x: 4.14, y: 0, z: 0.35}
+  m_UnmodifiedMeshVersion: 18948
+  m_Size: {x: 5.03, y: 0, z: 0.35}
   m_LocalCenter: {x: 0, y: 0, z: 0}
   references:
     version: 2
@@ -246,7 +246,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b944d3c9a69fd6142b438414bbddcd4a, type: 2}
+  - {fileID: 2100000, guid: b477eb556f22ee34d8e0fd1e69bf3fd4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -336,7 +336,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 126
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &9097159984874488558
 Transform:
@@ -414,11 +414,11 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -2.07, y: 0.175, z: 0}
-  - {x: 2.07, y: 0.175, z: 0}
-  - {x: 2.07, y: -0.175, z: 0}
-  - {x: -2.07, y: -0.175, z: 0}
-  - {x: -2.07, y: 0.175, z: 0}
+  - {x: -2.515, y: 0.175, z: 0}
+  - {x: 2.515, y: 0.175, z: 0}
+  - {x: 2.515, y: -0.175, z: 0}
+  - {x: -2.515, y: -0.175, z: 0}
+  - {x: -2.515, y: 0.175, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

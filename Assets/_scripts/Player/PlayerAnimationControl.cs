@@ -34,11 +34,13 @@ public class PlayerAnimationControl : MonoBehaviour
 		animator.SetBool("IsJumping", true);
 		StartCoroutine(DetermineJumpAnimation());
 	}
+
 	public void PlayerLanded()
 	{
 		isJumping = false;
 		animator.SetBool("IsJumping", false);
 	}
+
 	public void PlaySkateAnimation()
 	{
 		animator.SetBool("IsSkating", true);

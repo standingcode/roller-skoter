@@ -4,6 +4,8 @@ using UnityEngine.ProBuilder;
 [ExecuteInEditMode]
 public class AutomaticallyAddBoxColliderAndBorderToPlaneShape : MonoBehaviour
 {
+#if UNITY_EDITOR
+
 	public BoxCollider2D boxCollider2D;
 	public ProBuilderMesh spriteShapeMeshData;
 	public LineRenderer lineRenderer;
@@ -11,6 +13,9 @@ public class AutomaticallyAddBoxColliderAndBorderToPlaneShape : MonoBehaviour
 
 	void Update()
 	{
+		if (Application.isPlaying)
+			return;
+
 		AddBorder();
 		AddCollider();
 	}
@@ -55,4 +60,6 @@ public class AutomaticallyAddBoxColliderAndBorderToPlaneShape : MonoBehaviour
 	//	foreach (Vector3 position in points)
 	//		Gizmos.DrawCube(position, new Vector2(1f, 1f));
 	//}
+
+#endif
 }

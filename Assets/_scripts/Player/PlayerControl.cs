@@ -66,7 +66,7 @@ public class PlayerControl : MonoBehaviour
 		distanceBetweenRaycastAndBaseOfPlayer = Vector2.Distance(PlayerReferences.Instance.ConstantRayCasting.RaycastOrigin.transform.position, centerOfMass.transform.position);
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		CheckForJumpOrFall();
 		SetConstantForce();

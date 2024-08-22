@@ -23,7 +23,7 @@ public class PlayerAutoRotator : MonoBehaviour
 
 	private float degreesOfRotationDifference;
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		DetermineRotation();
 	}

@@ -4,6 +4,8 @@ using UnityEngine.ProBuilder;
 [ExecuteInEditMode]
 public class AutomaticallyAddEdgeColliderAndBorderToPolyShape : MonoBehaviour
 {
+#if UNITY_EDITOR
+
 	public EdgeCollider2D edgeCollider2D;
 	public LineRenderer lineRenderer;
 	public PolyShape polyShape;
@@ -11,6 +13,9 @@ public class AutomaticallyAddEdgeColliderAndBorderToPolyShape : MonoBehaviour
 	Vector3[] points;
 	void Update()
 	{
+		if (Application.isPlaying)
+			return;
+
 		if (polyShape == null)
 			return;
 
@@ -41,4 +46,6 @@ public class AutomaticallyAddEdgeColliderAndBorderToPolyShape : MonoBehaviour
 		lineRenderer.positionCount = points.Length;
 		lineRenderer.SetPositions(points);
 	}
+
+#endif
 }

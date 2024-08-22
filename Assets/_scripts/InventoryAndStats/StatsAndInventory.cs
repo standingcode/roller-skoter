@@ -48,7 +48,7 @@ public class StatsAndInventory : MonoBehaviour
 			if (item.CollectableObjectBase == null)
 			{
 				item.CollectableObjectBase = collectableObjectBase;
-				item.SetImage(collectableObjectBase.CollectableObjectScriptable.sprite);
+				item.SetImage(collectableObjectBase.GetSpriteForObject());
 				collectableObjectBase.HideObject();
 				return;
 			}

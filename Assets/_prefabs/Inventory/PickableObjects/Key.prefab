@@ -112,6 +112,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7609338050442520896}
   m_SourcePrefab: {fileID: 100100000, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
+--- !u!61 &2301044338520178993 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8911975509074530428, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
+  m_PrefabInstance: {fileID: 7224689834683863373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &5169908934391043218 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2593077127902004703, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
@@ -136,5 +141,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 1
   spriteRenderer: {fileID: 5169908934391043218}
+  collectableObjectCollider: {fileID: 2301044338520178993}
   collectableObjectScriptable: {fileID: 11400000, guid: b51e27afa58a68a498f0da9f15ad53d5, type: 2}
   keyType: 0
