@@ -63,7 +63,7 @@
                     "name": "PowerLeftKeyboard",
                     "type": "Button",
                     "id": "3ea2b28f-06b9-4c61-b901-02a3e7e363ca",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -72,7 +72,7 @@
                     "name": "PowerRightKeyboard",
                     "type": "Button",
                     "id": "4a194958-1716-41db-a881-119b1760037e",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

@@ -14,11 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3128638674809167, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1755271293772841883, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2593077127902004703, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
       propertyPath: m_Size.x
@@ -31,7 +31,7 @@ PrefabInstance:
     - target: {fileID: 2593077127902004703, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 7675826601332790545, guid: d1d09d9ba754f3f4dabede456c17d125, type: 3}
+      objectReference: {fileID: 21300000, guid: d1d09d9ba754f3f4dabede456c17d125, type: 3}
     - target: {fileID: 2593077127902004703, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -74,15 +74,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4332472103962830566, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4332472103962830566, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4332472103962830566, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4332472103962830566, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -104,6 +104,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1273798776932937299}
   m_SourcePrefab: {fileID: 100100000, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
+--- !u!61 &3132581308420862077 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8911975509074530428, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
+  m_PrefabInstance: {fileID: 5824447998161739777}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5827523651301134670 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3128638674809167, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
@@ -123,7 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 2
   spriteRenderer: {fileID: 8298143382696388062}
-  coinValue: 10
+  collectableObjectCollider: {fileID: 3132581308420862077}
+  valueObjectScriptable: {fileID: 11400000, guid: 1560065e462aed146929b6f36880a761, type: 2}
 --- !u!212 &8298143382696388062 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2593077127902004703, guid: 6d56c2cb20b5d514e9d3c77081d6e258, type: 3}
