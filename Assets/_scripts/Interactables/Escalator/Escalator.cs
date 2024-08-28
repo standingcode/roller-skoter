@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Escalator : MonoBehaviour
 {
-	public bool Play = false;
+	[SerializeField]
+	private bool Play = true;
 
 	[SerializeField]
 	private Transform stepsRoot;
@@ -74,9 +75,6 @@ public class Escalator : MonoBehaviour
 
 	void Update()
 	{
-		if (!Play)
-			return;
-
 		CheckForSpawningAndMoveSteps();
 	}
 
@@ -93,6 +91,7 @@ public class Escalator : MonoBehaviour
 
 	public void RemovePlayerAsChildOfStep(Transform stepTransform = null)
 	{
+
 		if (playerTransformReference == null)
 			return;
 
@@ -136,6 +135,9 @@ public class Escalator : MonoBehaviour
 	private Vector3 nextFramePositionOfCheckStep;
 	private void CheckForSpawningAndMoveSteps()
 	{
+		if (!Play)
+			return;
+
 		// Check for spawning and do the swapping including making sure the index 0 step has long collider enabled
 		// This involves seeing if the first step would be on or go past position of second step,
 		// and passing the difference (which could be 0,0,0).
