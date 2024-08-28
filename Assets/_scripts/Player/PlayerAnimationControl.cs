@@ -39,6 +39,7 @@ public class PlayerAnimationControl : MonoBehaviour
 	{
 		isJumping = false;
 		animator.SetBool("IsJumping", false);
+		StopCoroutine(DetermineJumpAnimation());
 	}
 
 	public void PlaySkateAnimation()

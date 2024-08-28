@@ -40,6 +40,10 @@ public class PlayerControl : MonoBehaviour
 	[SerializeField]
 	private Transform spriteTransform;
 
+	[Header("Debug")]
+	[SerializeField]
+	private bool useFixedUpdate;
+
 	// Private
 
 	private float distanceBetweenRaycastAndBaseOfPlayer;
@@ -68,6 +72,18 @@ public class PlayerControl : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		if (!useFixedUpdate)
+			return;
+
+		CheckForJumpOrFall();
+		SetConstantForce();
+	}
+
+	private void Update()
+	{
+		if (useFixedUpdate)
+			return;
+
 		CheckForJumpOrFall();
 		SetConstantForce();
 	}

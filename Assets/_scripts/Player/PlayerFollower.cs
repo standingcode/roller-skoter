@@ -5,20 +5,14 @@ using UnityEngine;
 public class PlayerFollower : MonoBehaviour
 {
 	[SerializeField]
-	private float cameraSpeed;
-
-	[SerializeField]
 	private Transform playerTransform;
 
-
-	void Start()
-	{
-
-	}
+	[SerializeField]
+	private float smoothSpeed = 0.5f;
 
 	float targetXPosition;
 	float targetYPosition;
-	void LateUpdate()
+	void Update()
 	{
 		targetXPosition = playerTransform.position.x;
 		targetYPosition = playerTransform.position.y;
@@ -26,6 +20,8 @@ public class PlayerFollower : MonoBehaviour
 		targetXPosition = Mathf.Max(targetXPosition, 0);
 		targetYPosition = Mathf.Max(targetYPosition, 0);
 
-		this.transform.position = new Vector3(targetXPosition, targetYPosition, this.transform.position.z);
+		//this.transform.position = new Vector3(targetXPosition, targetYPosition, this.transform.position.z);
+
+		this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(targetXPosition, targetYPosition, this.transform.position.z), smoothSpeed); ;
 	}
 }
