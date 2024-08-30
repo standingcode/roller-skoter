@@ -373,7 +373,7 @@ MonoBehaviour:
   constantForce2D: {fileID: 8029703225111056748}
   centerOfMass: {fileID: 101736010949801306}
   spriteTransform: {fileID: 1031510070432351616}
-  useFixedUpdate: 0
+  useFixedUpdate: 1
 --- !u!114 &2748003316954644699
 MonoBehaviour:
   m_ObjectHideFlags: 0

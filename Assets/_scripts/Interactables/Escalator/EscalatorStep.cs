@@ -8,32 +8,69 @@ public class EscalatorStep : MonoBehaviour
 	[SerializeField]
 	private BoxCollider2D shortCollider;
 
-	private int playerCollisionsWithStep = new();
+	private List<Transform> collisionObjects = new();
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.GetContact(0).normal.x > (Vector2.left + Vector2.up).x && collision.GetContact(0).normal.y < (Vector2.left + Vector2.up).y &&
 			collision.GetContact(0).normal.x < (Vector2.right + Vector2.up).x && collision.GetContact(0).normal.y < (Vector2.right + Vector2.up).y)
 		{
-			//contactPoint = collision.GetContact(0).point;
+			collisionObjects.Add(collision.transform);
 
-			if (playerCollisionsWithStep == 0)
-				Escalator.SetPlayerAsChildOfStep(collision.transform.root, transform);
-
-			playerCollisionsWithStep++; ;
-		}
-		else
-		{
-			playerCollisionsWithStep = 0;
+			collision.rigidbody!.interpolation = RigidbodyInterpolation2D.None;
 		}
 	}
 
 	private void OnCollisionExit2D(Collision2D collision)
 	{
-		playerCollisionsWithStep--;
+		collisionObjects.Remove(collision.transform);
+	}
 
-		if (playerCollisionsWithStep == 0)
-			Escalator.RemovePlayerAsChildOfStep(transform);
+	public void MoveStep(Vector3 vectorToMove)
+	{
+		transform.position += vectorToMove;
+
+		foreach (Transform t in collisionObjects)
+		{
+			t.position += vectorToMove;
+		}
+	}
+
+	public void SetPositionOfStep(Vector3 position)
+	{
+		Vector3 offset = transform.position - position;
+
+		transform.position = position;
+
+		//foreach (Transform t in collisionObjects)
+		//{
+		//	t.position += offset;
+		//}
+	}
+
+	public void ActivateCollider()
+	{
+		shortCollider.gameObject.SetActive(true);
+	}
+
+	public void DeactivateCollider()
+	{
+		shortCollider.gameObject.SetActive(false);
+		RemoveObjectsFromStep();
+
+	}
+
+	public void RemoveObjectsFromStep()
+	{
+		// Need to decide later if we just find the player and remove only the player,
+		// Not other stuff which might be on the step
+
+		foreach (Transform t in collisionObjects)
+		{
+			t.GetComponent<Rigidbody2D>()!.interpolation = RigidbodyInterpolation2D.Interpolate;
+		}
+
+		collisionObjects.Clear();
 	}
 
 	//private Vector3 contactPoint;
