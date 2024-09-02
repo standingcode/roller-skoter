@@ -22,6 +22,7 @@ public class PlayerFollower : MonoBehaviour
 
 		//this.transform.position = new Vector3(targetXPosition, targetYPosition, this.transform.position.z);
 
-		this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(targetXPosition, targetYPosition, this.transform.position.z), smoothSpeed); ;
+
+		this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(targetXPosition, targetYPosition, this.transform.position.z), smoothSpeed);
 	}
 }

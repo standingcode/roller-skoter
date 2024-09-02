@@ -8,44 +8,47 @@ public class EscalatorStep : MonoBehaviour
 	[SerializeField]
 	private BoxCollider2D shortCollider;
 
-	private List<Transform> collisionObjects = new();
+	private int playerCollisionCount = 0;
 
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-		if (collision.GetContact(0).normal.x > (Vector2.left + Vector2.up).x && collision.GetContact(0).normal.y < (Vector2.left + Vector2.up).y &&
-			collision.GetContact(0).normal.x < (Vector2.right + Vector2.up).x && collision.GetContact(0).normal.y < (Vector2.right + Vector2.up).y)
-		{
-			collisionObjects.Add(collision.transform);
+	private string playerTag = "Player";
 
-			collision.rigidbody!.interpolation = RigidbodyInterpolation2D.None;
-		}
-	}
-
-	private void OnCollisionExit2D(Collision2D collision)
-	{
-		collisionObjects.Remove(collision.transform);
-	}
+	private Transform playerRootTransform => PlayerReferences.Instance.transform;
 
 	public void MoveStep(Vector3 vectorToMove)
 	{
 		transform.position += vectorToMove;
-
-		foreach (Transform t in collisionObjects)
-		{
-			t.position += vectorToMove;
-		}
 	}
 
 	public void SetPositionOfStep(Vector3 position)
 	{
-		Vector3 offset = transform.position - position;
-
+		//Vector3 offset = transform.position - position;
 		transform.position = position;
+	}
 
-		//foreach (Transform t in collisionObjects)
-		//{
-		//	t.position += offset;
-		//}
+	public void ObjectCollidedWithTopOfStep(Transform otherTransform)
+	{
+		if (otherTransform.tag == playerTag)
+		{
+			if (playerCollisionCount == 0)
+			{
+				SetThisStepAsParentAndChangeRigidbody();
+			}
+
+			playerCollisionCount++;
+		}
+	}
+
+	public void ObjectLeftStep(Transform otherTransform)
+	{
+		if (otherTransform.tag == playerTag)
+		{
+			playerCollisionCount--;
+
+			if (playerCollisionCount == 0)
+			{
+				NullParentAndChangeRigidbody();
+			}
+		}
 	}
 
 	public void ActivateCollider()
@@ -55,22 +58,44 @@ public class EscalatorStep : MonoBehaviour
 
 	public void DeactivateCollider()
 	{
+		RemovePlayerFromStep();
 		shortCollider.gameObject.SetActive(false);
-		RemoveObjectsFromStep();
-
 	}
 
-	public void RemoveObjectsFromStep()
+	public void RemovePlayerFromStep()
 	{
-		// Need to decide later if we just find the player and remove only the player,
-		// Not other stuff which might be on the step
+		// Need to think later about other stuff being on the step
+		NullParentAndChangeRigidbody();
+	}
 
-		foreach (Transform t in collisionObjects)
+	public void SetThisStepAsParentAndChangeRigidbody()
+	{
+		Debug.Log("Setting parent");
+
+		playerRootTransform.SetParent(this.transform);
+
+		Rigidbody2D rb = playerRootTransform.GetComponent<Rigidbody2D>();
+		if (rb != null)
 		{
-			t.GetComponent<Rigidbody2D>()!.interpolation = RigidbodyInterpolation2D.Interpolate;
+			//rb.interpolation = RigidbodyInterpolation2D.None;
+		}
+	}
+
+	public void NullParentAndChangeRigidbody()
+	{
+		if (playerRootTransform.parent != this.transform)
+			return;
+
+		Debug.Log("Removing parent");
+
+		Rigidbody2D rb = playerRootTransform.GetComponent<Rigidbody2D>();
+		if (rb != null)
+		{
+			//rb.interpolation = RigidbodyInterpolation2D.None;
 		}
 
-		collisionObjects.Clear();
+		playerRootTransform.SetParent(null);
+		playerCollisionCount = 0;
 	}
 
 	//private Vector3 contactPoint;

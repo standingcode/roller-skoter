@@ -221,7 +221,7 @@ public class Escalator : MonoBehaviour
 
 		firstEscalatorStep = escalatorSteps[GetIndexOfFirstStep()];
 
-		firstEscalatorStep.RemoveObjectsFromStep();
+		firstEscalatorStep.RemovePlayerFromStep();
 
 		escalatorSteps.RemoveAt(GetIndexOfFirstStep());
 
