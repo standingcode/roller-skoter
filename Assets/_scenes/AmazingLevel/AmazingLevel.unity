@@ -1789,7 +1789,7 @@ Mesh:
     vertexCount: 9
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0, z: 0.5}
+      m_Extent: {x: 13.75, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -1868,7 +1868,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 504
-    _typelessdata: 000000bf00000000000000bf000000000000803f000000000000803f0000000000000000000080bf000000bf000000bf9cc2f53c90c2f53c000000bf0000000000000000000000000000803f000000000000803f0000000000000000000080bf000000bf00000000486f003f90c2f53c0000000000000000000000bf000000000000803f000000000000803f0000000000000000000080bf00000000000000bf96c2f53c3b6f003f000000000000000000000000000000000000803f000000000000803f0000000000000000000080bf0000000000000000476f003f3d6f003f000000bf000000000000003f000000000000803f000000000000803f0000000000000000000080bf000000bf0000003f7f30793f90c2f53c00000000000000000000003f000000000000803f000000000000803f0000000000000000000080bf000000000000003f7f30793f3e6f003f0000003f00000000000000bf000000000000803f000000000000803f0000000000000000000080bf0000003f000000bf90c2f53c6c30793f0000003f0000000000000000000000000000803f000000000000803f0000000000000000000080bf0000003f00000000456f003f6c30793f0000003f000000000000003f000000000000803f000000000000803f0000000000000000000080bf0000003f0000003f7f30793f6c30793f
+    _typelessdata: 00005cc100000000000000bf000000000000803f000000000000803f0000000000000000000080bf00005cc1000000bf7e30793f91c2f53c00005cc10000000000000000000000000000803f000000000000803f0000000000000000000080bf00005cc1000000007f30793f2823413d0000000000000000000000bf000000000000803f000000000000803f0000000000000000000080bf00000000000000bf496f003f90c2f53c000000000000000000000000000000000000803f000000000000803f0000000000000000000080bf00000000000000004a6f003f2623413d00005cc1000000000000003f000000000000803f000000000000803f0000000000000000000080bf00005cc10000003f7f30793f82b2833d00000000000000000000003f000000000000803f000000000000803f0000000000000000000080bf000000000000003f4a6f003f82b2833d00005c4100000000000000bf000000000000803f000000000000803f0000000000000000000080bf00005c41000000bf90c2f53c91c2f53c00005c410000000000000000000000000000803f000000000000803f0000000000000000000080bf00005c410000000094c2f53c2523413d00005c41000000000000003f000000000000803f000000000000803f0000000000000000000080bf00005c410000003f98c2f53c80b2833d
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -1923,13 +1923,13 @@ Mesh:
     m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.5, y: 0, z: 0.5}
+    m_Extent: {x: 13.75, y: 0, z: 0.5}
   m_MeshUsageFlags: 0
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   'm_MeshMetrics[0]': 1
-  'm_MeshMetrics[1]': 1.123602
+  'm_MeshMetrics[1]': 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -3163,17 +3163,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 56191405109713442, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider9
-      objectReference: {fileID: 0}
     - target: {fileID: 566151873356821635, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Name
       value: Scenery
-      objectReference: {fileID: 0}
-    - target: {fileID: 640406107692210932, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider16
       objectReference: {fileID: 0}
     - target: {fileID: 779964956534656575, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
@@ -3181,60 +3173,20 @@ PrefabInstance:
       objectReference: {fileID: 1074573577}
     - target: {fileID: 779964956534656575, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_VersionIndex
-      value: 22399
+      value: 22415
       objectReference: {fileID: 0}
     - target: {fileID: 1380785736684519822, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 234919662}
-    - target: {fileID: 1492784271630886793, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider17
-      objectReference: {fileID: 0}
-    - target: {fileID: 1557279896399056451, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1819833598227103521, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1924093247927302601, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider14
-      objectReference: {fileID: 0}
-    - target: {fileID: 2164308530795124124, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider13
-      objectReference: {fileID: 0}
     - target: {fileID: 2251878675272355451, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 339495668}
-    - target: {fileID: 2251878675272355451, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_VersionIndex
-      value: 33
-      objectReference: {fileID: 0}
-    - target: {fileID: 2338591915015342978, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2809228129825243385, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3088302640885601399, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider15
-      objectReference: {fileID: 0}
     - target: {fileID: 3139616841401177582, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 234919662}
-    - target: {fileID: 3139616841401177582, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_VersionIndex
-      value: 20936
-      objectReference: {fileID: 0}
     - target: {fileID: 3285675968301825762, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3279,46 +3231,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1074573577}
-    - target: {fileID: 3940620317293271972, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010546847135041445, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider3
-      objectReference: {fileID: 0}
     - target: {fileID: 4288986804890489209, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1208201328}
-    - target: {fileID: 4288986804890489209, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_VersionIndex
-      value: 2104
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387517209682677003, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4482966255871887816, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider19
-      objectReference: {fileID: 0}
-    - target: {fileID: 4504522225583788999, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider11
-      objectReference: {fileID: 0}
     - target: {fileID: 4659819935994866974, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 414111736}
-    - target: {fileID: 4659819935994866974, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_VersionIndex
-      value: 20936
-      objectReference: {fileID: 0}
-    - target: {fileID: 4661625652825834694, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4783531538754841632, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3327,50 +3247,22 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1723900637}
-    - target: {fileID: 4849146086940286544, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_VersionIndex
-      value: 13293
-      objectReference: {fileID: 0}
     - target: {fileID: 5119352241193281289, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 112937736}
-    - target: {fileID: 5142233934033078072, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider12
-      objectReference: {fileID: 0}
     - target: {fileID: 5718981238494152300, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 597303947}
-    - target: {fileID: 5848366669534968739, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider22
-      objectReference: {fileID: 0}
-    - target: {fileID: 5896258155780425115, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider5
-      objectReference: {fileID: 0}
     - target: {fileID: 6009976489752728374, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 879126205}
-    - target: {fileID: 6009976489752728374, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_VersionIndex
-      value: 20936
-      objectReference: {fileID: 0}
     - target: {fileID: 6079144274720701577, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 112937736}
-    - target: {fileID: 6079144274720701577, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_VersionIndex
-      value: 18966
-      objectReference: {fileID: 0}
-    - target: {fileID: 6449749468111532687, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider1
-      objectReference: {fileID: 0}
     - target: {fileID: 6501734581802567394, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3379,10 +3271,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 597303947}
-    - target: {fileID: 6632400502588841452, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_VersionIndex
-      value: 19696
-      objectReference: {fileID: 0}
     - target: {fileID: 6738142992011173810, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3391,10 +3279,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 779333607}
-    - target: {fileID: 7098073829229712002, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_VersionIndex
-      value: 22999
-      objectReference: {fileID: 0}
     - target: {fileID: 7293623880600288611, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3403,10 +3287,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1208201328}
-    - target: {fileID: 7674189540032656551, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider2
-      objectReference: {fileID: 0}
     - target: {fileID: 7772113907537528662, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3415,10 +3295,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 897896623}
-    - target: {fileID: 8461444693460657684, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider21
-      objectReference: {fileID: 0}
     - target: {fileID: 8651590972784589182, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3427,24 +3303,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 617540385}
-    - target: {fileID: 8918144725602723460, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_VersionIndex
-      value: 7886
-      objectReference: {fileID: 0}
     - target: {fileID: 8939149091626596173, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 897896623}
-    - target: {fileID: 8939149091626596173, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_VersionIndex
-      value: 18969
-      objectReference: {fileID: 0}
-    - target: {fileID: 9040937568004650135, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
-      propertyPath: m_Name
-      value: StepCollider18
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8542881616234284970, guid: 32b0289ea5379ae42a644b0df1a476d2, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

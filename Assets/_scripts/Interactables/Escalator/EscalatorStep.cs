@@ -21,7 +21,6 @@ public class EscalatorStep : MonoBehaviour
 
 	public void SetPositionOfStep(Vector3 position)
 	{
-		//Vector3 offset = transform.position - position;
 		transform.position = position;
 	}
 
@@ -31,7 +30,7 @@ public class EscalatorStep : MonoBehaviour
 		{
 			if (playerCollisionCount == 0)
 			{
-				SetThisStepAsParentAndChangeRigidbody();
+				SetThisStepAsParent();
 			}
 
 			playerCollisionCount++;
@@ -46,7 +45,7 @@ public class EscalatorStep : MonoBehaviour
 
 			if (playerCollisionCount == 0)
 			{
-				NullParentAndChangeRigidbody();
+				NullPlayerParent();
 			}
 		}
 	}
@@ -65,34 +64,18 @@ public class EscalatorStep : MonoBehaviour
 	public void RemovePlayerFromStep()
 	{
 		// Need to think later about other stuff being on the step
-		NullParentAndChangeRigidbody();
+		NullPlayerParent();
 	}
 
-	public void SetThisStepAsParentAndChangeRigidbody()
+	public void SetThisStepAsParent()
 	{
-		Debug.Log("Setting parent");
-
 		playerRootTransform.SetParent(this.transform);
-
-		Rigidbody2D rb = playerRootTransform.GetComponent<Rigidbody2D>();
-		if (rb != null)
-		{
-			//rb.interpolation = RigidbodyInterpolation2D.None;
-		}
 	}
 
-	public void NullParentAndChangeRigidbody()
+	public void NullPlayerParent()
 	{
 		if (playerRootTransform.parent != this.transform)
 			return;
-
-		Debug.Log("Removing parent");
-
-		Rigidbody2D rb = playerRootTransform.GetComponent<Rigidbody2D>();
-		if (rb != null)
-		{
-			//rb.interpolation = RigidbodyInterpolation2D.None;
-		}
 
 		playerRootTransform.SetParent(null);
 		playerCollisionCount = 0;
