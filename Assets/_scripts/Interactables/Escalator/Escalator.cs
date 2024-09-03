@@ -67,7 +67,7 @@ public class Escalator : MonoBehaviour
 		escalatorStepsForEnablingAndDisablingColliders = escalatorSteps.ToList();
 	}
 
-	void Update()
+	void FixedUpdate()
 	{
 		CheckForSpawningAndMoveSteps();
 	}
@@ -136,7 +136,7 @@ public class Escalator : MonoBehaviour
 		// This involves seeing if the first step would be on or go past position of second step,
 		// and passing the difference (which could be 0,0,0).
 
-		nextFramePositionOfCheckStep = escalatorSteps[GetIndexOfSwitchPositionStep()].transform.position + (Vector3.left * escalatorSpeed * Time.deltaTime);
+		nextFramePositionOfCheckStep = escalatorSteps[GetIndexOfSwitchPositionStep()].transform.position + (Vector3.left * escalatorSpeed * Time.fixedDeltaTime);
 		if (escalatorSpeed >= 0 && nextFramePositionOfCheckStep.x <= (topStepStartPosition.x - horizontalStepsVector.x) ||
 			escalatorSpeed < 0 && nextFramePositionOfCheckStep.x >= (bottomStepStartPosition.x + horizontalStepsVector.x))
 		{
@@ -200,7 +200,7 @@ public class Escalator : MonoBehaviour
 	private Vector3 amountToMoveStepSideways = Vector3.zero;
 	private void MoveStepSideways(int index, float verticalPosition)
 	{
-		amountToMoveStepSideways.x = Vector3.left.x * escalatorSpeed * Time.deltaTime;
+		amountToMoveStepSideways.x = Vector3.left.x * escalatorSpeed * Time.fixedDeltaTime;
 
 		Vector3 amountToMove = new Vector3(
 			amountToMoveStepSideways.x,
@@ -212,7 +212,7 @@ public class Escalator : MonoBehaviour
 
 	private void MoveStepTowardsAimingPoint(int index)
 	{
-		escalatorSteps[index].MoveStep(diagonalVector * escalatorSpeed * Time.deltaTime);
+		escalatorSteps[index].MoveStep(diagonalVector * escalatorSpeed * Time.fixedDeltaTime);
 	}
 
 	private void DoRespawn()

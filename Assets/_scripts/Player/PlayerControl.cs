@@ -166,7 +166,9 @@ public class PlayerControl : MonoBehaviour
 
 		forceVector.x = xForce;
 		forceVector.y = yForce;
+
 		constantForce2D.relativeForce = forceVector;
+		//constantForce2D.force = forceVector;
 	}
 
 	public void TurnCharacter(CharacterFacingDirection characterFacingDirection)
