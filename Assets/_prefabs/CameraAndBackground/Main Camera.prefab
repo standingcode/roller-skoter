@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 292555538712177645}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0007, y: 0.0021, z: 18.74}
+  m_LocalPosition: {x: 0, y: 0, z: 18.74}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: -1588991227
   m_SortingLayer: -11
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300000, guid: b57b92eab1d0b6145a53cf61bf82886e, type: 3}
-  m_Color: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
+  m_Sprite: {fileID: -148021007870509265, guid: f025923dd8e065943b3f483108b8dbdd, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 2
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
-  smoothSpeed: 0.1
+  smoothSpeed: 0.05
 --- !u!1 &3597503093524992623
 GameObject:
   m_ObjectHideFlags: 0
