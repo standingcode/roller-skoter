@@ -4,245 +4,251 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-	[Header("Characteristics")]
-	[SerializeField]
-	private float jumpingForce;
+    [Header("Characteristics")]
+    [SerializeField]
+    private float jumpingForce;
 
-	[SerializeField]
-	private float skatingForce;
+    [SerializeField]
+    private float skatingForce;
 
-	[SerializeField]
-	private float maxSpeed = 2f;
+    [SerializeField]
+    private float maxSpeed = 2f;
 
-	[SerializeField]
-	private float heightToConsiderBeingOffTheGround = 0.04f;
+    [SerializeField]
+    private float heightToConsiderBeingOffTheGround = 0.04f;
 
-	[SerializeField]
-	private float waitForUnJumpTime = 0.15f;
+    [SerializeField]
+    private float waitForUnJumpTime = 0.15f;
 
-	[SerializeField]
-	private static float maxJumpHeight;
-	public static float MaxJumpHeight { get => maxJumpHeight; }
+    [SerializeField]
+    private static float maxJumpHeight;
+    public static float MaxJumpHeight { get => maxJumpHeight; }
 
-	[SerializeField]
-	private float inAirForceReduceMultiplier = 0.5f;
+    [SerializeField]
+    private float inAirForceReduceMultiplier = 0.5f;
 
-	[Header("References")]
-	[SerializeField]
-	private Rigidbody2D mainRigidbody;
+    [Header("References")]
+    [SerializeField]
+    private Rigidbody2D mainRigidbody;
 
-	[SerializeField]
-	private ConstantForce2D constantForce2D;
+    [SerializeField]
+    private ConstantForce2D constantForce2D;
 
-	[SerializeField]
-	private Transform centerOfMass;
+    [SerializeField]
+    private Transform centerOfMass;
 
-	[SerializeField]
-	private Transform spriteTransform;
+    [SerializeField]
+    private Transform spriteTransform;
 
-	[Header("Debug")]
-	[SerializeField]
-	private bool useFixedUpdate;
+    [Header("Debug")]
+    [SerializeField]
+    private bool useFixedUpdate;
 
-	// Private
+    // Private
 
-	private float distanceBetweenRaycastAndBaseOfPlayer;
+    private float distanceBetweenRaycastAndBaseOfPlayer;
 
-	// Public
+    // Public
 
-	public float PlayerHeight => GetPlayerCurrentHeight();
+    public float PlayerHeight => GetPlayerCurrentHeight();
 
-	public static Action PlayerJumped;
-	public static Action PlayerLanded;
+    public static Action PlayerJumped;
+    public static Action PlayerLanded;
 
-	protected bool currentlyFlying;
-	public bool CurrentlyFlying { get => currentlyFlying; set => currentlyFlying = value; }
+    protected bool currentlyFlying;
+    public bool CurrentlyFlying { get => currentlyFlying; set => currentlyFlying = value; }
 
-	protected CharacterFacingDirection characterCurrentFacingDirection = CharacterFacingDirection.Right;
-	public CharacterFacingDirection CharacterCurrentFacingDirection { get => characterCurrentFacingDirection; private set => characterCurrentFacingDirection = value; }
+    protected CharacterFacingDirection characterCurrentFacingDirection = CharacterFacingDirection.Right;
+    public CharacterFacingDirection CharacterCurrentFacingDirection { get => characterCurrentFacingDirection; private set => characterCurrentFacingDirection = value; }
 
-	// Methods
+    // Methods
 
-	private void Start()
-	{
-		mainRigidbody.centerOfMass = centerOfMass.localPosition;
-		maxJumpHeight = CalculateJumpHeight();
-		distanceBetweenRaycastAndBaseOfPlayer = Vector2.Distance(PlayerReferences.Instance.ConstantRayCasting.RaycastOrigin.transform.position, centerOfMass.transform.position);
-	}
+    private void Start()
+    {
+        mainRigidbody.centerOfMass = centerOfMass.localPosition;
+        maxJumpHeight = CalculateJumpHeight();
+        distanceBetweenRaycastAndBaseOfPlayer = Vector2.Distance(PlayerReferences.Instance.ConstantRayCasting.RaycastOrigin.transform.position, centerOfMass.transform.position);
+    }
 
-	private void FixedUpdate()
-	{
-		if (!useFixedUpdate)
-			return;
+    private void FixedUpdate()
+    {
+        if (!useFixedUpdate)
+            return;
 
-		CheckForJumpOrFall();
-		SetConstantForce();
-	}
+        CheckForJumpOrFall();
+        SetConstantForce();
+    }
 
-	private void Update()
-	{
-		if (useFixedUpdate)
-			return;
+    private void Update()
+    {
+        if (useFixedUpdate)
+            return;
 
-		CheckForJumpOrFall();
-		SetConstantForce();
-	}
+        CheckForJumpOrFall();
+        SetConstantForce();
+    }
 
-	private float rayDistance;
-	public float GetPlayerCurrentHeight()
-	{
-		rayDistance = PlayerReferences.Instance.ConstantRayCasting.Hit.distance < PlayerReferences.Instance.ConstantRayCasting.Hit2.distance ?
-			PlayerReferences.Instance.ConstantRayCasting.Hit.distance : PlayerReferences.Instance.ConstantRayCasting.Hit2.distance;
+    private float rayDistance;
+    public float GetPlayerCurrentHeight()
+    {
+        rayDistance = PlayerReferences.Instance.ConstantRayCasting.Hit.distance < PlayerReferences.Instance.ConstantRayCasting.Hit2.distance ?
+            PlayerReferences.Instance.ConstantRayCasting.Hit.distance : PlayerReferences.Instance.ConstantRayCasting.Hit2.distance;
 
-		if (rayDistance < distanceBetweenRaycastAndBaseOfPlayer)
-			return 0;
-		else
-			return rayDistance - distanceBetweenRaycastAndBaseOfPlayer;
-	}
+        if (rayDistance < distanceBetweenRaycastAndBaseOfPlayer)
+            return 0;
+        else
+            return rayDistance - distanceBetweenRaycastAndBaseOfPlayer;
+    }
 
-	public void SetConstantForce()
-	{
-		if (Mathf.Abs(mainRigidbody.velocityX) >= maxSpeed)
-		{
-			SetForce(0);
-		}
-		else
-		{
-			SetForce(forceSetByController * (CurrentlyFlying ? inAirForceReduceMultiplier : 1));
-		}
+    public void SetConstantForce()
+    {
+        if (Mathf.Abs(mainRigidbody.velocityX) >= maxSpeed)
+        {
+            SetForce(0);
+        }
+        else
+        {
+            SetForce(forceSetByController * (CurrentlyFlying ? inAirForceReduceMultiplier : 1));
+        }
 
-	}
+    }
 
-	public void CheckForJumpOrFall()
-	{
-		// If the ray hits nothing, and CurrentlyFlying is false, then we need to take action
-		// If the ray distance is over the threshold and CurrentlyFlying is false, then we need to take action
-		if (
-		(
-		//PlayerReferences.Instance.ConstantRayCasting.Hit.collider == null || 
-		PlayerHeight >= heightToConsiderBeingOffTheGround)
-		&& CurrentlyFlying == false
-		)
-		{
-			CurrentlyFlying = true;
-			PlayerJumped?.Invoke();
+    public void CheckForJumpOrFall()
+    {
+        // If the ray hits nothing, and CurrentlyFlying is false, then we need to take action
+        // If the ray distance is over the threshold and CurrentlyFlying is false, then we need to take action
+        if (
+        (
+        //PlayerReferences.Instance.ConstantRayCasting.Hit.collider == null ||
+        PlayerHeight >= heightToConsiderBeingOffTheGround)
+        && CurrentlyFlying == false
+        )
+        {
+            CurrentlyFlying = true;
+            PlayerJumped?.Invoke();
 
-			return;
-		}
+            return;
+        }
 
-		// If the ray distance is lower than threshold, and CurrentlyFlying is true, then we need to take action
-		if (
-		//PlayerReferences.Instance.ConstantRayCasting.Hit.collider != null && 
-		PlayerHeight < heightToConsiderBeingOffTheGround)
-		{
-			CurrentlyFlying = false;
-			PlayerLanded?.Invoke();
-		}
-	}
+        if (PlayerReferences.Instance.ConstantRayCasting.Hit.collider == null)
+        {
+            CurrentlyFlying = true;
+            return;
+        }
+
+        // If the ray distance is lower than threshold, and CurrentlyFlying is true, then we need to take action
+        if (
+        //PlayerReferences.Instance.ConstantRayCasting.Hit.collider != null && 
+        PlayerHeight < heightToConsiderBeingOffTheGround)
+        {
+            CurrentlyFlying = false;
+            PlayerLanded?.Invoke();
+        }
+    }
 
 
-	private float forceSetByController;
-	public void PowerLeft()
-	{
-		//Debug.Log("Power left");
+    private float forceSetByController;
+    public void PowerLeft()
+    {
+        //Debug.Log("Power left");
 
-		TurnCharacter(CharacterFacingDirection.Left);
-		forceSetByController = -skatingForce;
-	}
+        TurnCharacter(CharacterFacingDirection.Left);
+        forceSetByController = -skatingForce;
+    }
 
-	public void PowerRight()
-	{
-		//Debug.Log("Power right");
+    public void PowerRight()
+    {
+        //Debug.Log("Power right");
 
-		TurnCharacter(CharacterFacingDirection.Right);
-		forceSetByController = skatingForce;
+        TurnCharacter(CharacterFacingDirection.Right);
+        forceSetByController = skatingForce;
 
-	}
+    }
 
-	private Vector2 forceVector;
-	public void SetForce(float xForce, float yForce = 0)
-	{
-		//Debug.Log($"SetForce: {xForce}");
+    private Vector2 forceVector;
+    public void SetForce(float xForce, float yForce = 0)
+    {
+        //Debug.Log($"SetForce: {xForce}");
 
-		forceVector.x = xForce;
-		forceVector.y = yForce;
+        forceVector.x = xForce;
+        forceVector.y = yForce;
 
-		constantForce2D.relativeForce = forceVector;
-		//constantForce2D.force = forceVector;
-	}
+        constantForce2D.relativeForce = forceVector;
+        //constantForce2D.force = forceVector;
+    }
 
-	public void TurnCharacter(CharacterFacingDirection characterFacingDirection)
-	{
-		if (CharacterCurrentFacingDirection == characterFacingDirection)
-		{
-			return;
-		}
+    public void TurnCharacter(CharacterFacingDirection characterFacingDirection)
+    {
+        if (CharacterCurrentFacingDirection == characterFacingDirection)
+        {
+            return;
+        }
 
-		CharacterCurrentFacingDirection = characterFacingDirection;
-		spriteTransform.Rotate(0f, 180f, 0f);
-	}
+        CharacterCurrentFacingDirection = characterFacingDirection;
+        spriteTransform.Rotate(0f, 180f, 0f);
+    }
 
-	public void UnPower()
-	{
-		//Debug.Log("Unpower");
+    public void UnPower()
+    {
+        //Debug.Log("Unpower");
 
-		forceSetByController = 0;
+        forceSetByController = 0;
 
-		SetForce(forceSetByController);
-	}
+        SetForce(forceSetByController);
+    }
 
-	public void Jump()
-	{
-		//Debug.Log("Jump");
+    public void Jump()
+    {
+        //Debug.Log("Jump");
 
-		if (CurrentlyFlying)
-			return;
+        if (CurrentlyFlying)
+            return;
 
-		CurrentlyFlying = true;
+        CurrentlyFlying = true;
 
-		mainRigidbody.AddForce(transform.up * jumpingForce, ForceMode2D.Impulse);
-	}
+        mainRigidbody.AddForce(transform.up * jumpingForce, ForceMode2D.Impulse);
+    }
 
-	Vector2 lineStart;
-	Vector2 lineEnd;
-	float CalculateJumpHeight()
-	{
-		float g = mainRigidbody.gravityScale * Physics2D.gravity.magnitude;
-		float v0 = jumpingForce / mainRigidbody.mass; // converts the jumpForce to an initial velocity
-		return (v0 * v0) / (2 * g);
-	}
+    Vector2 lineStart;
+    Vector2 lineEnd;
+    float CalculateJumpHeight()
+    {
+        float g = mainRigidbody.gravityScale * Physics2D.gravity.magnitude;
+        float v0 = jumpingForce / mainRigidbody.mass; // converts the jumpForce to an initial velocity
+        return (v0 * v0) / (2 * g);
+    }
 
-	public void UnJump()
-	{
-		if (!CurrentlyFlying)
-			return;
+    public void UnJump()
+    {
+        if (!CurrentlyFlying)
+            return;
 
-		if (unJumpCoroutine == null && mainRigidbody.velocityY > 0)
-		{
-			unJumpCoroutine = StartCoroutine(UnJumpCoroutine());
-		}
-	}
+        if (unJumpCoroutine == null && mainRigidbody.velocityY > 0)
+        {
+            unJumpCoroutine = StartCoroutine(UnJumpCoroutine());
+        }
+    }
 
-	private Coroutine unJumpCoroutine = null;
+    private Coroutine unJumpCoroutine = null;
 
-	public IEnumerator UnJumpCoroutine()
-	{
-		yield return new WaitForSeconds(waitForUnJumpTime);
+    public IEnumerator UnJumpCoroutine()
+    {
+        yield return new WaitForSeconds(waitForUnJumpTime);
 
-		if (mainRigidbody.velocityY > 0)
-			mainRigidbody.velocityY = 0;
-		unJumpCoroutine = null;
-	}
+        if (mainRigidbody.velocityY > 0)
+            mainRigidbody.velocityY = 0;
+        unJumpCoroutine = null;
+    }
 
-	public void ZeroAllForcesAndSpeed()
-	{
-		constantForce2D.force = new Vector2(0, 0);
-		mainRigidbody.velocity = new Vector2(0, 0);
-	}
+    public void ZeroAllForcesAndSpeed()
+    {
+        constantForce2D.force = new Vector2(0, 0);
+        mainRigidbody.velocity = new Vector2(0, 0);
+    }
 }
 
 public enum CharacterFacingDirection
 {
-	Left,
-	Right
+    Left,
+    Right
 }
