@@ -55,7 +55,7 @@ public class PlayerControl : MonoBehaviour
     public static Action PlayerJumped;
     public static Action PlayerLanded;
 
-    protected bool currentlyFlying;
+    protected bool currentlyFlying = false;
     public bool CurrentlyFlying { get => currentlyFlying; set => currentlyFlying = value; }
 
     protected CharacterFacingDirection characterCurrentFacingDirection = CharacterFacingDirection.Right;
@@ -90,26 +90,26 @@ public class PlayerControl : MonoBehaviour
 
     private float rayDistance;
     public float GetPlayerCurrentHeight()
-    {  
+    {
         // Return positive infinity if both colliders are null
-        if(PlayerReferences.Instance.ConstantRayCasting.Hit.collider == null && PlayerReferences.Instance.ConstantRayCasting.Hit2.collider == null)
+        if (PlayerReferences.Instance.ConstantRayCasting.Hit.collider == null && PlayerReferences.Instance.ConstantRayCasting.Hit2.collider == null)
         {
             return float.PositiveInfinity;
         }
 
-        if(PlayerReferences.Instance.ConstantRayCasting.Hit.collider != null)
+        if (PlayerReferences.Instance.ConstantRayCasting.Hit.collider != null)
         {
-            return PlayerReferences.Instance.ConstantRayCasting.Hit.distance;
+            rayDistance = PlayerReferences.Instance.ConstantRayCasting.Hit.distance;
         }
-        else if(PlayerReferences.Instance.ConstantRayCasting.Hit2.collider != null)
+        else if (PlayerReferences.Instance.ConstantRayCasting.Hit2.collider != null)
         {
-            return PlayerReferences.Instance.ConstantRayCasting.Hit2.distance;
+            rayDistance = PlayerReferences.Instance.ConstantRayCasting.Hit2.distance;
         }
         else
         {
             rayDistance = PlayerReferences.Instance.ConstantRayCasting.Hit.distance < PlayerReferences.Instance.ConstantRayCasting.Hit2.distance ?
             PlayerReferences.Instance.ConstantRayCasting.Hit.distance : PlayerReferences.Instance.ConstantRayCasting.Hit2.distance;
-        }        
+        }
 
         if (rayDistance < distanceBetweenRaycastAndBaseOfPlayer)
             return 0;
