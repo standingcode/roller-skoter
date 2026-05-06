@@ -15,7 +15,7 @@ public class PlayerControl : MonoBehaviour
     private float maxSpeed = 2f;
 
     [SerializeField]
-    private float heightToConsiderBeingOffTheGround = 0.04f;
+    private float heightToConsiderBeingOffTheGround = 0f;
 
     [SerializeField]
     private float waitForUnJumpTime = 0.15f;
@@ -90,9 +90,26 @@ public class PlayerControl : MonoBehaviour
 
     private float rayDistance;
     public float GetPlayerCurrentHeight()
-    {
-        rayDistance = PlayerReferences.Instance.ConstantRayCasting.Hit.distance < PlayerReferences.Instance.ConstantRayCasting.Hit2.distance ?
+    {  
+        // Return positive infinity if both colliders are null
+        if(PlayerReferences.Instance.ConstantRayCasting.Hit.collider == null && PlayerReferences.Instance.ConstantRayCasting.Hit2.collider == null)
+        {
+            return float.PositiveInfinity;
+        }
+
+        if(PlayerReferences.Instance.ConstantRayCasting.Hit.collider != null)
+        {
+            return PlayerReferences.Instance.ConstantRayCasting.Hit.distance;
+        }
+        else if(PlayerReferences.Instance.ConstantRayCasting.Hit2.collider != null)
+        {
+            return PlayerReferences.Instance.ConstantRayCasting.Hit2.distance;
+        }
+        else
+        {
+            rayDistance = PlayerReferences.Instance.ConstantRayCasting.Hit.distance < PlayerReferences.Instance.ConstantRayCasting.Hit2.distance ?
             PlayerReferences.Instance.ConstantRayCasting.Hit.distance : PlayerReferences.Instance.ConstantRayCasting.Hit2.distance;
+        }        
 
         if (rayDistance < distanceBetweenRaycastAndBaseOfPlayer)
             return 0;
@@ -115,35 +132,46 @@ public class PlayerControl : MonoBehaviour
 
     public void CheckForJumpOrFall()
     {
-        // If the ray hits nothing, and CurrentlyFlying is false, then we need to take action
-        // If the ray distance is over the threshold and CurrentlyFlying is false, then we need to take action
-        if (
-        (
-        //PlayerReferences.Instance.ConstantRayCasting.Hit.collider == null ||
-        PlayerHeight >= heightToConsiderBeingOffTheGround)
-        && CurrentlyFlying == false
-        )
+        // If the ray hits nothing, or the player is off the ground, player is flying. Set true if not true and invoke event
+        if (PlayerHeight > heightToConsiderBeingOffTheGround)
         {
-            CurrentlyFlying = true;
-            PlayerJumped?.Invoke();
+            if (!CurrentlyFlying)
+            {
+                //Debug.Log("Setting Currently Flying to true (No collider)");
+                CurrentlyFlying = true;
+                PlayerJumped?.Invoke();
+            }
 
             return;
         }
 
-        if (PlayerReferences.Instance.ConstantRayCasting.Hit.collider == null)
-        {
-            CurrentlyFlying = true;
-            return;
-        }
+        // If we get here we're on the ground, make sure set to not flying and invoke event if changing state        
 
-        // If the ray distance is lower than threshold, and CurrentlyFlying is true, then we need to take action
-        if (
-        //PlayerReferences.Instance.ConstantRayCasting.Hit.collider != null && 
-        PlayerHeight < heightToConsiderBeingOffTheGround)
+        if (CurrentlyFlying)
         {
             CurrentlyFlying = false;
             PlayerLanded?.Invoke();
         }
+
+        //// If the rigidbody velocity is positive rate of climb, we need to set to true and invoke the jump event
+        //if (PlayerReferences.Instance.PlayerControl.mainRigidbody.velocityY > 0)
+        //{
+        //    if (!CurrentlyFlying)
+        //    {
+        //        //Debug.Log("Setting Currently Flying to true");
+        //        CurrentlyFlying = true;
+        //        PlayerJumped?.Invoke();
+        //    }
+        //}
+        //else
+        //{
+        //    if (CurrentlyFlying)
+        //    {
+        //        //Debug.Log("Setting Currently Flying to false");
+        //        CurrentlyFlying = false;
+        //        PlayerLanded?.Invoke();
+        //    }
+        //}
     }
 
 
@@ -199,12 +227,8 @@ public class PlayerControl : MonoBehaviour
 
     public void Jump()
     {
-        //Debug.Log("Jump");
-
         if (CurrentlyFlying)
             return;
-
-        CurrentlyFlying = true;
 
         mainRigidbody.AddForce(transform.up * jumpingForce, ForceMode2D.Impulse);
     }
