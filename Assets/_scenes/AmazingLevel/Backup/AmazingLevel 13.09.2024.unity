@@ -2775,10 +2775,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 977706262271196140, guid: 3ff5b045edfebea4da0884d66c0d305f, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1858348318750441727, guid: 3ff5b045edfebea4da0884d66c0d305f, type: 3}
       propertyPath: m_Name
       value: Player
